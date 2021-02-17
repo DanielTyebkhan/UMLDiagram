@@ -14,7 +14,29 @@ public class Storage {
             observer.update();
     }
 
-    public void AddObject(ObjectClass object) {
+    public List<ObjectClass> getObjects() {
+        return new ArrayList<ObjectClass>(objects);
+    }
+
+    public int numObjects() {
+        return objects.size();
+    }
+
+    public void addObject(ObjectClass object) {
         objects.add(object);
+    }
+
+    public boolean removeObject(ObjectClass object) {
+        int toRemove = -1;
+        int index = 0;
+        while (index < numObjects()) {
+            if (getObjects().get(index).equals(object))
+                toRemove = index;
+        }
+        if (toRemove > -1) {
+            objects.remove(toRemove);
+            return true;
+        }
+        return false;
     }
 }
