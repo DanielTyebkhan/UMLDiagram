@@ -28,6 +28,7 @@ public class Storage {
 
     public void addObject(ObjectClass object) {
         objects.add(object);
+        notifyObservers();
     }
 
     public boolean removeObject(ObjectClass object) {
@@ -39,6 +40,7 @@ public class Storage {
         }
         if (toRemove > -1) {
             objects.remove(toRemove);
+            notifyObservers();
             return true;
         }
         return false;
