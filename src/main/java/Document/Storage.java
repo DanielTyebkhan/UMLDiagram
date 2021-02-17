@@ -14,6 +14,10 @@ public class Storage {
             observer.update();
     }
 
+    public void attachObserver(Observer obs) {
+        observers.add(obs);
+    }
+
     public List<ObjectClass> getObjects() {
         return new ArrayList<ObjectClass>(objects);
     }
