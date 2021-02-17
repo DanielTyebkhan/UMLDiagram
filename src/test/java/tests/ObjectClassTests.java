@@ -15,7 +15,7 @@ public class ObjectClassTests {
 
     @Before
     public void setUp() {
-        testObj = new ObjectClass("test", new int[2] {0, 1});
+        testObj = new ObjectClass("test", new int[] {0, 1});
     }
 
     @Test
