@@ -83,4 +83,22 @@ public class ObjectClass {
 	public List<ObjectClass> getChildren() {
 		return new ArrayList<ObjectClass>(children);
 	}
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof ObjectClass) {
+            ObjectClass obj = (ObjectClass) other;
+            if (getName() == obj.getName()) {
+                if (getChildren().equals(obj.getChildren())) {
+                    if (getMethods().equals(obj.getMethods())) {
+                        if (getStereotypes().equals(obj.getStereotypes())) {
+                            if (getInstanceVariables().equals(obj.getInstanceVariables()))
+                                return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
