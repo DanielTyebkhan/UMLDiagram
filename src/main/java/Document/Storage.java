@@ -14,6 +14,11 @@ public class Storage implements Subject, Observer {
     private ArrayList<ObjectClass> objects;
     private ArrayList<Observer> observers;
 
+    public Storage() {
+        objects = new ArrayList<ObjectClass>();
+        observers = new ArrayList<Observer>();
+    }
+
     public void update() {
         notifyObservers();
     }

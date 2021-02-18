@@ -1,4 +1,7 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "View.TestView"
 
 sourceCompatibility = 1.8
 
