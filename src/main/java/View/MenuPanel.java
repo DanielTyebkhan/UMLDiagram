@@ -13,7 +13,6 @@ public class MenuPanel extends JComponent {
         menuBar = new JMenuBar();
         bottomPanelBar = new JPanel();
         
-        this.frame = frame;
         frame.getContentPane().add(BorderLayout.SOUTH, bottomPanelBar);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
