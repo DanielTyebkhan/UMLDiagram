@@ -4,10 +4,23 @@ import java.util.List;
 import java.util.ArrayList;
 import Document.ObjectClass;
 import General.Observer;
+import General.Subject;
 
-public class Storage {
+public class Storage implements Subject, Observer {
     private ArrayList<ObjectClass> objects;
     private ArrayList<Observer> observers;
+
+    public void update() {
+        notifyObservers();
+    }
+
+    public void addObserver(Observer obs) {
+        observers.add(obs);
+    }
+
+    public void detachObserver(Observer obs) {
+        return;
+    }
 
     public void notifyObservers() {
         for (Observer observer : observers)
