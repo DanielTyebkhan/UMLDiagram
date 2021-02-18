@@ -67,7 +67,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
 
         public void mouseClicked(MouseEvent e)
         {
-            String newVar = JOptionPane.showInputDialog("Enter new variable name");
+            String newVar = JOptionPane.showInputDialog(frame, "Enter new variable name");
             instance.addInstanceVariable(newVar);
             refresh();
         }
