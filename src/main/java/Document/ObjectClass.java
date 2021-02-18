@@ -26,6 +26,7 @@ public class ObjectClass implements Subject {
         methods = new ArrayList<String>();
         children = new ArrayList<ObjectClass>();
         pdata = position;
+        observers = new ArrayList<Observer>();
 	}
 
 	public void setName(String nm) {

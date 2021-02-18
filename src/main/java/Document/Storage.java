@@ -49,6 +49,7 @@ public class Storage implements Subject, Observer {
     }
 
     public void addObject(ObjectClass object) {
+        object.attachObserver(this);
         objects.add(object);
         notifyObservers();
     }
