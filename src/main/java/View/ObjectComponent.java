@@ -3,8 +3,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 import java.util.ArrayList;
 import Document.ObjectClass;
 
@@ -12,11 +11,9 @@ public class ObjectComponent extends JPanel {
 	private static final int HEIGHT = 100;
 	private static final int WIDTH  = 50;
 	private ObjectClass obj;
-	int[] position;
 
-	public ObjectComponent(String name, int[] position) {
-	 	 obj = new ObjectClass(name, position);
-	 	 this.position = position;
+	public ObjectComponent(ObjectClass obj) {
+	 	 this.obj = obj;
 	 }
 
 	public void paintComponent(Graphics g) {
@@ -50,8 +47,9 @@ public class ObjectComponent extends JPanel {
 
 	}
 	public void drawShape(Graphics2D box) {
-		box.drawRect(position[0], position[1], WIDTH, HEIGHT);
+		box.drawRect(WIDTH*2, HEIGHT*2 , WIDTH, HEIGHT);
 		box.setColor(Color.WHITE);
+		box.drawString(obj.getName(), WIDTH-(1/2)*WIDTH, HEIGHT-(1/2)*WIDTH);
 	}
 
 }
