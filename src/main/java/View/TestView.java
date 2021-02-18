@@ -35,20 +35,68 @@ public class TestView extends JPanel implements MouseListener, Observer {
     }
 
     public void update() {
-        repaint();
-        System.out.println("testing update");
+        refresh();
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    private void refresh() {
+        this.removeAll();
+        for (ObjectClass obj : storage.getObjects()) {
+            add(objShow(obj));
+        }
+        revalidate();
+        frame.repaint();
     }
 
+    public JTextArea objShow(ObjectClass obj) {
+        StringBuilder text = new StringBuilder();
+        text.append(obj.getName() + "\n");
+        for (String variable : obj.getInstanceVariables()) 
+            text.append(variable + "\n");
+        JTextArea current = new JTextArea(text.toString());
+        current.setEditable(false);
+        current.addMouseListener(new VarAddListener(obj));
+        return current;
+    }
+
+    class VarAddListener implements MouseListener {
+        private ObjectClass instance;
+        JPopupMenu varMenu;
+        JMenuItem varItem;
+        
+        public VarAddListener(ObjectClass obj) {
+            instance = obj;
+        }
+
+        public void mouseClicked(MouseEvent e)
+        {
+            String newVar = JOptionPane.showInputDialog("Enter new variable name");
+            instance.addInstanceVariable(newVar);
+            refresh();
+        }
+        public void mouseEntered(MouseEvent e)
+        {
+
+        }
+        public void mouseExited(MouseEvent e)
+        {
+
+        }
+        public void mousePressed(MouseEvent e)
+        {
+
+        }
+
+        public void mouseReleased(MouseEvent e)
+        {
+
+        }
+    }
 
     public void mouseClicked(MouseEvent e)
     {
         if (e.getButton() == MouseEvent.BUTTON3) { 
             rcmenu.show(frame, e.getX(), e.getY());
-            repaint();
+            refresh();
         }
     }
     public void mouseEntered(MouseEvent e)
@@ -93,7 +141,6 @@ public class TestView extends JPanel implements MouseListener, Observer {
             String name = JOptionPane.showInputDialog(frame, "Enter ClassName", "Class0");
             ObjectClass obj = new ObjectClass(name, new int[] {0, 0});
             storage.addObject(obj);
-            
         }
 
         public void mouseReleased(MouseEvent e)
