@@ -6,6 +6,10 @@ import Document.ObjectClass;
 import General.Observer;
 import General.Subject;
 
+/**
+ * Tracks the state of all objects in a diagram
+ * @author Daniel Tyebkhan
+ */
 public class Storage implements Subject, Observer {
     private ArrayList<ObjectClass> objects;
     private ArrayList<Observer> observers;

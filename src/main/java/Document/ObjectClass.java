@@ -6,6 +6,10 @@ import java.util.List;
 import General.Subject;
 import General.Observer;
 
+/**
+ * Represents an object in a class diagram
+ * @author Daniel Tyebkhan
+ */
 public class ObjectClass implements Subject {
 	private String name;
 	private ArrayList<String> instanceVariables;
