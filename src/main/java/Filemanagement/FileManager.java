@@ -16,12 +16,12 @@ public class FileManager {
 	public void ExportImage() {
 		
 	}
-	public void SaveData(Storage stor, String Fname) {
+	public void SaveData(String Fname) {
 		Fname=FnameCheck(Fname);
 		try {
 			FileOutputStream f = new FileOutputStream(Fname);
 			dataserializer = new DataSerializer();
-			dataserializer.SerializeObject(stor, f);
+			dataserializer.SerializeObject(f);
 			f.close();
 		} catch(IOException i) {
 			return;
@@ -33,11 +33,11 @@ public class FileManager {
 		try {
 			FileInputStream f = new FileInputStream(Fname);
 			dataserializer = new DataSerializer();
-			Storage ret = dataserializer.DeserializeObject(f);
+			Storage.instance = dataserializer.DeserializeObject(f);
 			f.close();
-			return ret;
+			return Storage.instance;
 		} catch(IOException i) {
-			return new Storage();
+			return null;
 		}
 	}
 	private String FnameCheck(String Fname) {

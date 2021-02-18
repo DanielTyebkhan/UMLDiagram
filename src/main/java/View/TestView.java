@@ -12,7 +12,6 @@ import java.awt.*;
  * @author Daniel Tyebkhan
  */
 public class TestView extends JPanel implements MouseListener, Observer {
-    Storage storage;
     JPopupMenu rcmenu;
     JMenuItem newClass;
     static JFrame frame;
@@ -20,8 +19,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
     private static final int size = 500;
 
     public TestView() {
-       storage = new Storage();
-       storage.addObserver(this);
+       Storage.instance.addObserver(this);
        setSize(new Dimension(size, size));
 
        rcmenu = new JPopupMenu();
@@ -40,7 +38,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
 
     private void refresh() {
         this.removeAll();
-        for (ObjectClass obj : storage.getObjects()) {
+        for (ObjectClass obj : Storage.instance.getObjects()) {
             add(objShow(obj));
         }
         revalidate();
@@ -140,7 +138,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
             rcmenu.setVisible(false);
             String name = JOptionPane.showInputDialog(frame, "Enter ClassName", "Class0");
             ObjectClass obj = new ObjectClass(name, new int[] {0, 0});
-            storage.addObject(obj);
+            Storage.instance.addObject(obj);
         }
 
         public void mouseReleased(MouseEvent e)

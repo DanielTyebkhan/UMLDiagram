@@ -11,10 +11,12 @@ import General.Subject;
  * @author Daniel Tyebkhan
  */
 public class Storage implements Subject, Observer {
+    public static Storage instance = new Storage();
+
     private ArrayList<ObjectClass> objects;
     private ArrayList<Observer> observers;
 
-    public Storage() {
+    private Storage() {
         objects = new ArrayList<ObjectClass>();
         observers = new ArrayList<Observer>();
     }

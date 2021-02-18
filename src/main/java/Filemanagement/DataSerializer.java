@@ -12,16 +12,17 @@ public class DataSerializer {
 	public DataSerializer() {
 		
 	}
-	public void SerializeObject(Storage stor, FileOutputStream f) {
+	public void SerializeObject(FileOutputStream f) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(f);
-			out.writeObject(stor);
+			out.writeObject(Storage.instance);
 			out.close();
 		} catch(IOException i){
 			return;
 		}
 	}
 	public Storage DeserializeObject(FileInputStream f) {
+        /*
 		try{ 
 			ObjectInputStream in = new ObjectInputStream(f);
 			Storage ret = (Storage) in.readObject();
@@ -34,5 +35,7 @@ public class DataSerializer {
 			Storage ret = new Storage();
 			return ret;
 		}
+        */
+        return null;
 	}
 }
