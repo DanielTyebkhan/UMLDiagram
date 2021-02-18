@@ -3,7 +3,7 @@ package Document;
 import java.util.List;
 import java.util.ArrayList;
 import Document.ObjectClass;
-import View.Observer;
+import General.Observer;
 
 public class Storage {
     private ArrayList<ObjectClass> objects;
