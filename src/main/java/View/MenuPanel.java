@@ -7,7 +7,6 @@ import javax.swing.*;
 public class MenuPanel extends JComponent {
     private JMenuBar menuBar;
     private JPanel bottomPanelBar;
-    private JFrame frame;
     
     public MenuPanel(JFrame frame)
     {
