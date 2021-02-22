@@ -2,6 +2,8 @@ package View;
 
 import Document.Storage;
 import Document.ObjectClass;
+import Document.Notable;
+
 import General.Observer;
 
 import javax.swing.*;
@@ -48,8 +50,8 @@ public class TestView extends JPanel implements MouseListener, Observer {
     public JTextArea objShow(ObjectClass obj) {
         StringBuilder text = new StringBuilder();
         text.append(obj.getName() + "\n");
-        for (String variable : obj.getInstanceVariables()) 
-            text.append(variable + "\n");
+        for (Notable variable : obj.getInstanceVariables()) 
+            text.append(variable.getName() + "\n");
         JTextArea current = new JTextArea(text.toString());
         current.setEditable(false);
         current.addMouseListener(new VarAddListener(obj));

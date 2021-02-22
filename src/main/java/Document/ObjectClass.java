@@ -6,78 +6,60 @@ import java.util.List;
 import General.Subject;
 import General.Observer;
 
+import Document.Notable;
+
 /**
  * Represents an object in a class diagram
  * @author Daniel Tyebkhan
  */
-public class ObjectClass implements Subject {
-	private String name;
-	private ArrayList<String> instanceVariables;
-	private ArrayList<String> stereotypes;
-	private ArrayList<String> methods;
+public class ObjectClass extends Notable implements Subject {
+	private ArrayList<Notable> instanceVariables;
+	private ArrayList<Notable> stereotypes;
+	private ArrayList<Notable> methods;
 	private int[] pdata;
 	private ArrayList<ObjectClass> children;
     private ArrayList<Observer> observers;
 	
 	public ObjectClass(String nm, int[] position) {
-		name = nm;
-        instanceVariables = new ArrayList<String>();
-        stereotypes = new ArrayList<String>();
-        methods = new ArrayList<String>();
+        super(nm);
+        instanceVariables = new ArrayList<Notable>();
+        stereotypes = new ArrayList<Notable>();
+        methods = new ArrayList<Notable>();
         children = new ArrayList<ObjectClass>();
         pdata = position;
         observers = new ArrayList<Observer>();
 	}
 
 	public void setName(String nm) {
-		name = nm;
+        super.setName(nm);
         notifyObservers();
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public void addInstanceVariable(String variable) {
-        instanceVariables.add(variable);
+        instanceVariables.add(new Notable(variable));
         notifyObservers();
     }
 
-    public void setInstanceVariables(List<String> vars) {
-        instanceVariables = new ArrayList<String>(vars);
-        notifyObservers();
-    }
-
-	public List<String> getInstanceVariables() {
-		return new ArrayList<String>(instanceVariables);
+	public List<Notable> getInstanceVariables() {
+		return new ArrayList<Notable>(instanceVariables);
 	}
 
 	public void addStereotype(String stereotype) {
-        stereotypes.add(stereotype);
+        stereotypes.add(new Notable(stereotype));
         notifyObservers();
 	}
 
-    public void setStereotypes(List<String> stereotypes) {
-        stereotypes = new ArrayList<String>(stereotypes);
-        notifyObservers();
-    }
-    
-	public List<String> getStereotypes() {
-		return new ArrayList<String>(stereotypes);
+	public List<Notable> getStereotypes() {
+		return new ArrayList<Notable>(stereotypes);
 	}
 
 	public void addMethod(String method) {
-        methods.add(method);
+        methods.add(new Notable(method));
         notifyObservers();
 	}
 
-    public void setMethods(List<String> methods) {
-        methods = new ArrayList<String>(methods);
-        notifyObservers();
-    }
-
-	public List<String> getMethods() {
-        return new ArrayList<String>(methods);
+	public List<Notable> getMethods() {
+        return new ArrayList<Notable>(methods);
 	}
 
 	public void setPosition(int[] data) {
@@ -87,11 +69,6 @@ public class ObjectClass implements Subject {
 
 	public int[] getPosition() {
 		return pdata;
-	}
-
-	public void setChildren(List<ObjectClass> children) {
-		children = children;
-        notifyObservers();
 	}
 
     public void addChild(ObjectClass child) {
