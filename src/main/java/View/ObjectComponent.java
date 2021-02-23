@@ -6,6 +6,7 @@ import java.awt.*;
 
 import java.util.ArrayList;
 import Document.ObjectClass;
+import Document.Notable;
 
 public class ObjectComponent extends JPanel {
 	private static final int HEIGHT = 300;
@@ -47,6 +48,8 @@ public class ObjectComponent extends JPanel {
 	public void drawShape() {
 		StringBuilder text = new StringBuilder();
         text.append(obj.getName() + "\n");
+        for (Notable methods : obj.Methods()) 
+            text.append(methods.getName() + "()\n");
         for (Notable variable : obj.getInstanceVariables()) 
             text.append(variable.getName() + "\n");
         JTextArea current = new JTextArea(text.toString());
