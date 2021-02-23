@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import Document.ObjectClass;
 
 public class ObjectComponent extends JPanel {
-	private static final int HEIGHT = 100;
-	private static final int WIDTH  = 50;
+	private static final int HEIGHT = 300;
+	private static final int WIDTH  = 100;
 	private ObjectClass obj;
 
 	public ObjectComponent(ObjectClass obj) {
@@ -17,8 +17,7 @@ public class ObjectComponent extends JPanel {
 	 }
 
 	public void paintComponent(Graphics g) {
-		Graphics2D box = (Graphics2D) g;
-		drawShape(box);
+		drawShape()
 	}
 	/**
 	* Adds a class name to the class diagram
@@ -36,7 +35,6 @@ public class ObjectComponent extends JPanel {
 	* Removes a method from the class diagram
 	*/
 	public void removeMethod(String method) {
-		obj = null;
 	}
 	public void ObjectClassInstances() {
 
@@ -46,10 +44,14 @@ public class ObjectComponent extends JPanel {
 
 
 	}
-	public void drawShape(Graphics2D box) {
-		box.drawRect(WIDTH*2, HEIGHT*2 , WIDTH, HEIGHT);
-		box.setColor(Color.WHITE);
-		box.drawString(obj.getName(), WIDTH-(1/2)*WIDTH, HEIGHT-(1/2)*WIDTH);
+	public void drawShape() {
+		StringBuilder text = new StringBuilder();
+        text.append(obj.getName() + "\n");
+        for (Notable variable : obj.getInstanceVariables()) 
+            text.append(variable.getName() + "\n");
+        JTextArea current = new JTextArea(text.toString());
+        current.setHorizontalAlignment(JTextField.CENTER);
+        current.setBorder(lowered);
+        current.setPreferredSize(new Dimension(300, 100));
 	}
-
 }
