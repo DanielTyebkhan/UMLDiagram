@@ -28,4 +28,13 @@ public class Notable {
     public String getNote() {
         return note;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Notable) {
+            Notable oNot = (Notable) other;
+            return getName().equals(oNot.getName()) && getNote().equals(oNot.getNote());
+        }
+        return false;
+    }
 }
