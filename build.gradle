@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = "View.TestView"
+mainClassName = "View.WindowClass"
 
 sourceCompatibility = 1.8
 

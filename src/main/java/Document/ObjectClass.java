@@ -2,6 +2,7 @@ package Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Point;
 
 import General.Subject;
 import General.Observer;
@@ -16,11 +17,11 @@ public class ObjectClass extends Notable implements Subject {
 	private ArrayList<Notable> instanceVariables;
 	private ArrayList<Notable> stereotypes;
 	private ArrayList<Notable> methods;
-	private int[] pdata;
+	private Point pdata;
 	private ArrayList<ObjectClass> children;
     private ArrayList<Observer> observers;
 	
-	public ObjectClass(String nm, int[] position) {
+	public ObjectClass(String nm, Point position) {
         super(nm);
         instanceVariables = new ArrayList<Notable>();
         stereotypes = new ArrayList<Notable>();
@@ -77,12 +78,12 @@ public class ObjectClass extends Notable implements Subject {
         notifyObservers();
     }
 
-	public void setPosition(int[] data) {
-		pdata = data;
+	public void setPosition(Point position) {
+		pdata = position;
         notifyObservers();
 	}
 
-	public int[] getPosition() {
+	public Point getPosition() {
 		return pdata;
 	}
 

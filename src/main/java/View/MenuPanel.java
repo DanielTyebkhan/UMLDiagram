@@ -1,26 +1,21 @@
 package View;
 
+import Document.Storage;
+import Document.ObjectClass;
+
 import java.awt.event.*; 
 import java.awt.*; 
 import javax.swing.*;
 
 public class MenuPanel extends JComponent {
     private JMenuBar menuBar;
-    private JPanel bottomPanelBar;
     
     public MenuPanel(JFrame frame)
-    {
+    {   
         menuBar = new JMenuBar();
-        bottomPanelBar = new JPanel();
-
         open();
         saveAs();
         export();
-        addDiagramButton();
-        deleteDiagramButton();
-        
-        //Adding Components to the frame.
-        frame.getContentPane().add(BorderLayout.SOUTH, bottomPanelBar);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
     
@@ -38,15 +33,5 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
-    }
-    public void addDiagramButton()
-    {
-        JButton button = new JButton("Add");
-        bottomPanelBar.add(button);
-    }
-    public void deleteDiagramButton()
-    {
-        JButton button = new JButton("Delete");
-        bottomPanelBar.add(button);
     }
 }

@@ -139,7 +139,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
         {
             rcmenu.setVisible(false);
             String name = JOptionPane.showInputDialog(frame, "Enter ClassName", "Class0");
-            ObjectClass obj = new ObjectClass(name, new int[] {0, 0});
+            ObjectClass obj = new ObjectClass(name, new Point(0,0));
             Storage.instance.addObject(obj);
         }
 
