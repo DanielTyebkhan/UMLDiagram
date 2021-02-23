@@ -35,8 +35,13 @@ public class ObjectClass extends Notable implements Subject {
         notifyObservers();
 	}
 
-	public void addInstanceVariable(String variable) {
-        instanceVariables.add(new Notable(variable));
+	public void addInstanceVariable(Notable variable) {
+        instanceVariables.add(variable);
+        notifyObservers();
+    }
+
+    public void removeInstanceVariable(Notable variable) {
+        instanceVariables.remove(variable);
         notifyObservers();
     }
 
@@ -44,23 +49,33 @@ public class ObjectClass extends Notable implements Subject {
 		return new ArrayList<Notable>(instanceVariables);
 	}
 
-	public void addStereotype(String stereotype) {
-        stereotypes.add(new Notable(stereotype));
+	public void addStereotype(Notable stereotype) {
+        stereotypes.add(stereotype);
         notifyObservers();
 	}
+
+    public void removeStereotype(Notable stereotype) {
+        stereotypes.remove(stereotype);
+        notifyObservers();
+    }
 
 	public List<Notable> getStereotypes() {
 		return new ArrayList<Notable>(stereotypes);
 	}
 
-	public void addMethod(String method) {
-        methods.add(new Notable(method));
+	public void addMethod(Notable method) {
+        methods.add(method);
         notifyObservers();
 	}
 
 	public List<Notable> getMethods() {
         return new ArrayList<Notable>(methods);
 	}
+    
+    public void removeMethod(Notable method) {
+        methods.remove(method);
+        notifyObservers();
+    }
 
 	public void setPosition(int[] data) {
 		pdata = data;
@@ -73,6 +88,11 @@ public class ObjectClass extends Notable implements Subject {
 
     public void addChild(ObjectClass child) {
         children.add(child);
+        notifyObservers();
+    }
+
+    public void removeChild(ObjectClass child) {
+        children.remove(child);
         notifyObservers();
     }
 

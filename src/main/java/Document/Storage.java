@@ -3,6 +3,7 @@ package Document;
 import java.util.List;
 import java.util.ArrayList;
 import Document.ObjectClass;
+import Document.Arrow;
 import General.Observer;
 import General.Subject;
 
@@ -14,11 +15,13 @@ public class Storage implements Subject, Observer {
     public static Storage instance = new Storage();
 
     private ArrayList<ObjectClass> objects;
+    private ArrayList<Arrow> arrows;
     private ArrayList<Observer> observers;
 
     private Storage() {
         objects = new ArrayList<ObjectClass>();
         observers = new ArrayList<Observer>();
+        arrows = new ArrayList<Arrow>();
     }
 
     public void update() {
@@ -69,5 +72,15 @@ public class Storage implements Subject, Observer {
             return true;
         }
         return false;
+    }
+
+    public void addArrow(Arrow arrow) {
+        arrows.add(arrow);
+        notifyObservers();
+    }
+
+    public void removeArrow(Arrow arrow) {
+        arrows.remove(arrow);
+        notifyObservers();
     }
 }

@@ -3,14 +3,16 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.*;
 import java.util.ArrayList;
+
 import Document.ObjectClass;
 import Document.Notable;
 
-public class ObjectComponent extends JPanel {
-	private static final int HEIGHT = 300;
-	private static final int WIDTH  = 100;
+
+public class ObjectComponent extends JComponent{
+	private static final int HEIGHT = 30;
+	private static final int WIDTH  = 10;
 	private ObjectClass obj;
 
 	public ObjectComponent(ObjectClass obj) {
@@ -18,7 +20,7 @@ public class ObjectComponent extends JPanel {
 	 }
 
 	public void paintComponent(Graphics g) {
-		drawShape()
+		drawShape();
 	}
 	/**
 	* Adds a class name to the class diagram
@@ -30,31 +32,26 @@ public class ObjectComponent extends JPanel {
 	* Adds a method to the class diagram
 	*/
 	public void addMethod(String method) {
-		obj.addMethod(method);
+		obj.addMethod(new Notable(method));
 	}
 	/**
 	* Removes a method from the class diagram
 	*/
 	public void removeMethod(String method) {
-	}
-	public void ObjectClassInstances() {
-
+		obj.removeMethod(new Notable(method));
 	}
 
-	public void shapeType() {
-
-
-	}
 	public void drawShape() {
 		StringBuilder text = new StringBuilder();
         text.append(obj.getName() + "\n");
-        for (Notable methods : obj.Methods()) 
+        for (Notable methods : obj.getMethods()) 
             text.append(methods.getName() + "()\n");
-        for (Notable variable : obj.getInstanceVariables()) 
+        for (Notable variable : obj.getInstanceVariables())
             text.append(variable.getName() + "\n");
+        // Border border = BorderFactory.createLineBorder(Color.BLACK);
         JTextArea current = new JTextArea(text.toString());
-        current.setHorizontalAlignment(JTextField.CENTER);
-        current.setBorder(lowered);
-        current.setPreferredSize(new Dimension(300, 100));
+        // current.setBorder(BorderFactory.createCompoundBorder(border, 
+        // 	BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        // current.addMouseListener(new VarAddListener(obj));
 	}
 }
