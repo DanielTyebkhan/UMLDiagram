@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.awt.Point;
 import Document.ObjectClass;
 
 @RunWith(JUnit4.class)
@@ -15,7 +16,7 @@ public class ObjectClassTests {
 
     @Before
     public void setUp() {
-        testObj = new ObjectClass("test", new int[] {0, 1});
+        testObj = new ObjectClass("test", new Point(0,0));
     }
 
     @Test
