@@ -18,7 +18,6 @@ import General.Observer;
  */
 public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private static final String NEW_CLASS = "New Class";
-    private static final String CLASS_NAME_PROMPT = "Enter Class Name";
 
     JPopupMenu rcmenu;
     JMenuItem newObjectItem;

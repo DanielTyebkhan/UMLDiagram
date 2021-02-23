@@ -11,7 +11,7 @@ import Document.Storage;
 
 public class AddClassListener implements MouseListener {
     private static final String CLASS_NAME_PROMPT = "Enter Class Name";
-    
+
     private Container container;
 
     public AddClassListener(Container container) {
@@ -19,9 +19,10 @@ public class AddClassListener implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-       String name = JOptionPane.showInputDialog(container, CLASS_NAME_PROMPT);
-       if (name != null || !name.equals(""))
-           Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
+        System.out.println("Clicked");
+        String name = JOptionPane.showInputDialog(container, CLASS_NAME_PROMPT);
+        if (name != null || !name.equals(""))
+            Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
     }
 
     public void mouseEntered(MouseEvent e)
