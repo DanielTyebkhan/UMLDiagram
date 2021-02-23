@@ -3,9 +3,10 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.ArrayList;
+
 import Document.ObjectClass;
+import Document.Notable;
 
 public class ObjectComponent extends JPanel {
 	private static final int HEIGHT = 100;
@@ -30,7 +31,7 @@ public class ObjectComponent extends JPanel {
 	* Adds a method to the class diagram
 	*/
 	public void addMethod(String method) {
-		obj.addMethod(method);
+		obj.addMethod(new Notable(method));
 	}
 	/**
 	* Removes a method from the class diagram
