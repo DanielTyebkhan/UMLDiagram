@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import Document.Storage;
 import Document.ObjectClass;
+import View.Listeners.AddClassListener;
 import General.Observer;
 
 /**
@@ -26,7 +27,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         Storage.instance.addObserver(this);
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
-        newObjectItem.addMouseListener(new ObjectItemListener());
+        newObjectItem.addMouseListener(new AddClassListener(this));
         rcmenu.add(newObjectItem);
         addMouseListener(this);
     }
@@ -66,30 +67,4 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     {
      	
     }
-
-    private class ObjectItemListener implements MouseListener {
-        public void mouseClicked(MouseEvent e) {
-            String name = JOptionPane.showInputDialog(this, CLASS_NAME_PROMPT);
-            if (name != null || !name.equals("")) 
-                Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
-        }
-
-        public void mouseEntered(MouseEvent e)
-        {
-            
-        }
-        public void mouseExited(MouseEvent e)
-        {
-            
-        }
-        public void mousePressed(MouseEvent e)
-        {
-            
-        }
-        public void mouseReleased(MouseEvent e) 
-        {
-            
-        }
-    }
-    
 }
