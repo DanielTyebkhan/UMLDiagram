@@ -46,8 +46,8 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON3) {
-        }
+        
+            System.out.println("Clicked");
 	 	
     }
     public void mouseEntered(MouseEvent e)
