@@ -13,6 +13,7 @@ public class WindowClass extends JPanel{
         JFrame frame = new JFrame("Build Your Diagram!");
         new MenuPanel(frame);
         frame.add(BorderLayout.CENTER, new DiagramPanel());
+        DiagramPanel diagramPanel = new DiagramPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(size, size);
         frame.setVisible(true); 
