@@ -8,15 +8,27 @@ import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Notable;
+import View.Listeners.AddClassListener;
 
 
-public class ObjectComponent extends JComponent{
+public class ObjectComponent extends JComponent implements MouseListener{
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 10;
 	private ObjectClass obj;
+	JTextArea current;
+	JPopupMenu rcmenu;
+	JMenuItem newMethod;
+	JMenuItem newVariable;
 
 	public ObjectComponent(ObjectClass obj) {
 	 	 this.obj = obj;
+	 	 rcmenu = new JPopupMenu();
+	 	 newMethod = new JMenuItem("New Method");
+	 	 newVariable = new JMenuItem("New Variable");
+         // newMethod.addMouseListener(new AddClassListener());
+         // newVariable.addMouseListener(new AddClassListener());
+         rcmenu.add(newMethod);
+         rcmenu.add(newVariable);
 	 }
 
 	public void paintComponent(Graphics g) {
@@ -49,9 +61,27 @@ public class ObjectComponent extends JComponent{
         for (Notable variable : obj.getInstanceVariables())
             text.append(variable.getName() + "\n");
         // Border border = BorderFactory.createLineBorder(Color.BLACK);
-        JTextArea current = new JTextArea(text.toString());
+        current = new JTextArea(text.toString());
         // current.setBorder(BorderFactory.createCompoundBorder(border, 
         // 	BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         // current.addMouseListener(new VarAddListener(obj));
+	}
+	public void mouseClicked(MouseEvent e) {
+		if(e.getButton() == MouseEvent.BUTTON3) {
+			rcmenu.show(current, e.getX(), e.getY());
+		}
+	}
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	public void mouseExited(MouseEvent e) {
+
+	}
+	public void mousePressed(MouseEvent e) {
+
+	}
+	public void mouseReleased(MouseEvent e) {
+
 	}
 }
