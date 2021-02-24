@@ -11,13 +11,17 @@ import javax.swing.JOptionPane;
 import Document.ObjectClass;
 import Document.Storage;
 
+import View.DiagramPanel;
+
 /**
  * @author 
  */
 public class ExportFileListener implements ActionListener {
     private String type;
-    public ExportFileListener(String item){
+    private DiagramPanel panel;
+    public ExportFileListener(String item, DiagramPanel diagramPanel){
         type = item;
+        panel = diagramPanel;
     }
 
     public void actionPerformed(ActionEvent e)

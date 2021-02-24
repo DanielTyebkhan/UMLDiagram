@@ -25,12 +25,12 @@ public class MenuPanel extends JComponent {
      * Constructs the MenuPanel positioned at the top of the frame
      * @param frame a JFrame passed from WindowClass to position the MenuPanel
      */
-    public MenuPanel(JFrame frame)
+    public MenuPanel(JFrame frame, DiagramPanel diagramPanel)
     {   
         menuBar = new JMenuBar();
         open();
         saveAs();
-        export();
+        export(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
     /**
@@ -41,13 +41,13 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
-        m.addMouseListener(new OpenFileListener());
+        m.addActionListener(new OpenFileListener());
     } 
     /**
      * Constructs export button that allows user to export and convert
      * file into... 
      */
-    public void export()
+    public void export(DiagramPanel diagramPanel)
     {
         JMenu m = new JMenu("Export");
         JMenuItem item1 = new JMenuItem("JPEG");
@@ -55,8 +55,8 @@ public class MenuPanel extends JComponent {
         m.add(item1);
         m.add(item2);
         menuBar.add(m);
-        item1.addActionListener(new ExportFileListener("JPEG"));
-        item2.addActionListener(new ExportFileListener("PDF"));
+        item1.addActionListener(new ExportFileListener("JPEG", diagramPanel));
+        item2.addActionListener(new ExportFileListener("PDF", diagramPanel));
     }
     /**
      * Constructs save button that allows user to save the current project
