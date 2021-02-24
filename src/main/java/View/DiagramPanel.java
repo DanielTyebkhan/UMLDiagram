@@ -27,7 +27,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     JMenuItem newObjectItem;
 
     public DiagramPanel() {
-        Storage.instance.addObserver(this);
+        Storage.instance.attachObserver(this);
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
         newObjectItem.addMouseListener(new AddClassListener());

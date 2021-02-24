@@ -21,7 +21,7 @@ public class TestView extends JPanel implements MouseListener, Observer {
     private static final int size = 500;
 
     public TestView() {
-       Storage.instance.addObserver(this);
+       Storage.instance.attachObserver(this);
        setSize(new Dimension(size, size));
 
        rcmenu = new JPopupMenu();
