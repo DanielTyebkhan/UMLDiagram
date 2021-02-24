@@ -7,12 +7,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import Document.ObjectClass;
 import Document.Notable;
 import View.Listeners.AddClassListener;
-import View.Listeners.VarAddListener;
-import View.Listeners.MethodAddListener;
+import View.Listeners.AddNotableHandler;
 import View.ArrowDrawer;
 import Document.Arrow;
 
@@ -39,11 +39,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	 panel = new JPanel();
 	 	 panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 	 	 JLabel name = addLabel(obj.getName());
-	 	 JLabel name2 = addLabel("obj.getName()longgggggggggg");
 
 	 	 panel.add(name);
-	 	 panel.add(name2);
-	 	 panel.add(addLabel("obj.getName()"));
 	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
          panel.addMouseListener(this);
          panel.addMouseMotionListener(this);
@@ -51,8 +48,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	 rcmenu = new JPopupMenu();
 	 	 newMethod = new JMenuItem("New Method");
 	 	 newVariable = new JMenuItem("New Variable");
-         newMethod.addMouseListener(new MethodAddListener(this, panel));
-         newVariable.addMouseListener(new VarAddListener(this));
+         newMethod.addActionListener(new AddNotableHandler("Enter method name", obj::addMethod, panel));
+         newVariable.addActionListener(new AddNotableHandler("Enter variable name", obj::addInstanceVariable, panel));
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
 	 }
@@ -67,7 +64,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
-	 	// label.addMouseListener(new MethodAddListener(this, panel));
 	 	incrementHeight();
 	 	incrementWidth();
 	 	return label;
@@ -109,10 +105,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 			panel.add(addLabel(method.getName()));
 			for (ArrowDrawer arrow : arrows) {
 				if ( arrow.getArrow().getFrom().equals(method)) {
-				arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
+				    arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
 				}
 				if ( arrow.getArrow().getTo().equals(method)) {
-				arrow.setFromPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
+				    arrow.setFromPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
 				}
 			}
 		}
