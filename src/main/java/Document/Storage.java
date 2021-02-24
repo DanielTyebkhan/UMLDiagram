@@ -83,4 +83,8 @@ public class Storage implements Subject, Observer {
         arrows.remove(arrow);
         notifyObservers();
     }
+
+    public List<Arrow> getArrows() {
+        return new ArrayList<Arrow>(arrows);
+    }
 }
