@@ -18,9 +18,14 @@ import Document.Arrow;
 
 /**
 * @author Anhad Gande
+* @author Daniel Tyebkhan
 */
 
 public class ObjectComponent implements MouseListener, MouseMotionListener {
+    private static final String NEW_METHOD = "New Method";
+    private static final String NEW_VARIABLE = "New Variable";
+    private static final String ENT_METHOD_NAME = "Enter Method Name";
+    private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
 	private ObjectClass obj;
@@ -34,23 +39,23 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private int clickX;
     private int clickY;
 
-	public ObjectComponent(ObjectClass obj) {
-	 	 this.obj = obj;
-	 	 panel = new JPanel();
-	 	 panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    public ObjectComponent(ObjectClass obj) {
+        this.obj = obj;
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
-         panel.addMouseListener(this);
-         panel.addMouseMotionListener(this);
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel.addMouseListener(this);
+        panel.addMouseMotionListener(this);
 
-	 	 rcmenu = new JPopupMenu();
-	 	 newMethod = new JMenuItem("New Method");
-	 	 newVariable = new JMenuItem("New Variable");
-         newMethod.addActionListener(new AddNotableHandler("Enter method name", obj::addMethod, panel));
-         newVariable.addActionListener(new AddNotableHandler("Enter variable name", obj::addInstanceVariable, panel));
-         rcmenu.add(newMethod);
-         rcmenu.add(newVariable);
-	 }
+        rcmenu = new JPopupMenu();
+        newMethod = new JMenuItem(NEW_METHOD);
+        newVariable = new JMenuItem(NEW_VARIABLE);
+        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, obj::addMethod, panel));
+        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, obj::addInstanceVariable, panel));
+        rcmenu.add(newMethod);
+        rcmenu.add(newVariable);
+    }
 
     public ObjectClass getObject() {
         return obj;
@@ -90,9 +95,11 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void removeMethod(String method) {
 		obj.removeMethod(new Notable(method));
 	}
+
 	public void addVariable(String var) {
 		obj.addInstanceVariable(new Notable(var));
 	}
+
 	public void removeVariable(String var) {
 		obj.removeInstanceVariable(new Notable(var));
 	}
@@ -121,13 +128,9 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 			}
 		}
 		Dimension dimension = reference.getSize();
-		System.out.println(clicked.getX());
-		System.out.print(clicked.getY());
-		// System.out.println(dimension);
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
-		// reference.add(listScrollPane, BorderLayout.CENTER);
 
 	}
 	public void mouseClicked(MouseEvent e) {
@@ -157,8 +160,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         int deltaX = e.getXOnScreen() - clickX;
         int deltaY = e.getYOnScreen() - clickY;
-        System.out.println("Delta x: " + deltaX);
-        System.out.println("Delta y: " + deltaY);
         Point prevPos = obj.getPosition();
         obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
         clickX = e.getXOnScreen();
