@@ -38,6 +38,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         newObjectItem.addActionListener(new AddClassListener(this));
         rcmenu.add(newObjectItem);
         addMouseListener(this);
+        this.setLayout(null);
     }
 
     /**
