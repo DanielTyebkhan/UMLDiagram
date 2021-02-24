@@ -30,7 +30,7 @@ public class AddClassListener implements MouseListener {
 
     public void mousePressed(MouseEvent e) {
         String name = JOptionPane.showInputDialog(e.getComponent(), CLASS_NAME_PROMPT);
-        if (name != null || !name.equals(""))
+        if (name != null && !name.equals(""))
             Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
     }
 

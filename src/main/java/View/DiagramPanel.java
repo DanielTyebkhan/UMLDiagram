@@ -3,6 +3,7 @@ package View;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Point;
+import java.awt.Graphics;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -29,6 +30,12 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         newObjectItem.addMouseListener(new AddClassListener());
         rcmenu.add(newObjectItem);
         addMouseListener(this);
+    }
+
+    @Override 
+    public void paintComponent(Graphics g) {
+        for (ObjectClass obj : Storage.instance.getObjects())
+            System.out.println(obj.getName());
     }
 
     public void update() {
