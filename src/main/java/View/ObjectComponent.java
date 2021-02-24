@@ -17,8 +17,7 @@ import View.ArrowDrawer;
 import Document.Arrow;
 
 
-
-public class ObjectComponent {
+public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
 	private ObjectClass obj;
@@ -28,6 +27,9 @@ public class ObjectComponent {
 	JMenuItem newVariable;
 	private int incHeight = 0;
 	private int incWidth = 0;
+    private boolean selected;
+    private int clickX;
+    private int clickY;
 
 	public ObjectComponent(ObjectClass obj) {
 	 	 this.obj = obj;
@@ -42,7 +44,8 @@ public class ObjectComponent {
 	 	 panel.add(name2);
 	 	 panel.add(addLabel("obj.getName()"));
 	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
-	 	 // panel.addMouseListener(new NewPanelListener());
+         panel.addMouseListener(this);
+         panel.addMouseMotionListener(this);
 
 
 	 	 rcmenu = new JPopupMenu();
@@ -53,6 +56,11 @@ public class ObjectComponent {
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
 	 }
+
+    public ObjectClass getObject() {
+        return obj;
+    }
+
 	private JLabel addLabel(String text) {
 		JLabel label = new JLabel(text);
 
@@ -138,10 +146,90 @@ public class ObjectComponent {
 
 	}
 	public void mousePressed(MouseEvent e) {
-
+        clickX = e.getXOnScreen();
+        clickY = e.getYOnScreen();
+        selected = true;
 	}
 	public void mouseReleased(MouseEvent e) {
-
+        selected = false;
 	}
     
+
+    public void mouseDragged(MouseEvent e) {
+        int deltaX = e.getXOnScreen() - clickX;
+        int deltaY = e.getYOnScreen() - clickY;
+        System.out.println("Delta x: " + deltaX);
+        System.out.println("Delta y: " + deltaY);
+        Point prevPos = obj.getPosition();
+        obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
+        clickX = e.getXOnScreen();
+        clickY = e.getYOnScreen();
+    }
+
+    public void mouseMoved(MouseEvent e) {
+    }
+    class VarAddListener implements MouseListener {
+        private ObjectComponent instance;
+        JPopupMenu varMenu;
+        JMenuItem varItem;
+        
+        public VarAddListener(ObjectComponent obj) {
+            instance = obj;
+        }
+
+        public void mouseClicked(MouseEvent e)
+        {
+            String newVar = JOptionPane.showInputDialog(panel, "Enter new variable name");
+            instance.addVariable(newVar);
+        }
+        public void mouseEntered(MouseEvent e)
+        {
+
+        }
+        public void mouseExited(MouseEvent e)
+        {
+
+        }
+        public void mousePressed(MouseEvent e)
+        {
+
+        }
+
+        public void mouseReleased(MouseEvent e)
+        {
+
+        }
+    }
+    class MethodAddListener implements MouseListener {
+        private ObjectComponent instance;
+        JPopupMenu varMenu;
+        JMenuItem varItem;
+        
+        public MethodAddListener(ObjectComponent obj) {
+            instance = obj;
+        }
+
+        public void mouseClicked(MouseEvent e)
+        {
+            String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
+            instance.addMethod(newMethod);
+        }
+        public void mouseEntered(MouseEvent e)
+        {
+
+        }
+        public void mouseExited(MouseEvent e)
+        {
+
+        }
+        public void mousePressed(MouseEvent e)
+        {
+
+        }
+
+        public void mouseReleased(MouseEvent e)
+        {
+
+        }
+    }
 }

@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private Point clickLocation;
     private JPopupMenu rcmenu;
     private JMenuItem newObjectItem;
+    private ArrayList<ObjectComponent> components;
 
     /**
      * Constructs a diagram panel
@@ -39,23 +39,32 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         rcmenu.add(newObjectItem);
         addMouseListener(this);
         this.setLayout(null);
+        components = new ArrayList<ObjectComponent>();
     }
 
     /**
      * Updates the content of the Diagram
      */
     private void updateView() {
+        addComponents();
         removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
         ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));
-        for (ObjectClass obj : Storage.instance.getObjects())
-            new ObjectComponent(obj).drawShape(this, arrowDrawers);
+        for (ObjectComponent comp : components)
+            comp.drawShape(this, arrowDrawers);
         for (ArrowDrawer drawer : arrowDrawers)
             drawer.drawArrow(this);
         repaint();
         revalidate();
+    }
+
+    private void addComponents() {
+        for (ObjectClass obj : Storage.instance.getObjects()) {
+            if (!hasComponent(obj))
+                components.add(new ObjectComponent(obj));
+        }
     }
 
 
@@ -64,6 +73,15 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      */
     public void update() {
         updateView();
+    }
+
+    private boolean hasComponent(ObjectClass obj) {
+        boolean present = false;
+        for (ObjectComponent comp : components) {
+            if (comp.equals(obj))
+                present = true;
+        }
+        return present;
     }
 
     public Point getClickLocation() {
