@@ -67,7 +67,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
-	 	label.addMouseListener(new MethodAddListener(this, panel));
+	 	// label.addMouseListener(new MethodAddListener(this, panel));
 	 	incrementHeight();
 	 	incrementWidth();
 	 	return label;

@@ -21,8 +21,10 @@ public class MethodAddListener implements MouseListener {
 
         public void mouseClicked(MouseEvent e)
         {
-            String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
-            instance.addMethod(newMethod);
+        	// if(e.getButton() == MouseEvent.BUTTON3) {
+	        //     String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
+	        //     instance.addMethod(newMethod);
+        	// }
         }
         public void mouseEntered(MouseEvent e)
         {
