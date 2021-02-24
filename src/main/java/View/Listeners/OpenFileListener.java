@@ -2,16 +2,20 @@ package View.Listeners;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.awt.Point;
-import javax.swing.JOptionPane;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
 
-import Document.ObjectClass;
-import Document.Storage;
+import javax.swing.JFileChooser;
 
 /**
- * @author 
+ * @author Sai Lyon Ho
  */
 public class OpenFileListener implements MouseListener {
+
+    // public void actionPerformed(ActionEvent e)
+    // {
+    //     System.out.println("Clicked Open File!");
+    // }
 
     public void mouseClicked(MouseEvent e) 
     {
