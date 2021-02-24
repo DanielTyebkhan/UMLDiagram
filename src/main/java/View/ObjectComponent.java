@@ -155,9 +155,12 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         int deltaX = e.getXOnScreen() - clickX;
         int deltaY = e.getYOnScreen() - clickY;
+        System.out.println("Delta x: " + deltaX);
+        System.out.println("Delta y: " + deltaY);
         Point prevPos = obj.getPosition();
         obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
-        System.out.println("set");
+        clickX = e.getXOnScreen();
+        clickY = e.getYOnScreen();
     }
 
     public void mouseMoved(MouseEvent e) {
