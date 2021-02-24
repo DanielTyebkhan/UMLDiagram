@@ -113,9 +113,11 @@ public class ObjectComponent implements MouseListener {
 			}
 		}
 		Dimension dimension = reference.getSize();
-		System.out.println(incHeight);
-		System.out.print(" " + incWidth);
+		System.out.println(clicked.getX());
+		System.out.print(" " + clicked.getY());
 		System.out.println(dimension);
+		Dimension size = panel.getPreferredSize();
+		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
 		// reference.add(listScrollPane, BorderLayout.CENTER);
 
