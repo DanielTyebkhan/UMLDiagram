@@ -15,17 +15,19 @@ import Document.Storage;
 public class AddClassListener implements MouseListener {
     private static final String CLASS_NAME_PROMPT = "Enter Class Name";
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) 
+    {
+       
     }
-
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e)
+    {
 
     }
 
     public void mouseExited(MouseEvent e) {
 
     }
-    
+
     public void mousePressed(MouseEvent e) {
         String name = JOptionPane.showInputDialog(e.getComponent(), CLASS_NAME_PROMPT);
         if (name != null || !name.equals(""))
