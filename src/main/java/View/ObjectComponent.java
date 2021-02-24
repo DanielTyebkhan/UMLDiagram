@@ -153,7 +153,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void mouseReleased(MouseEvent e) {
         selected = false;
 	}
-    
 
     public void mouseDragged(MouseEvent e) {
         int deltaX = e.getXOnScreen() - clickX;
