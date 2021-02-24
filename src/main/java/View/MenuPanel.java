@@ -2,6 +2,11 @@ package View;
 
 import Document.Storage;
 import Document.ObjectClass;
+import View.Listeners.OpenFileListener;
+import View.Listeners.ExportFileListener;
+import View.Listeners.SaveFileListener;
+
+
 
 import java.awt.event.*; 
 import java.awt.*; 
@@ -36,6 +41,7 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
+        m.addMouseListener(new OpenFileListener());
     } 
     /**
      * Constructs export button that allows user to export and convert
@@ -49,6 +55,8 @@ public class MenuPanel extends JComponent {
         m.add(item1);
         m.add(item2);
         menuBar.add(m);
+        // m.addMouseListener(new ExportFileListener());
+        item1.addMouseListener(new ExportFileListener("JPEG"));
     }
     /**
      * Constructs save button that allows user to save the current project
@@ -58,5 +66,6 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
+        m.addMouseListener(new SaveFileListener());
     }
 }
