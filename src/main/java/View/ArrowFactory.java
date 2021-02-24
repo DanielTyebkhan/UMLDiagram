@@ -11,6 +11,8 @@ public class ArrowFactory {
         switch (arrow.getType()) {
             case SUBTYPE:
                 return new SubtypeArrow(arrow);
+            default:
+                return new SubtypeArrow(arrow);
         }
     }
 }
