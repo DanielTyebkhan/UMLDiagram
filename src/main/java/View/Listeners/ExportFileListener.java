@@ -14,7 +14,7 @@ import Document.Storage;
 import View.DiagramPanel;
 
 /**
- * @author 
+ * @author Sai Lyon Ho
  */
 public class ExportFileListener implements ActionListener {
     private String type;

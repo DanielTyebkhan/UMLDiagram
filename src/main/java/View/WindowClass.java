@@ -10,11 +10,15 @@ import View.DiagramPanel;
 * WindowClass creates a frame containing the MenuPanel 
 * in the top and the DiagramPanel in the center
 *
-* @author  
+* @author  Sai Lyon Ho
 */
 public class WindowClass extends JPanel{
     private static final int SIZE = 500;
 
+    /**
+     * Constructs frame of WindowClass where MenuPanel and 
+     * DiagramPanel are instantiated   
+     */
     public WindowClass() {
         JFrame frame = new JFrame("Build Your Diagram!");
         DiagramPanel diagramPanel = new DiagramPanel();

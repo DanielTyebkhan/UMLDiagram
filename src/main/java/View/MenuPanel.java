@@ -16,7 +16,7 @@ import javax.swing.*;
 * MenuPanel creates the a panel containing 
 * the open, saveAs and export buttons and methods
 *
-* @author  
+* @author  Sai Lyon Ho
 */
 public class MenuPanel extends JComponent {
     private JMenuBar menuBar;

@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 // import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
 
+import javax.swing.JFileChooser;
 
 /**
  * @author Sai Lyon Ho
