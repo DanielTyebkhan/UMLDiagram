@@ -9,6 +9,7 @@ import General.Subject;
 
 /**
  * Tracks the state of all objects in a diagram
+ * Storage is a singleton and should be accessed via Storage.instance
  * @author Daniel Tyebkhan
  */
 public class Storage implements Subject, Observer {
@@ -18,29 +19,41 @@ public class Storage implements Subject, Observer {
     private ArrayList<Arrow> arrows;
     private ArrayList<Observer> observers;
 
+    /*
+     * Constructs a new storage object
+     */
     private Storage() {
         objects = new ArrayList<ObjectClass>();
         observers = new ArrayList<Observer>();
         arrows = new ArrayList<Arrow>();
     }
 
+    /*
+     * Notifies all objects observing the storage
+     */
     public void update() {
         notifyObservers();
     }
 
-    public void addObserver(Observer obs) {
-        observers.add(obs);
-    }
-
+    /*
+     * Removes an observer
+     */
     public void detachObserver(Observer obs) {
         return;
     }
 
+    /*
+     * Notifies observers
+     */
     public void notifyObservers() {
         for (Observer observer : observers)
             observer.update();
     }
 
+
+    /*
+     * Attaches an observer
+     */
     public void attachObserver(Observer obs) {
         observers.add(obs);
     }
