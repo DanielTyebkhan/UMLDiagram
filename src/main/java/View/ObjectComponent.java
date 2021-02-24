@@ -15,7 +15,7 @@ import View.ArrowDrawer;
 import Document.Arrow;
 
 
-public class ObjectComponent implements MouseListener {
+public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
 	private ObjectClass obj;
@@ -26,6 +26,8 @@ public class ObjectComponent implements MouseListener {
 	private int incHeight = 0;
 	private int incWidth = 0;
     private boolean selected;
+    private int clickX;
+    private int clickY;
 
 	public ObjectComponent(ObjectClass obj) {
 	 	 this.obj = obj;
@@ -40,7 +42,8 @@ public class ObjectComponent implements MouseListener {
 	 	 panel.add(name2);
 	 	 panel.add(addLabel("obj.getName()"));
 	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
-	 	 // panel.addMouseListener(new NewPanelListener());
+         panel.addMouseListener(this);
+         panel.addMouseMotionListener(this);
 
 
 	 	 rcmenu = new JPopupMenu();
@@ -136,11 +139,24 @@ public class ObjectComponent implements MouseListener {
 
 	}
 	public void mousePressed(MouseEvent e) {
+        clickX = e.getXOnScreen();
+        clickY = e.getYOnScreen();
         selected = true;
 	}
 	public void mouseReleased(MouseEvent e) {
         selected = false;
 	}
+
+    public void mouseDragged(MouseEvent e) {
+        int deltaX = e.getXOnScreen() - clickX;
+        int deltaY = e.getYOnScreen() - clickY;
+        Point prevPos = obj.getPosition();
+        obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
+        System.out.println("set");
+    }
+
+    public void mouseMoved(MouseEvent e) {
+    }
     class VarAddListener implements MouseListener {
         private ObjectComponent instance;
         JPopupMenu varMenu;
