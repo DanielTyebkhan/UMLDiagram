@@ -1,46 +1,39 @@
 package View.Listeners;
 
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Container;
 import java.awt.Point;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Document.ObjectClass;
 import Document.Storage;
+
+import View.DiagramPanel;
 
 /**
  * A listener to add a class to the diagram
  * @author Daniel Tyebkhan
  */
-public class AddClassListener implements MouseListener {
+public class AddClassListener implements ActionListener {
     private static final String CLASS_NAME_PROMPT = "Enter Class Name";
+    
+    private DiagramPanel parent;
 
-    public void mouseClicked(MouseEvent e) 
-    {
-       
-    }
-    public void mouseEntered(MouseEvent e)
-    {
-
-    }
-
-    public void mouseExited(MouseEvent e) {
-
+    public AddClassListener(DiagramPanel parent) {
+        this.parent = parent;
     }
 
     /**
      * Prompts the user for a classname then adds the class to the diagram
      * @param e the trigger
      */
-    public void mousePressed(MouseEvent e) {
-        String name = JOptionPane.showInputDialog(e.getComponent(), CLASS_NAME_PROMPT);
+    public void actionPerformed(ActionEvent e) {
+        String name = JOptionPane.showInputDialog(parent, CLASS_NAME_PROMPT);
         if (name != null && !name.equals(""))
-            Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
+            Storage.instance.addObject(new ObjectClass(name, parent.getClickLocation()));
+        System.out.println(parent.getClickLocation());
     }
-
-    public void mouseReleased(MouseEvent e) {
-    }
-
 }
 

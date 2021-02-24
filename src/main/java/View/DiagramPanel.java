@@ -24,8 +24,9 @@ import General.Observer;
 public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private static final String NEW_CLASS = "New Class";
 
-    JPopupMenu rcmenu;
-    JMenuItem newObjectItem;
+    private Point clickLocation;
+    private JPopupMenu rcmenu;
+    private JMenuItem newObjectItem;
 
     /**
      * Constructs a diagram panel
@@ -34,7 +35,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         Storage.instance.attachObserver(this);
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
-        newObjectItem.addMouseListener(new AddClassListener());
+        newObjectItem.addActionListener(new AddClassListener(this));
         rcmenu.add(newObjectItem);
         addMouseListener(this);
     }
@@ -62,6 +63,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      */
     public void update() {
         updateView();
+    }
+
+    public Point getClickLocation() {
+        return clickLocation;
     }
 
     /**
@@ -96,8 +101,8 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      * Handles mouse presses
      * @param e the trigger
      */
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(MouseEvent e) {
+        clickLocation = new Point(e.getX(), e.getY());
     }
 
     /**
