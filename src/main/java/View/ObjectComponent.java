@@ -18,9 +18,17 @@ import Document.Arrow;
 
 /**
 * @author Anhad Gande
+* @author Daniel Tyebkhan
 */
-
 public class ObjectComponent implements MouseListener, MouseMotionListener {
+    private static final String NEW_METHOD = "Add Method";
+    private static final String NEW_VARIABLE = "Add Variable";
+    private static final String NEW_STEREOTYPE = "Add Stereotype";
+    private static final String ENT_METHOD_NAME = "Enter Method Name";
+    private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
+    private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
+    private static final String STER_START = "<<";
+    private static final String STER_END = ">>";
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
 	private ObjectClass obj;
@@ -28,35 +36,39 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	JPopupMenu rcmenu;
 	JMenuItem newMethod;
 	JMenuItem newVariable;
+	JMenuItem newStereotype;
 	private int incHeight = 0;
 	private int incWidth = 0;
     private boolean selected;
     private int clickX;
     private int clickY;
 
-	public ObjectComponent(ObjectClass obj) {
-	 	 this.obj = obj;
-	 	 panel = new JPanel();
-	 	 panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+    public ObjectComponent(ObjectClass obj) {
+        this.obj = obj;
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
-         panel.addMouseListener(this);
-         panel.addMouseMotionListener(this);
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel.addMouseListener(this);
+        panel.addMouseMotionListener(this);
 
-	 	 rcmenu = new JPopupMenu();
-	 	 newMethod = new JMenuItem("New Method");
-	 	 newVariable = new JMenuItem("New Variable");
-         newMethod.addActionListener(new AddNotableHandler("Enter method name", obj::addMethod, panel));
-         newVariable.addActionListener(new AddNotableHandler("Enter variable name", obj::addInstanceVariable, panel));
-         rcmenu.add(newMethod);
-         rcmenu.add(newVariable);
-	 }
+        rcmenu = new JPopupMenu();
+        newMethod = new JMenuItem(NEW_METHOD);
+        newVariable = new JMenuItem(NEW_VARIABLE);
+        newStereotype = new JMenuItem(NEW_STEREOTYPE);
+        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, obj::addMethod, panel));
+        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, obj::addInstanceVariable, panel));
+        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, obj::addStereotype, panel));
+        rcmenu.add(newMethod);
+        rcmenu.add(newVariable);
+        rcmenu.add(newStereotype);
+    }
 
     public ObjectClass getObject() {
         return obj;
     }
 
-	private JLabel addLabel(String text) {
+	private void addLabel(String text) {
 		JLabel label = new JLabel(text);
 
 	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -64,7 +76,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
 	 	incrementHeight();
 	 	incrementWidth();
-	 	return label;
+        panel.add(label);
 	}
 	private void incrementHeight() {
 		incHeight += HEIGHT;
@@ -90,19 +102,28 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void removeMethod(String method) {
 		obj.removeMethod(new Notable(method));
 	}
+
 	public void addVariable(String var) {
 		obj.addInstanceVariable(new Notable(var));
 	}
+
 	public void removeVariable(String var) {
 		obj.removeInstanceVariable(new Notable(var));
 	}
 
+    private String Stereotypify(String stereotype) {
+        return STER_START + stereotype + STER_END; 
+    }
+
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
         panel.removeAll();
-        panel.add(addLabel(obj.getName()));
 		Point clicked = obj.getPosition();
+        for (Notable stereotype : obj.getStereotypes()) {
+            addLabel(Stereotypify(stereotype.getName()));
+        }
+        addLabel(obj.getName());
 		for (Notable method : obj.getMethods()) {
-			panel.add(addLabel(method.getName()));
+			addLabel(method.getName());
 			for (ArrowDrawer arrow : arrows) {
 				if ( arrow.getArrow().getFrom().equals(method)) {
 				    arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
@@ -113,7 +134,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 			}
 		}
 		for (Notable variable : obj.getInstanceVariables()) {
-			panel.add(new JLabel(variable.getName()));
+            addLabel(variable.getName());
 			for (ArrowDrawer arrow : arrows) {
 				if ( arrow.getArrow().getFrom().equals(variable)) {
 				// arrow.setFromPosition(point);
@@ -121,13 +142,9 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 			}
 		}
 		Dimension dimension = reference.getSize();
-		System.out.println(clicked.getX());
-		System.out.print(clicked.getY());
-		// System.out.println(dimension);
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
-		// reference.add(listScrollPane, BorderLayout.CENTER);
 
 	}
 	public void mouseClicked(MouseEvent e) {
@@ -157,8 +174,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         int deltaX = e.getXOnScreen() - clickX;
         int deltaY = e.getYOnScreen() - clickY;
-        System.out.println("Delta x: " + deltaX);
-        System.out.println("Delta y: " + deltaY);
         Point prevPos = obj.getPosition();
         obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
         clickX = e.getXOnScreen();
