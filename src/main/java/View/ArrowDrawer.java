@@ -2,9 +2,13 @@ package View;
 
 import java.awt.Point;
 import javax.swing.JPanel;
+import java.awt.Graphics;
 
 import Document.Arrow;
 
+/**
+ * @author Daniel Tyebkhan
+ */
 public abstract class ArrowDrawer {
     private Arrow arrow;
     private Point fromPos;
@@ -34,6 +38,14 @@ public abstract class ArrowDrawer {
         return toPos;
     }
 
-    abstract void drawArrow(JPanel panel);
+    private void drawBody(Graphics g) {
+    }
+
+    public void drawArrow(JPanel panel) {
+        drawBody(panel.getGraphics());
+        drawHead(panel);
+    }
+
+    abstract void drawHead(JPanel panel);
 
 }

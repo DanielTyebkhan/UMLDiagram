@@ -43,6 +43,8 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));
         for (ObjectClass obj : Storage.instance.getObjects())
             new ObjectComponent(obj).drawShape(this);
+        for (ArrowDrawer drawer : arrowDrawers)
+            drawer.drawArrow(this);
     }
 
     public void update() {

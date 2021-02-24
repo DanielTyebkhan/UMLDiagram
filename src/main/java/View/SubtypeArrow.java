@@ -13,6 +13,6 @@ public class SubtypeArrow extends ArrowDrawer {
     }
 
     @Override
-    public void drawArrow(JPanel panel) {
+    public void drawHead(JPanel panel) {
     }
 }
