@@ -54,6 +54,11 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
 	 }
+
+    public ObjectClass getObject() {
+        return obj;
+    }
+
 	private JLabel addLabel(String text) {
 		JLabel label = new JLabel(text);
 
