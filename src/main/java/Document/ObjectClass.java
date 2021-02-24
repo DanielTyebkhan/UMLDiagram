@@ -23,7 +23,7 @@ public class ObjectClass extends Notable implements Subject {
 	
     /**
      * Constructs an ObjectClass with position
-     * @param name the name of the class
+     * @param nm the name of the class
      * @param position the position of the class
      */
 	public ObjectClass(String nm, Point position) {
@@ -142,7 +142,7 @@ public class ObjectClass extends Notable implements Subject {
 
     /**
      * Adds a subtype
-     * @return the subtype to add
+     * @param child the subtype to add
      */
     public void addChild(ObjectClass child) {
         children.add(child);
