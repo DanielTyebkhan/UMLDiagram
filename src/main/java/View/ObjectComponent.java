@@ -16,6 +16,9 @@ import View.Listeners.MethodAddListener;
 import View.ArrowDrawer;
 import Document.Arrow;
 
+/**
+* @author Anhad Gande
+*/
 
 public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private static final int HEIGHT = 30;
@@ -38,8 +41,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	 JLabel name = addLabel(obj.getName());
 	 	 JLabel name2 = addLabel("obj.getName()longgggggggggg");
 
-
-
 	 	 panel.add(name);
 	 	 panel.add(name2);
 	 	 panel.add(addLabel("obj.getName()"));
@@ -47,11 +48,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
          panel.addMouseListener(this);
          panel.addMouseMotionListener(this);
 
-
 	 	 rcmenu = new JPopupMenu();
 	 	 newMethod = new JMenuItem("New Method");
 	 	 newVariable = new JMenuItem("New Variable");
-         newMethod.addMouseListener(new MethodAddListener(this));
+         newMethod.addMouseListener(new MethodAddListener(this, panel));
          newVariable.addMouseListener(new VarAddListener(this));
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
@@ -67,6 +67,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
+	 	label.addMouseListener(new MethodAddListener(this, panel));
 	 	incrementHeight();
 	 	incrementWidth();
 	 	return label;
@@ -149,9 +150,12 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         clickX = e.getXOnScreen();
         clickY = e.getYOnScreen();
         selected = true;
+        panel.setBorder(BorderFactory.createLineBorder(Color.blue));
+
 	}
 	public void mouseReleased(MouseEvent e) {
         selected = false;
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
     public void mouseDragged(MouseEvent e) {
@@ -166,69 +170,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     }
 
     public void mouseMoved(MouseEvent e) {
+
     }
-    class VarAddListener implements MouseListener {
-        private ObjectComponent instance;
-        JPopupMenu varMenu;
-        JMenuItem varItem;
-        
-        public VarAddListener(ObjectComponent obj) {
-            instance = obj;
-        }
-
-        public void mouseClicked(MouseEvent e)
-        {
-            String newVar = JOptionPane.showInputDialog(panel, "Enter new variable name");
-            instance.addVariable(newVar);
-        }
-        public void mouseEntered(MouseEvent e)
-        {
-
-        }
-        public void mouseExited(MouseEvent e)
-        {
-
-        }
-        public void mousePressed(MouseEvent e)
-        {
-
-        }
-
-        public void mouseReleased(MouseEvent e)
-        {
-
-        }
-    }
-    class MethodAddListener implements MouseListener {
-        private ObjectComponent instance;
-        JPopupMenu varMenu;
-        JMenuItem varItem;
-        
-        public MethodAddListener(ObjectComponent obj) {
-            instance = obj;
-        }
-
-        public void mouseClicked(MouseEvent e)
-        {
-            String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
-            instance.addMethod(newMethod);
-        }
-        public void mouseEntered(MouseEvent e)
-        {
-
-        }
-        public void mouseExited(MouseEvent e)
-        {
-
-        }
-        public void mousePressed(MouseEvent e)
-        {
-
-        }
-
-        public void mouseReleased(MouseEvent e)
-        {
-
-        }
-    }
+    
 }
