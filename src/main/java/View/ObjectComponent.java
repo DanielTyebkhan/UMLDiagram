@@ -11,11 +11,14 @@ import java.util.List;
 import Document.ObjectClass;
 import Document.Notable;
 import View.Listeners.AddClassListener;
+import View.Listeners.VarAddListener;
+import View.Listeners.MethodAddListener;
 import View.ArrowDrawer;
 import Document.Arrow;
 
 
-public class ObjectComponent implements MouseListener {
+
+public class ObjectComponent {
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
 	private ObjectClass obj;
@@ -114,8 +117,8 @@ public class ObjectComponent implements MouseListener {
 		}
 		Dimension dimension = reference.getSize();
 		System.out.println(clicked.getX());
-		System.out.print(" " + clicked.getY());
-		System.out.println(dimension);
+		System.out.print(clicked.getY());
+		// System.out.println(dimension);
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
@@ -140,68 +143,5 @@ public class ObjectComponent implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 
 	}
-    class VarAddListener implements MouseListener {
-        private ObjectComponent instance;
-        JPopupMenu varMenu;
-        JMenuItem varItem;
-        
-        public VarAddListener(ObjectComponent obj) {
-            instance = obj;
-        }
-
-        public void mouseClicked(MouseEvent e)
-        {
-            String newVar = JOptionPane.showInputDialog(panel, "Enter new variable name");
-            instance.addVariable(newVar);
-        }
-        public void mouseEntered(MouseEvent e)
-        {
-
-        }
-        public void mouseExited(MouseEvent e)
-        {
-
-        }
-        public void mousePressed(MouseEvent e)
-        {
-
-        }
-
-        public void mouseReleased(MouseEvent e)
-        {
-
-        }
-    }
-    class MethodAddListener implements MouseListener {
-        private ObjectComponent instance;
-        JPopupMenu varMenu;
-        JMenuItem varItem;
-        
-        public MethodAddListener(ObjectComponent obj) {
-            instance = obj;
-        }
-
-        public void mouseClicked(MouseEvent e)
-        {
-            String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
-            instance.addMethod(newMethod);
-        }
-        public void mouseEntered(MouseEvent e)
-        {
-
-        }
-        public void mouseExited(MouseEvent e)
-        {
-
-        }
-        public void mousePressed(MouseEvent e)
-        {
-
-        }
-
-        public void mouseReleased(MouseEvent e)
-        {
-
-        }
-    }
+    
 }
