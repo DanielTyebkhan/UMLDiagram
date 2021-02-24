@@ -16,3 +16,8 @@ dependencies {
 test {
     include '**/*Suite.class'
 }
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
