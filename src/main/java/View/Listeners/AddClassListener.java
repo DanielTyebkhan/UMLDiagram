@@ -17,14 +17,11 @@ public class AddClassListener implements MouseListener {
     public AddClassListener(Container container) {
         this.container = container;
     }
-
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("Clicked");
-        String name = JOptionPane.showInputDialog(container, CLASS_NAME_PROMPT);
-        if (name != null || !name.equals(""))
-            Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
+    
+    public void mouseClicked(MouseEvent e) 
+    {
+       
     }
-
     public void mouseEntered(MouseEvent e)
     {
 
@@ -35,7 +32,10 @@ public class AddClassListener implements MouseListener {
     }
     public void mousePressed(MouseEvent e)
     {
-
+        System.out.println("Clicked");
+        String name = JOptionPane.showInputDialog(container, CLASS_NAME_PROMPT);
+        if (name != null || !name.equals(""))
+            Storage.instance.addObject(new ObjectClass(name, new Point(e.getPoint())));
     }
     public void mouseReleased(MouseEvent e)
     {

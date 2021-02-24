@@ -7,6 +7,12 @@ import java.awt.event.*;
 import java.awt.*; 
 import javax.swing.*;
 
+/**
+* MenuPanel creates the a panel containing 
+* the open, saveAs and export buttons and methods
+*
+* @author  
+*/
 public class MenuPanel extends JComponent {
     private JMenuBar menuBar;
     

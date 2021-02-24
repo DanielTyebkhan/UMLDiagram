@@ -6,6 +6,11 @@ import javax.swing.*;
 
 import View.DiagramPanel;
 
+/**
+* WindowClass creates the MenuPanel and the DiagramPanel
+*
+* @author  
+*/
 public class WindowClass extends JPanel{
     private static final int size = 500;
 
