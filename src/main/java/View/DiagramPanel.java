@@ -26,7 +26,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         Storage.instance.addObserver(this);
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
-        newObjectItem.addMouseListener(new AddClassListener(this));
+        newObjectItem.addMouseListener(new AddClassListener());
         rcmenu.add(newObjectItem);
         addMouseListener(this);
     }
@@ -47,7 +47,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
 
 	public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) 
-            rcmenu.show(this, e.getX(), e.getY());
+            rcmenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
     public void mouseEntered(MouseEvent e)
@@ -60,7 +60,6 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     }
     public void mousePressed(MouseEvent e)
     {
-     	
     }
     public void mouseReleased(MouseEvent e) 
     {
