@@ -8,9 +8,12 @@ import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 import Document.Storage;
 import Document.ObjectClass;
+import Document.Arrow;
 import View.Listeners.AddClassListener;
 import General.Observer;
 
@@ -34,6 +37,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
 
     @Override 
     public void paintComponent(Graphics g) {
+        List<Arrow> arrows = Storage.instance.getArrows();
+        ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
+        for (Arrow arrow : arrows) 
+            arrowDrawers.add(ArrowFactory.makeArrow(arrow));
         for (ObjectClass obj : Storage.instance.getObjects())
             new ObjectComponent(obj).drawShape(this);
     }

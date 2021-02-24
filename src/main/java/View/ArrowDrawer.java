@@ -14,6 +14,10 @@ public abstract class ArrowDrawer {
         this.arrow = arrow;
     }
 
+    public Arrow getArrow() {
+        return arrow;
+    }
+
     public void setFromPosition(Point from) {
         fromPos = from;
     }
