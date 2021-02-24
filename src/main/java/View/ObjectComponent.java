@@ -29,14 +29,16 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
     private static final String STER_START = "<<";
     private static final String STER_END = ">>";
+    private static final String FONT_NAME = "Calibri";
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
+    private static final int FONT_SIZE = 12;
 	private ObjectClass obj;
 	private JPanel panel;
-	JPopupMenu rcmenu;
-	JMenuItem newMethod;
-	JMenuItem newVariable;
-	JMenuItem newStereotype;
+    private JPopupMenu rcmenu;
+    private JMenuItem newMethod;
+    private JMenuItem newVariable;
+    private JMenuItem newStereotype;
 	private int incHeight = 0;
 	private int incWidth = 0;
     private boolean selected;
@@ -69,18 +71,24 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     }
 
 	private void addLabel(String text) {
-		JLabel label = new JLabel(text);
+        addLabel(text, false);
+    }
 
+	private void addLabel(String text, boolean bold) {
+		JLabel label = new JLabel(text);
 	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
+        label.setFont(new Font(FONT_NAME, bold ? Font.BOLD : Font.PLAIN, FONT_SIZE));
 	 	incrementHeight();
 	 	incrementWidth();
         panel.add(label);
 	}
+
 	private void incrementHeight() {
 		incHeight += HEIGHT;
 	}
+
 	private void incrementWidth() {
 		incWidth += WIDTH;
 	}
@@ -121,7 +129,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         for (Notable stereotype : obj.getStereotypes()) {
             addLabel(Stereotypify(stereotype.getName()));
         }
-        addLabel(obj.getName());
+        addLabel(obj.getName(), true);
 		for (Notable method : obj.getMethods()) {
 			addLabel(method.getName());
 			for (ArrowDrawer arrow : arrows) {
