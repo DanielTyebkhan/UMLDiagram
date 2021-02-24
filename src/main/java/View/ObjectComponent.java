@@ -25,6 +25,7 @@ public class ObjectComponent implements MouseListener {
 	JMenuItem newVariable;
 	private int incHeight = 0;
 	private int incWidth = 0;
+    private boolean selected;
 
 	public ObjectComponent(ObjectClass obj) {
 	 	 this.obj = obj;
@@ -135,10 +136,10 @@ public class ObjectComponent implements MouseListener {
 
 	}
 	public void mousePressed(MouseEvent e) {
-
+        selected = true;
 	}
 	public void mouseReleased(MouseEvent e) {
-
+        selected = false;
 	}
     class VarAddListener implements MouseListener {
         private ObjectComponent instance;
