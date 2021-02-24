@@ -58,20 +58,36 @@ public class Storage implements Subject, Observer {
         observers.add(obs);
     }
 
+    /*
+     * Gets all present objects
+     * @return present objects
+     */
     public List<ObjectClass> getObjects() {
         return new ArrayList<ObjectClass>(objects);
     }
 
+    /*
+     * Gets the number of present objects
+     * @return the number of present objects
+     */
     public int numObjects() {
         return objects.size();
     }
 
+    /*
+     * Adds an object
+     * @param object the object to be added
+     */
     public void addObject(ObjectClass object) {
         object.attachObserver(this);
         objects.add(object);
         notifyObservers();
     }
 
+    /*
+     * Removes an object 
+     * @param object the object to remove
+     */
     public boolean removeObject(ObjectClass object) {
         int toRemove = -1;
         int index = 0;
@@ -87,16 +103,28 @@ public class Storage implements Subject, Observer {
         return false;
     }
 
+    /*
+     * Adds an arrow
+     * @param arrow the arrow to add
+     */
     public void addArrow(Arrow arrow) {
         arrows.add(arrow);
         notifyObservers();
     }
 
+    /*
+     * Removes an arrow
+     * @param arrow the arrow to remove
+     */
     public void removeArrow(Arrow arrow) {
         arrows.remove(arrow);
         notifyObservers();
     }
 
+    /*
+     * Gets all present arrows
+     * @return the arrows
+     */
     public List<Arrow> getArrows() {
         return new ArrayList<Arrow>(arrows);
     }
