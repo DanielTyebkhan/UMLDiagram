@@ -38,9 +38,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 	 this.obj = obj;
 	 	 panel = new JPanel();
 	 	 panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-	 	 JLabel name = addLabel(obj.getName());
 
-	 	 panel.add(name);
 	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
          panel.addMouseListener(this);
          panel.addMouseMotionListener(this);
@@ -100,6 +98,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	}
 
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
+        panel.removeAll();
+        panel.add(addLabel(obj.getName()));
 		Point clicked = obj.getPosition();
 		for (Notable method : obj.getMethods()) {
 			panel.add(addLabel(method.getName()));
