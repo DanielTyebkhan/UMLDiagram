@@ -35,7 +35,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     @Override 
     public void paintComponent(Graphics g) {
         for (ObjectClass obj : Storage.instance.getObjects())
-            System.out.println(obj.getName());
+            new ObjectComponent(obj).drawShape(this);
     }
 
     public void update() {
