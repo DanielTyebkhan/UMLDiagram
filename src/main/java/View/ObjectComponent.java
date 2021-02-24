@@ -1,9 +1,10 @@
 package View;
 
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 import java.util.ArrayList;
 
 import Document.ObjectClass;
@@ -11,12 +12,13 @@ import Document.Notable;
 import View.Listeners.AddClassListener;
 
 
-public class ObjectComponent extends JComponent implements MouseListener{
+public class ObjectComponent implements ListSelectionListener{
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 10;
 	private ObjectClass obj;
 	private JList list;
 	private DefaultListModel listModel;
+	private JScrollPane listScrollPane;
 	JPopupMenu rcmenu;
 	JMenuItem newMethod;
 	JMenuItem newVariable;
@@ -30,8 +32,25 @@ public class ObjectComponent extends JComponent implements MouseListener{
          // newVariable.addMouseListener(new AddClassListener());
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
-         list = new JList();
          listModel = new DefaultListModel();
+         listModel.addElement(obj.getName());
+         list = new JList(listModel);
+
+         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+         list.setSelectedIndex(0);
+         list.addListSelectionListener(new SharedListSelectionHandler());
+         list.setVisibleRowCount(10);
+         listScrollPane = new JScrollPane(list);
+         list.addMouseListener(new MouseAdapter()
+	     {
+	        public void mousePressed(MouseEvent e)
+	        {
+	            if ( SwingUtilities.isRightMouseButton(e) )
+	            {
+	                rcmenu.show(list, e.getX(), e.getY());
+	            }
+	        }
+	     }); 
 	 }
 
 	/**
@@ -53,39 +72,42 @@ public class ObjectComponent extends JComponent implements MouseListener{
 		obj.removeMethod(new Notable(method));
 	}
 
-	public void drawShape(JPanel reference) {
-		// StringBuilder text = new StringBuilder();
-  //       text.append(obj.getName() + "\n");
-  //       for (Notable methods : obj.getMethods()) 
-  //           text.append(methods.getName() + "()\n");
-  //       for (Notable variable : obj.getInstanceVariables())
-  //           text.append(variable.getName() + "\n");
-  //       // Border border = BorderFactory.createLineBorder(Color.BLACK);
-  //       current = new JTextArea(text.toString());
-  //       // current.setBorder(BorderFactory.createCompoundBorder(border, 
-  //       // 	BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-  //       // current.addMouseListener(new VarAddListener(obj));
+	public void drawShape(JPanel panel) {
 		for (Notable method : obj.getMethods()) {
 			listModel.addElement(method.getName());
 		}
-
-	}
-	public void mouseClicked(MouseEvent e) {
-		if(e.getButton() == MouseEvent.BUTTON3) {
-			rcmenu.show(list, e.getX(), e.getY());
+		for (Notable variable : obj.getInstanceVariables()) {
+			listModel.addElement(variable.getName());
 		}
-	}
-	public void mouseEntered(MouseEvent e) {
+		list = new JList(listModel);
+		panel.add(list);
+		// reference.add(listScrollPane, BorderLayout.CENTER);
 
 	}
+	// public void mouseClicked(MouseEvent e) {
+	// 	if(e.getButton() == MouseEvent.BUTTON3) {
+	// 		rcmenu.show(list, e.getX(), e.getY());
+	// 	}
+	// }
+	// public void mouseEntered(MouseEvent e) {
 
-	public void mouseExited(MouseEvent e) {
+	// }
 
-	}
-	public void mousePressed(MouseEvent e) {
+	// public void mouseExited(MouseEvent e) {
 
-	}
-	public void mouseReleased(MouseEvent e) {
+	// }
+	// public void mousePressed(MouseEvent e) {
 
+	// }
+	// public void mouseReleased(MouseEvent e) {
+
+	// }
+	public void valueChanged(ListSelectionEvent e) {
+			
+		}
+	class SharedListSelectionHandler implements ListSelectionListener { 
+		public void valueChanged(ListSelectionEvent e) {
+
+		}
 	}
 }
