@@ -13,16 +13,21 @@ import View.ObjectComponent;
  * @author Anhad Gande
  */
 public class MethodAddListener implements MouseListener {
-    private static final String ENTER_NAME = "Enter method name";
-    private ObjectComponent object;
+    private ObjectComponent instance;
+    private JPanel panel;
+    JPopupMenu varMenu;
+    JMenuItem varItem;
+    
+    public MethodAddListener(ObjectComponent obj, JPanel panel) {
+        instance = obj;
+        this.panel = panel;
 
-    public MethodAddListener(ObjectComponent object, JPanel parent) {
-        this.object = object;
     }
 
-    public void mouseClicked(MouseEvent e) {
-        String newMethod = JOptionPane.showInputDialog(e.getComponent(), ENTER_NAME);
-        object.addMethod(newMethod);
+    public void mouseClicked(MouseEvent e)
+    {
+        String newMethod = JOptionPane.showInputDialog(panel, "Enter new method name");
+        instance.addMethod(newMethod);
     }
     public void mouseEntered(MouseEvent e)
     {
