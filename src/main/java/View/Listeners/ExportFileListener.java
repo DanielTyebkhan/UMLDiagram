@@ -19,9 +19,10 @@ import View.DiagramPanel;
 public class ExportFileListener implements ActionListener {
     private String type;
     private DiagramPanel panel;
-    public ExportFileListener(String item, DiagramPanel diagramPanel){
-        type = item;
-        panel = diagramPanel;
+
+    public ExportFileListener(String item, DiagramPanel panel){
+        this.type = item;
+        this.panel = panel;
     }
 
     public void actionPerformed(ActionEvent e)
@@ -32,6 +33,8 @@ public class ExportFileListener implements ActionListener {
         else {
             System.out.println("Clicked Export PNG!");
         }
+        System.out.println(panel);
+        
     }
     // public void mouseClicked(MouseEvent e) 
     // {
