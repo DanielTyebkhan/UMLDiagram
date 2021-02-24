@@ -41,7 +41,7 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
-        m.addActionListener(new OpenFileListener());
+        m.addMouseListener(new OpenFileListener());
     } 
     /**
      * Constructs export button that allows user to export and convert
