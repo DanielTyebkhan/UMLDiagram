@@ -17,21 +17,28 @@ import Document.Arrow;
 
 public class ObjectComponent implements MouseListener {
 	private static final int HEIGHT = 30;
-	private static final int WIDTH  = 10;
+	private static final int WIDTH  = 100;
 	private ObjectClass obj;
 	private JPanel panel;
 	JPopupMenu rcmenu;
 	JMenuItem newMethod;
 	JMenuItem newVariable;
+	private int incHeight = 0;
+	private int incWidth = 0;
 
 	public ObjectComponent(ObjectClass obj) {
 	 	 this.obj = obj;
 	 	 panel = new JPanel();
 	 	 panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-	 	 JLabel name = new JLabel(obj.getName());
+	 	 JLabel name = addLabel(obj.getName());
+	 	 JLabel name2 = addLabel("obj.getName()longgggggggggg");
+
+
+
 	 	 panel.add(name);
-	 	 panel.add(new JLabel("obj.getName()"));
-	 	 panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+	 	 panel.add(name2);
+	 	 panel.add(addLabel("obj.getName()"));
+	 	 panel.setBorder(BorderFactory.createLineBorder(Color.black));
 	 	 // panel.addMouseListener(new NewPanelListener());
 
 
@@ -43,6 +50,22 @@ public class ObjectComponent implements MouseListener {
          rcmenu.add(newMethod);
          rcmenu.add(newVariable);
 	 }
+	private JLabel addLabel(String text) {
+		JLabel label = new JLabel(text);
+
+	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
+	 	incrementHeight();
+	 	incrementWidth();
+	 	return label;
+	}
+	private void incrementHeight() {
+		incHeight += HEIGHT;
+	}
+	private void incrementWidth() {
+		incWidth += WIDTH;
+	}
 	/**
 	* Adds a class name to the class diagram
 	*/
@@ -69,13 +92,15 @@ public class ObjectComponent implements MouseListener {
 	}
 
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
-		Dimension dimension = panel.getSize();
-		System.out.println(dimension);
+		Point clicked = obj.getPosition();
 		for (Notable method : obj.getMethods()) {
-			panel.add(new JLabel(method.getName()));
+			panel.add(addLabel(method.getName()));
 			for (ArrowDrawer arrow : arrows) {
 				if ( arrow.getArrow().getFrom().equals(method)) {
-				// arrow.setFromPosition(point);
+				arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
+				}
+				if ( arrow.getArrow().getTo().equals(method)) {
+				arrow.setFromPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
 				}
 			}
 		}
@@ -87,6 +112,10 @@ public class ObjectComponent implements MouseListener {
 				}
 			}
 		}
+		Dimension dimension = reference.getSize();
+		System.out.println(incHeight);
+		System.out.print(" " + incWidth);
+		System.out.println(dimension);
 		reference.add(panel);
 		// reference.add(listScrollPane, BorderLayout.CENTER);
 
