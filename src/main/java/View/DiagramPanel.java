@@ -40,11 +40,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     }
 
     /**
-     * Draws the diagram 
-     * @param g the graphics object to draw with
+     * Updates the content of the Diagram
      */
-    @Override 
-    public void paintComponent(Graphics g) {
+    private void updateView() {
+        removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
         ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
@@ -53,13 +52,16 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             new ObjectComponent(obj).drawShape(this, arrowDrawers);
         for (ArrowDrawer drawer : arrowDrawers)
             drawer.drawArrow(this);
+        repaint();
+        revalidate();
     }
+
 
     /**
      * Updates when the status of its subjects changes
      */
     public void update() {
-        repaint();
+        updateView();
     }
 
     /**
