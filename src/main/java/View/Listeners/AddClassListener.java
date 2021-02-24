@@ -10,6 +10,7 @@ import Document.ObjectClass;
 import Document.Storage;
 
 /**
+ * A listener to add a class to the diagram
  * @author Daniel Tyebkhan
  */
 public class AddClassListener implements MouseListener {
@@ -28,6 +29,10 @@ public class AddClassListener implements MouseListener {
 
     }
 
+    /**
+     * Prompts the user for a classname then adds the class to the diagram
+     * @param e the trigger
+     */
     public void mousePressed(MouseEvent e) {
         String name = JOptionPane.showInputDialog(e.getComponent(), CLASS_NAME_PROMPT);
         if (name != null && !name.equals(""))

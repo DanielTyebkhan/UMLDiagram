@@ -18,6 +18,7 @@ import View.Listeners.AddClassListener;
 import General.Observer;
 
 /**
+ * The main canvas which displays the diagram
  * @author Daniel Tyebkhan
  */
 public class DiagramPanel extends JPanel implements MouseListener, Observer {
@@ -26,6 +27,9 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     JPopupMenu rcmenu;
     JMenuItem newObjectItem;
 
+    /**
+     * Constructs a diagram panel
+     */
     public DiagramPanel() {
         Storage.instance.attachObserver(this);
         rcmenu = new JPopupMenu();
@@ -35,6 +39,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         addMouseListener(this);
     }
 
+    /**
+     * Draws the diagram 
+     * @param g the graphics object to draw with
+     */
     @Override 
     public void paintComponent(Graphics g) {
         List<Arrow> arrows = Storage.instance.getArrows();
@@ -47,36 +55,53 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             drawer.drawArrow(this);
     }
 
+    /**
+     * Updates when the status of its subjects changes
+     */
     public void update() {
         repaint();
     }
 
-	public void arrowType() 
-	{
-
-	}
-
-	public void drawArrow()
-	{
-
-	}
-
+    /**
+     * Handles mouseclicks
+     * On right click shows a menu of actions
+     * @param e the trigger
+     */
 	public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) 
             rcmenu.show(e.getComponent(), e.getX(), e.getY());
     }
 
+    /**
+     * Handles mouse entering
+     * @param e the trigger
+     */
     public void mouseEntered(MouseEvent e)
     {
      	
     }
+
+    /**
+     * Handles mouse exiting
+     * @param e the trigger
+     */
     public void mouseExited(MouseEvent e)
     {
      	
     }
+
+    /**
+     * Handles mouse presses
+     * @param e the trigger
+     */
     public void mousePressed(MouseEvent e)
     {
     }
+
+    /**
+     * Handles mouse release
+     * @param e the trigger
+     */
     public void mouseReleased(MouseEvent e) 
     {
      	
