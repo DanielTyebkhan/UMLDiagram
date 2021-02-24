@@ -19,7 +19,7 @@ public class Storage implements Subject, Observer {
     private ArrayList<Arrow> arrows;
     private ArrayList<Observer> observers;
 
-    /*
+    /**
      * Constructs a new storage object
      */
     private Storage() {
@@ -28,21 +28,21 @@ public class Storage implements Subject, Observer {
         arrows = new ArrayList<Arrow>();
     }
 
-    /*
+    /**
      * Notifies all objects observing the storage
      */
     public void update() {
         notifyObservers();
     }
 
-    /*
+    /**
      * Removes an observer
      */
     public void detachObserver(Observer obs) {
         return;
     }
 
-    /*
+    /**
      * Notifies observers
      */
     public void notifyObservers() {
@@ -51,14 +51,14 @@ public class Storage implements Subject, Observer {
     }
 
 
-    /*
+    /**
      * Attaches an observer
      */
     public void attachObserver(Observer obs) {
         observers.add(obs);
     }
 
-    /*
+    /**
      * Gets all present objects
      * @return present objects
      */
@@ -66,7 +66,7 @@ public class Storage implements Subject, Observer {
         return new ArrayList<ObjectClass>(objects);
     }
 
-    /*
+    /**
      * Gets the number of present objects
      * @return the number of present objects
      */
@@ -74,7 +74,7 @@ public class Storage implements Subject, Observer {
         return objects.size();
     }
 
-    /*
+    /**
      * Adds an object
      * @param object the object to be added
      */
@@ -84,7 +84,7 @@ public class Storage implements Subject, Observer {
         notifyObservers();
     }
 
-    /*
+    /**
      * Removes an object 
      * @param object the object to remove
      */
@@ -103,7 +103,7 @@ public class Storage implements Subject, Observer {
         return false;
     }
 
-    /*
+    /**
      * Adds an arrow
      * @param arrow the arrow to add
      */
@@ -112,7 +112,7 @@ public class Storage implements Subject, Observer {
         notifyObservers();
     }
 
-    /*
+    /**
      * Removes an arrow
      * @param arrow the arrow to remove
      */
@@ -121,7 +121,7 @@ public class Storage implements Subject, Observer {
         notifyObservers();
     }
 
-    /*
+    /**
      * Gets all present arrows
      * @return the arrows
      */
