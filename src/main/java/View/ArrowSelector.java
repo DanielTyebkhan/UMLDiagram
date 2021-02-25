@@ -12,6 +12,7 @@ import Document.Notable;
 import Document.Arrow;
 import Document.ArrowType;
 import View.Listeners.ArrowBetweenActionListener;
+import View.Listeners.RefreshListener;
 
 /**
 * Displays a pop box where the user can decide to choose to draw arrows.
@@ -32,7 +33,7 @@ public class ArrowSelector extends JFrame {
 	private JRadioButton delegation;
 	private JRadioButton containment;
 
-	private JButton selectTo;
+	private JButton refresh;
 	private JButton makeArrow;
 
 	private JPanel panel;
@@ -56,11 +57,8 @@ public class ArrowSelector extends JFrame {
 		to = new JComboBox(objArray);
 		toNonObjects = new JComboBox();
 
-		selectTo = new JButton("Select To");
+		refresh = new JButton("Refresh");
 		makeArrow = new JButton("Make Arrow");
-
-		selectTo.addActionListener(new SelectToListener());
-		makeArrow.addActionListener(new ArrowTypeGroupActionListener());
 
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
@@ -71,6 +69,9 @@ public class ArrowSelector extends JFrame {
 
 		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+
+		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+		makeArrow.addActionListener(new ArrowTypeGroupActionListener());
 
 		ButtonGroup groupArrowType = new ButtonGroup();
 		groupArrowType.add(subtype);
@@ -100,7 +101,7 @@ public class ArrowSelector extends JFrame {
 		panel.add(to);
 		panel.add(toNonObjects);
 
-		panel.add(selectTo);
+		panel.add(refresh);
 
 
 		panel.add(arrowTypes);
@@ -117,25 +118,10 @@ public class ArrowSelector extends JFrame {
 		this.setSize(400, 500);
 		this.setVisible(true);
 	}
-	
-	class methodsOrVarRadioButtonActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent a) {
-			if (betweenMethodsOrVar.isSelected()) {
-					ObjectClass item = (ObjectClass) to.getSelectedItem();
-					List<Notable> methodsAndVars = item.getMethods();
-					methodsAndVars.addAll(item.getInstanceVariables());
-					for (Notable entry: methodsAndVars) {
-						toNonObjects.addItem(entry);
-					}
-				}
-			else if (betweenNames.isSelected()) {
-				toNonObjects.removeAllItems();
-			}
-		}
-	}
 	class SelectToListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (betweenMethodsOrVar.isSelected()) {
+				toNonObjects.removeAllItems();
 				ObjectClass item = (ObjectClass) to.getSelectedItem();
 				List<Notable> methodsAndVars = item.getMethods();
 				methodsAndVars.addAll(item.getInstanceVariables());
