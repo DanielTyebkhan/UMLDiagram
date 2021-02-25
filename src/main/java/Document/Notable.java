@@ -74,4 +74,11 @@ public class Notable {
         }
         return false;
     }
+    /**
+    * Defines String representation for Notable object
+    */
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
