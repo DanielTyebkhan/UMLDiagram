@@ -7,6 +7,7 @@ import java.util.List;
 
 import Document.ObjectClass;
 import Document.Storage;
+import Document.Notable;
 
 public class ArrowSelector extends JFrame implements ActionListener, ItemListener {
 
@@ -33,9 +34,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		panel = new JPanel();
 
 		List<ObjectClass> objects = Storage.instance.getObjects();
-		String[] objArray = new String[objects.size()];
+		ObjectClass[] objArray = new ObjectClass[objects.size()];
 		for (int i = 0; i < objects.size(); i++) {
-			objArray[i] = objects.get(i).getName();
+			objArray[i] = objects.get(i);
 		}
 
 		from = new JComboBox(objArray);
@@ -70,15 +71,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		JLabel textFrom = new JLabel("From");
 		JLabel textTo = new JLabel("To");
 		JLabel arrowTypes = new JLabel("Arrow Types");
-
-
-		subtype.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent a) {
-
-			}
-		});
-
-
 
 		int selectFromIndex = 0;
 		// selectFrom.addActionListener(new ActionListener()
@@ -144,5 +136,13 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 			
 		}
 
+	}
+	class methodsOrVarRadioButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent a) {
+			if (betweenMethodsOrVar.isSelected()) {
+				String item = (String) from.getSelectedItem();
+				// List<Notable> = Storage.instance.
+			}
+		}
 	}
 }
