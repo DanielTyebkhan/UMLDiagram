@@ -27,12 +27,15 @@ public class CGSerializer implements DataSerializer{
 		try{ 
 			ObjectInputStream in = new ObjectInputStream(f);
 			Storage ret = (Storage) in.readObject();
+			System.out.println("Worked well");
 			in.close();
 			return ret;
 		} catch (IOException i){
+			System.out.println(i);
 			Storage ret = Storage.instance;
 			return ret;
 		} catch (ClassNotFoundException c){
+			System.out.println(c);
 			Storage ret = Storage.instance;
 			return ret;
 		}
