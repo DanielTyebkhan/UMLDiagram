@@ -7,6 +7,10 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
 import Document.Storage;
+import Document.ObjectClass;
+import Document.Arrow;
+import java.util.List;
+import java.util.ArrayList;
 /**
  * @author Lawson Wheatley
  */
@@ -17,27 +21,24 @@ public class CGSerializer implements DataSerializer{
 	public void SerializeObject(FileOutputStream f) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(f);
-			out.writeObject(Storage.instance);
+			out.writeObject(Storage.instance.getObjects());
+			out.writeObject(Storage.instance.getArrows());
 			out.close();
 		} catch(IOException i){
 			return;
 		}
 	}
-	public Storage DeserializeObject(FileInputStream f) {
+	public StorageContainer DeserializeObject(FileInputStream f) {
 		try{ 
 			ObjectInputStream in = new ObjectInputStream(f);
-			Storage ret = (Storage) in.readObject();
-			System.out.println("Worked well");
+			List<ObjectClass> a = (ArrayList<ObjectClass>)in.readObject();
+			List<Arrow> b = (ArrayList<Arrow>)in.readObject();
 			in.close();
-			return ret;
+			return new StorageContainer(a,b);
 		} catch (IOException i){
-			System.out.println(i);
-			Storage ret = Storage.instance;
-			return ret;
+			return new StorageContainer();
 		} catch (ClassNotFoundException c){
-			System.out.println(c);
-			Storage ret = Storage.instance;
-			return ret;
+			return new StorageContainer();
 		}
 	}
 }

@@ -39,11 +39,9 @@ public class FileManager {
 			type=dt(Fname);
 			FileInputStream f = new FileInputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
-            Storage temp = dataserializer.DeserializeObject(f);
+            		StorageContainer temp = dataserializer.DeserializeObject(f);
 			Storage.instance.setStorage(temp);
-            for (ObjectClass obj : Storage.instance.getObjects()) 
-                System.out.println(obj.getName());
-            System.out.println("Desserialized");
+            		System.out.println("Desserialized");
 			f.close();
 		} catch(IOException i) {
 		}
