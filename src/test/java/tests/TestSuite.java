@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
     ObjectClassTests.class,
     ArrowTest.class,
     NotableTest.class,
+    StorageTest.class,
 })
 
 public class TestSuite {
