@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import Document.ObjectClass;
 import Document.Storage;
 import Document.Notable;
+import Document.Arrow;
+import Document.ArrowType;
 
 public class ArrowSelector extends JFrame implements ActionListener, ItemListener {
 
@@ -49,6 +51,8 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		makeArrow = new JButton("Make Arrow");
 
 		selectTo.addActionListener(new SelectToListener());
+		makeArrow.addActionListener(new ArrowTypeGroupActionListener());
+		
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
 		containment = new JRadioButton("containment");
@@ -118,8 +122,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		frame.setVisible(true);
 	}
 	public void itemStateChanged(ItemEvent e) {
-		JComboBox cb = (JComboBox)e.getSource();
-		String item = (String) cb.getSelectedItem();
 
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -170,6 +172,27 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 			else if (betweenNames.isSelected()) {
 				toNonObjects.removeAllItems();
 			}
+		}
+	}
+	class ArrowTypeGroupActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent a) {
+			ArrowType typeArrow = null;
+			if (subtype.isSelected()) {
+				
+				typeArrow = ArrowType.SUBTYPE;
+			}
+			else if (delegation.isSelected()) {
+				typeArrow = ArrowType.DELEGATION;
+			}
+			else if (containment.isSelected()) {
+				typeArrow = ArrowType.CONTAINMENT;
+
+			}
+			Notable fromClass = (Notable) from.getSelectedItem();
+			Notable toClass = (Notable) to.getSelectedItem();
+			Storage.instance.addArrow(new Arrow(typeArrow, fromClass, toClass));
+			System.out.println("A");
+
 		}
 	}
 }
