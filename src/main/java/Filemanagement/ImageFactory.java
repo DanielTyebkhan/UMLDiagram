@@ -3,6 +3,7 @@ package Filemanagement;
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
 import java.lang.ClassNotFoundException;
+
 /**
  * Factory method for creating an image
  * @author Lawson Wheatley
@@ -12,7 +13,9 @@ public class ImageFactory{
 	/**
 	* Constructor Method
 	*/
-	public ImageFactory(){}
+	public ImageFactory(){
+
+	}
 	
 	/**
 	* Creates an Image

@@ -4,13 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
+
 import Document.Storage;
-import Document.ObjectClass;
-import Document.Arrow;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Serializes data to the custom CG style file
@@ -35,7 +33,7 @@ public class CGSerializer implements DataSerializer{
 			out.writeObject(Storage.instance);
 			out.close();
 		} catch(IOException i){
-            System.out.println(i);
+            		System.out.println(i);
 		}
 	}
 
