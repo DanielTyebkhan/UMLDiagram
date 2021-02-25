@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import Document.ObjectClass;
 import Document.Storage;
+import Document.Notable;
 
 import View.DiagramPanel;
 import View.ArrowSelector;
@@ -19,12 +20,17 @@ import View.ArrowSelector;
  */
 public class AddArrowListener implements ActionListener {
 
+	private Notable notable;
+
+	public AddArrowListener(Notable notable) {
+		this.notable = notable;
+	}
     /**
      * 
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        new ArrowSelector();
+        new ArrowSelector(notable);
     }
 }
 

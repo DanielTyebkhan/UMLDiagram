@@ -24,12 +24,10 @@ import View.ArrowSelector;
  */
 public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private static final String NEW_CLASS = "New Class";
-    private static final String ADD_ARROW = "Add Arrow";
 
     private Point clickLocation;
     private JPopupMenu rcmenu;
     private JMenuItem newObjectItem;
-    private JMenuItem addArrowItem;
     private ArrayList<ObjectComponent> components;
 
     /**
@@ -40,10 +38,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
         newObjectItem.addActionListener(new AddClassListener(this));
-        addArrowItem = new JMenuItem(ADD_ARROW);
-        addArrowItem.addActionListener(new AddArrowListener());
         rcmenu.add(newObjectItem);
-        rcmenu.add(addArrowItem);
         addMouseListener(this);
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();

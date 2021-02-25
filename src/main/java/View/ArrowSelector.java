@@ -19,6 +19,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	private JComboBox fromNonObjects;
 	private JComboBox to;
 	private JComboBox toNonObjects;
+	private Notable notableFrom;
 	JRadioButton betweenNames;
 	JRadioButton betweenMethodsOrVar;
 
@@ -31,7 +32,8 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 	JPanel panel;
 
-	public ArrowSelector() {
+	public ArrowSelector(Notable notableFrom) {
+		this.notableFrom = notableFrom;
 		frame = new JFrame("Arrow Selector");
 		panel = new JPanel();
 
@@ -52,7 +54,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 		selectTo.addActionListener(new SelectToListener());
 		makeArrow.addActionListener(new ArrowTypeGroupActionListener());
-		
+
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
 		containment = new JRadioButton("containment");
@@ -127,9 +129,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	public void actionPerformed(ActionEvent e) {
 		
 
-	}
-	public static void main(String[] args) {
-		new ArrowSelector();
 	}
 	class selectFromButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
