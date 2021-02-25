@@ -13,6 +13,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	private JFrame frame;
 	private JComboBox from;
 	private JComboBox to;
+	private boolean betweenNames = false;
 
 	public ArrowSelector(){
 		frame = new JFrame("Arrow Selector");
@@ -24,35 +25,51 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 			objArray[i] = objects.get(i).getName();
 		}
 
-		JButton selectFrom = new JButton("select From");
 		from = new JComboBox(objArray);
-		JButton selectTo = new JButton("select To");
 		to = new JComboBox(objArray);
 
-		selectFrom.addActionListener(this);
+		JButton selectFrom = new JButton("select From");
+		JButton selectTo = new JButton("select To");
+
+		JRadioButton subtype = new JRadioButton("Subtype", true);
+		JRadioButton delegation = new JRadioButton("Subtype", false);
+		JRadioButton containment = new JRadioButton("containment", false);
+
+
+
+		int selectFromIndex = 0;
+		// selectFrom.addActionListener(new ActionListener()
+		// 	{
+		// 		public void actionPerformed(ActionEvent a) {
+		// 			selectFromIndex = from.getSelectedIndex();
+		// 		} 
+		// 	});
 		selectTo.addActionListener(this);
+
+
 		from.addItemListener(this);
 		to.addItemListener(this);
-
-		
 
 		panel.add(from);
 		panel.add(selectFrom);
 		panel.add(to);
+		panel.add(subtype);
 		panel.add(selectTo);
-		
+		panel.add(delegation);
+		panel.add(containment);
 
 		frame.add(panel);
-		frame.setLayout(new FlowLayout());
+		frame.setLayout(new GridLayout(3,3));
 		frame.setSize(400, 300);
 		frame.setVisible(true);
 	}
 	public void itemStateChanged(ItemEvent e) {
+		JComboBox cb = (JComboBox)e.getSource();
+		String item = (String) cb.getSelectedItem();
 
 	}
 	public void actionPerformed(ActionEvent e) {
-		JComboBox cb = (JComboBox)e.getSource();
-		String item = (String) cb.getSelectedItem();
+		
 
 	}
 	public static void main(String[] args) {
