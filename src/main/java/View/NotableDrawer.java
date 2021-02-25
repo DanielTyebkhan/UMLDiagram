@@ -25,6 +25,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
     private static final int FONT_SIZE = 12;
     private static final String FONT_NAME = "Calibri";
     private static final String DELETE = "Delete";
+    private static final String ADD_ARROW = "Add Arrow From";
     private Notable notable;
     private JLabel label;
     private JPanel parent;
@@ -36,8 +37,10 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
         
         menu = new JPopupMenu();
         JMenuItem deleteItem = new JMenuItem(DELETE);
+        JMenuItem addArrow = new JMenuItem(ADD_ARROW);
         deleteItem.addActionListener(new RemoveHandler(notable, remover));
         menu.add(deleteItem);
+        menu.add(addArrow);
         label = new JLabel(notable.getName());
         label.setPreferredSize(new Dimension(width, height));
         label.setMaximumSize(new Dimension(width, height));
