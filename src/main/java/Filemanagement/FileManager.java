@@ -11,15 +11,15 @@ import Document.Storage;
 
 public class FileManager {
 	DataSerializer dataserializer;
+	DataSerializerFactory dfactory = new DataSerializerFactory();
+	ImageFactory imgfactory = new ImageFactory();
 	dtype type;
-	DataSerializerFactory dfactory;
+
 	public FileManager() {
-		type=dtype.cg;
-		dfactory= new DataSerializerFactory();
-		
 	}
+
 	public void ExportImage(String Fname, JPanel panel) {
-		
+		imgfactory.createImage(imgt(Fname), panel, Fname);
 	}
 	public void SaveData(String Fname) {
 		try {
@@ -40,5 +40,21 @@ public class FileManager {
 			f.close();
 		} catch(IOException i) {
 		}
+	}
+	private dtype dt(String Fname){
+		String a = Fname.substring(Fname.indexOf("."));
+		if(a==".cg"){
+			return dtype.cg;
+		}
+		return null;
+	}
+	private imgtype imgt(String Fname){
+		String a = Fname.substring(Fname.indexOf("."));
+		if(a==".jpeg"){
+			return imgtype.jpeg;
+		} else if (a==".png"){
+			return imgtype.png;
+		}
+		return null;
 	}
 }

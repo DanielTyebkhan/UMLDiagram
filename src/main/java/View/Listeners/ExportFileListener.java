@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import Document.ObjectClass;
 import Document.Storage;
+import Filemanagement.Filechoose;
 
 import View.DiagramPanel;
 
@@ -17,23 +18,16 @@ import View.DiagramPanel;
  * @author Sai Lyon Ho
  */
 public class ExportFileListener implements ActionListener {
-    private String type;
     private DiagramPanel panel;
+    private Filechoose fchoose = new Filechoose();
 
-    public ExportFileListener(String item, DiagramPanel panel){
-        this.type = item;
+    public ExportFileListener(DiagramPanel panel){
         this.panel = panel;
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        if (type == "JPEG"){
-            System.out.println("Clicked Export JPEG!");
-        }
-        else {
-            System.out.println("Clicked Export PNG!");
-        }
-        System.out.println(panel);
+        fchoose.ExportImg(panel);
         
     }
     // public void mouseClicked(MouseEvent e) 

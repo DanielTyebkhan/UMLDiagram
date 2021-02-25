@@ -50,13 +50,8 @@ public class MenuPanel extends JComponent {
     public void export(DiagramPanel diagramPanel)
     {
         JMenu m = new JMenu("Export");
-        JMenuItem item1 = new JMenuItem("JPEG");
-        JMenuItem item2 = new JMenuItem("PDF");
-        m.add(item1);
-        m.add(item2);
         menuBar.add(m);
-        item1.addActionListener(new ExportFileListener("JPEG", diagramPanel));
-        item2.addActionListener(new ExportFileListener("PDF", diagramPanel));
+        m.addActionListener(new ExportFileListener(diagramPanel));
     }
     /**
      * Constructs save button that allows user to save the current project
