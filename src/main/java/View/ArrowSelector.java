@@ -21,6 +21,12 @@ import View.Listeners.MakeArrowActionListener;
 */
 
 public class ArrowSelector extends JFrame {
+	private final static String FRAME_NAME = "Arrow Selector";
+	private final static String REFRESH = "Refresh";
+	private final static String MAKE_ARROW = "Make Arrow";
+	private final static String SUBTYPE_ARROW = "Subtype";
+	private final static String DELEGTION_ARROW = "Delegation";
+	private final static String CONTAINMENT_ARROW = "containment";
 
 	private JComboBox to;
 	private JComboBox toNonObjects;
@@ -43,7 +49,7 @@ public class ArrowSelector extends JFrame {
 	* Creates the frame and displays it
 	*/
 	public ArrowSelector(Notable notableFrom) {
-		super("Arrow Selector");
+		super(FRAME_NAME);
 		this.notableFrom = notableFrom;
 		
 		panel = new JPanel();
@@ -61,12 +67,12 @@ public class ArrowSelector extends JFrame {
 		to = new JComboBox(objArray);
 		toNonObjects = new JComboBox();
 
-		refresh = new JButton("Refresh");
-		makeArrow = new JButton("Make Arrow");
+		refresh = new JButton(REFRESH);
+		makeArrow = new JButton(MAKE_ARROW);
 
-		subtype = new JRadioButton("Subtype");
-		delegation = new JRadioButton("Delegation");
-		containment = new JRadioButton("containment");
+		subtype = new JRadioButton(SUBTYPE_ARROW);
+		delegation = new JRadioButton(DELEGTION_ARROW);
+		containment = new JRadioButton(CONTAINMENT_ARROW);
 
 		betweenNames = new JRadioButton("Between Classes");
 		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
