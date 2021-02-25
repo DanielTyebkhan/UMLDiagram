@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import Document.Notable;
 
 /**
+ * A class to handle actions performed on objects, variables, methods, and stereotypes
  * @author Daniel Tyebkhan
  */
 public class NotableMenuListener implements MouseListener, MouseMotionListener {
@@ -22,6 +23,12 @@ public class NotableMenuListener implements MouseListener, MouseMotionListener {
     private Consumer<Notable> remover;
     private JPanel parent;
     
+    /**
+     * Constructs the listener
+     * @param notable the object to perform actions on
+     * @param remove the method to remove the object from the diagram
+     * @param parent the component to show prompts in
+     */
     public NotableMenuListener(Notable notable, Consumer<Notable> remover, JPanel parent) {
         this.notable = notable;
         this.remover = remover;
@@ -31,6 +38,9 @@ public class NotableMenuListener implements MouseListener, MouseMotionListener {
         delete.addActionListener(new RemoveHandler(notable, remover));
     }
 
+    /**
+     * Shows menu on right click
+     */
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {
             menu.show(parent, e.getX(), e.getY());

@@ -9,6 +9,7 @@ import Filemanagement.Filechoose;
 import javax.swing.JFileChooser;
 
 /**
+ * Opens a file when the button is clicked
  * @author Sai Lyon Ho
  */
 public class OpenFileListener implements MouseListener {

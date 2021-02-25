@@ -14,10 +14,18 @@ public class ExportFileListener implements MouseListener {
     private DiagramPanel panel;
     private Filechoose fchoose = new Filechoose();
 
+    /**
+     * Constructs the listener
+     * @param panel the panel to listen on
+     */
     public ExportFileListener(DiagramPanel panel){
         this.panel = panel;
     }
 
+    /**
+     * Handles the click
+     * @param e the trigger
+     */
     public void mouseClicked(MouseEvent e) 
     {
         if (e.getButton() == MouseEvent.BUTTON1){
