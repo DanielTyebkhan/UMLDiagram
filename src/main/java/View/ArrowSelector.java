@@ -15,8 +15,6 @@ import Document.ArrowType;
 public class ArrowSelector extends JFrame implements ActionListener, ItemListener {
 
 	private JFrame frame;
-	private JComboBox from;
-	private JComboBox fromNonObjects;
 	private JComboBox to;
 	private JComboBox toNonObjects;
 	private Notable notableFrom;
@@ -49,8 +47,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		source = new JTextField(notableFrom.getName());
 		source.setEditable(false);
 
-		from = new JComboBox(objArray);
-		fromNonObjects = new JComboBox();
 
 		to = new JComboBox(objArray);
 		toNonObjects = new JComboBox();
@@ -93,7 +89,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		// 	});
 
 
-		from.addItemListener(this);
 		to.addItemListener(this);
 
 
@@ -138,31 +133,31 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		
 
 	}
-	class selectFromButtonActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent a) {
-			if (betweenMethodsOrVar.isSelected()) {
-				ObjectClass item = (ObjectClass) from.getSelectedItem();
-				List<Notable> methodsAndVars = item.getMethods();
-				methodsAndVars.addAll(item.getInstanceVariables());
-				for (Notable entry: methodsAndVars) {
-					fromNonObjects.addItem(entry.getName());
-				}
-			}
-		}
+	// class selectFromButtonActionListener implements ActionListener {
+	// 	public void actionPerformed(ActionEvent a) {
+	// 		if (betweenMethodsOrVar.isSelected()) {
+	// 			ObjectClass item = (ObjectClass) from.getSelectedItem();
+	// 			List<Notable> methodsAndVars = item.getMethods();
+	// 			methodsAndVars.addAll(item.getInstanceVariables());
+	// 			for (Notable entry: methodsAndVars) {
+	// 				fromNonObjects.addItem(entry.getName());
+	// 			}
+	// 		}
+	// 	}
 
-	}
+	// }
 	class methodsOrVarRadioButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			if (betweenMethodsOrVar.isSelected()) {
-					ObjectClass item = (ObjectClass) from.getSelectedItem();
+					ObjectClass item = (ObjectClass) to.getSelectedItem();
 					List<Notable> methodsAndVars = item.getMethods();
 					methodsAndVars.addAll(item.getInstanceVariables());
 					for (Notable entry: methodsAndVars) {
-						fromNonObjects.addItem(entry.getName());
+						toNonObjects.addItem(entry.getName());
 					}
 				}
 			else if (betweenNames.isSelected()) {
-				fromNonObjects.removeAllItems();
+				toNonObjects.removeAllItems();
 			}
 		}
 	}
@@ -195,9 +190,14 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 				typeArrow = ArrowType.CONTAINMENT;
 
 			}
-			Notable fromClass = (Notable) from.getSelectedItem();
-			Notable toClass = (Notable) to.getSelectedItem();
-			Storage.instance.addArrow(new Arrow(typeArrow, fromClass, toClass));
+			Notable toNotable = null;
+			if (betweenMethodsOrVar.isSelected()) {
+				toNotable = (Notable) toNonObjects.getSelectedItem();
+			}
+			else {
+				toNotable = (Notable) to.getSelectedItem();
+			}
+			Storage.instance.addArrow(new Arrow(typeArrow, notableFrom, toNotable));
 			System.out.println("A");
 
 		}
