@@ -8,6 +8,7 @@ import org.junit.runners.Suite;
 ({
     ObjectClassTests.class,
     ArrowTest.class,
+    NotableTest.class,
 })
 
 public class TestSuite {
