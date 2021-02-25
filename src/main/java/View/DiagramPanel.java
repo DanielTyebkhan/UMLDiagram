@@ -4,19 +4,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Point;
 import java.awt.Graphics;
+
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.ArrayList;
 
 import Document.Storage;
 import Document.ObjectClass;
 import Document.Arrow;
+
 import View.Listeners.AddClassListener;
 import View.Listeners.AddArrowListener;
-import General.Observer;
 import View.ArrowSelector;
+
+import General.Observer;
 
 /**
  * The main canvas which displays the diagram
@@ -92,6 +96,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
 
     /**
      * Updates when the status of its subjects changes
+     * (See observer interface)
      */
     public void update() {
         repaint();
@@ -127,7 +132,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
 	public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) 
             rcmenu.show(e.getComponent(), e.getX(), e.getY());
-    }
+	}
 
     /**
      * Handles mouse entering
