@@ -12,30 +12,34 @@ import Document.Notable;
 import Document.Arrow;
 import Document.ArrowType;
 
-public class ArrowSelector extends JFrame implements ActionListener, ItemListener {
+/**
+* Displays a pop box where the user can decide to choose to draw arrows.
+*@author Anhad Gande
+*/
 
-	private JFrame frame;
+public class ArrowSelector extends JFrame {
+
 	private JComboBox to;
 	private JComboBox toNonObjects;
 	private Notable notableFrom;
-	JRadioButton betweenNames;
-	JRadioButton betweenMethodsOrVar;
+	private JRadioButton betweenNames;
+	private JRadioButton betweenMethodsOrVar;
 
-	JTextField source;
+	private JTextField source;
 
-	JRadioButton subtype;
-	JRadioButton delegation;
-	JRadioButton containment;
+	private JRadioButton subtype;
+	private JRadioButton delegation;
+	private JRadioButton containment;
 
-	JButton selectTo;
-	JButton makeArrow;
+	private JButton selectTo;
+	private JButton makeArrow;
 
-	JPanel panel;
+	private JPanel panel;
 
 	public ArrowSelector(Notable notableFrom) {
+		super("Arrow Selector");
 		this.notableFrom = notableFrom;
-
-		frame = new JFrame("Arrow Selector");
+		
 		panel = new JPanel();
 
 		List<ObjectClass> objects = Storage.instance.getObjects();
@@ -81,23 +85,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		JLabel textTo = new JLabel("To");
 		JLabel arrowTypes = new JLabel("Arrow Types");
 
-		// selectFrom.addActionListener(new ActionListener()
-		// 	{
-		// 		public void actionPerformed(ActionEvent a) {
-		// 			selectFromIndex = from.getSelectedIndex();
-		// 		} 
-		// 	});
-
-
-		to.addItemListener(this);
-
-
 		panel.add(textFrom);
 
 		panel.add(source);
-
-		// panel.add(from);
-		// panel.add(fromNonObjects);
 
 		panel.add(type);
 
@@ -122,30 +112,11 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-		frame.add(panel);
-		frame.setSize(400, 500);
-		frame.setVisible(true);
+		this.add(panel);
+		this.setSize(400, 500);
+		this.setVisible(true);
 	}
-	public void itemStateChanged(ItemEvent e) {
-
-	}
-	public void actionPerformed(ActionEvent e) {
-		
-
-	}
-	// class selectFromButtonActionListener implements ActionListener {
-	// 	public void actionPerformed(ActionEvent a) {
-	// 		if (betweenMethodsOrVar.isSelected()) {
-	// 			ObjectClass item = (ObjectClass) from.getSelectedItem();
-	// 			List<Notable> methodsAndVars = item.getMethods();
-	// 			methodsAndVars.addAll(item.getInstanceVariables());
-	// 			for (Notable entry: methodsAndVars) {
-	// 				fromNonObjects.addItem(entry.getName());
-	// 			}
-	// 		}
-	// 	}
-
-	// }
+	
 	class methodsOrVarRadioButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			if (betweenMethodsOrVar.isSelected()) {
@@ -198,8 +169,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 				toNotable = (Notable) to.getSelectedItem();
 			}
 			Storage.instance.addArrow(new Arrow(typeArrow, notableFrom, toNotable));
-			System.out.println("A");
-
 		}
 	}
 }
