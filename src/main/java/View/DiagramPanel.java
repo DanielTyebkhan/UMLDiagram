@@ -76,6 +76,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             comp.drawShape(this, arrowDrawers);
         for (ArrowDrawer drawer : arrowDrawers)
             drawer.drawArrow(g);
+        revalidate();
     }
 
     private void removeClasses() {
