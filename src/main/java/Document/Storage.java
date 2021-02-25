@@ -59,6 +59,10 @@ public class Storage implements Subject, Observer, Serializable {
             observer.update();
     }
 
+    public void clear() {
+        objects.clear();
+        arrows.clear();
+    }
 
     /**
      * Attaches an observer
