@@ -29,6 +29,13 @@ public class Storage implements Subject, Observer, Serializable {
         arrows = new ArrayList<Arrow>();
     }
 
+    public void setStorage(Storage storage) {
+        for (ObjectClass obj : storage.getObjects())
+            instance.addObject(obj);
+        for (Arrow arr : storage.getArrows())
+            instance.addArrow(arr);
+    }
+
     /**
      * Notifies all objects observing the storage
      */
