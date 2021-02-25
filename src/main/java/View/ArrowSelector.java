@@ -24,8 +24,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	JRadioButton delegation;
 	JRadioButton containment;
 
-	JButton selectFrom;
-	JButton selectTo;
 	JButton makeArrow;
 
 	JPanel panel;
@@ -41,17 +39,13 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		}
 
 		from = new JComboBox(objArray);
-		from.setSelectedIndex(0);
 		fromNonObjects = new JComboBox();
 
 		to = new JComboBox(objArray);
 		toNonObjects = new JComboBox();
 
-		selectFrom = new JButton("select From");
-		selectTo = new JButton("select To");
 		makeArrow = new JButton("Make Arrow");
 
-		selectFrom.addActionListener(new selectFromButtonActionListener());
 
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
@@ -60,6 +54,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		betweenNames = new JRadioButton("Between Classes");
 		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
 
+		betweenNames.addActionListener(new methodsOrVarRadioButtonActionListener());
 		betweenMethodsOrVar.addActionListener(new methodsOrVarRadioButtonActionListener());
 
 		ButtonGroup groupArrowType = new ButtonGroup();
@@ -76,38 +71,33 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		JLabel textTo = new JLabel("To");
 		JLabel arrowTypes = new JLabel("Arrow Types");
 
-		int selectFromIndex = 0;
 		// selectFrom.addActionListener(new ActionListener()
 		// 	{
 		// 		public void actionPerformed(ActionEvent a) {
 		// 			selectFromIndex = from.getSelectedIndex();
 		// 		} 
 		// 	});
-		selectTo.addActionListener(this);
 
 
 		from.addItemListener(this);
 		to.addItemListener(this);
 
-		panel.add(type);
-
-		panel.add(betweenNames);
-		panel.add(betweenMethodsOrVar);
 
 		panel.add(textFrom);
 
 		panel.add(from);
 		panel.add(fromNonObjects);
 
-		panel.add(selectFrom);
+		panel.add(type);
+
+		panel.add(betweenNames);
+		panel.add(betweenMethodsOrVar);
 
 		panel.add(textTo);
 
 		panel.add(to);
 		panel.add(toNonObjects);
 
-		
-		panel.add(selectTo);
 
 		panel.add(arrowTypes);
 
@@ -137,7 +127,15 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	}
 	class selectFromButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-			
+			if (betweenMethodsOrVar.isSelected()) {
+				ObjectClass item = (ObjectClass) from.getSelectedItem();
+				List<Notable> methodsAndVars = item.getMethods();
+				methodsAndVars.addAll(item.getInstanceVariables());
+				for (Notable entry: methodsAndVars) {
+					fromNonObjects.addItem(entry.getName());
+					System.out.println("here");
+				}
+			}
 		}
 
 	}
@@ -149,8 +147,10 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 				methodsAndVars.addAll(item.getInstanceVariables());
 				for (Notable entry: methodsAndVars) {
 					fromNonObjects.addItem(entry.getName());
-					System.out.println("here");
 				}
+			}
+			else if (betweenNames.isSelected()) {
+				fromNonObjects.removeAllItems();
 			}
 		}
 	}
