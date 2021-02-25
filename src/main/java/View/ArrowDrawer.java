@@ -41,7 +41,8 @@ public abstract class ArrowDrawer {
     private void drawBody(Graphics g) {
         Point from = getFromPosition();
         Point to = getToPosition();
-        g.drawLine((int)from.getX(), (int)from.getY(), (int)to.getX(), (int)to.getY());
+        if (from != null && to != null)
+            g.drawLine((int)from.getX(), (int)from.getY(), (int)to.getX(), (int)to.getY());
     }
 
     public void drawArrow(JPanel panel) {
