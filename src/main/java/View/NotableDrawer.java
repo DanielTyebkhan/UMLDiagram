@@ -19,23 +19,26 @@ import Document.Arrow;
 /**
  * @author Daniel Tyebkhan
  */
-public class NotableDrawer {
+public class NotableDrawer implements MouseListener, MouseMotionListener {
     private static final int FONT_SIZE = 12;
     private static final String FONT_NAME = "Calibri";
     private Notable notable;
     private JLabel label;
     private JPanel parent;
+    private JPopupMenu menu;
 
     public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height, boolean bold) {
         this.notable = notable;
         this.parent = parent;
-
+        
+        menu = new JPopupMenu();
         label = new JLabel(notable.getName());
         label.setPreferredSize(new Dimension(width, height));
         label.setMaximumSize(new Dimension(width, height));
         label.setBorder(BorderFactory.createLineBorder(Color.black));
         label.setFont(new Font(FONT_NAME, bold ? Font.BOLD : Font.PLAIN, FONT_SIZE));
-        //label.addMouseListener(new NotableMenuListener(notable, remover, parent));
+        label.addMouseListener(this);
+        label.addMouseMotionListener(this);
     }
 
     public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
@@ -49,6 +52,38 @@ public class NotableDrawer {
 
     public Notable getNotable() {
         return notable;
+    }
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON3 && !(getNotable() instanceof ObjectClass)) {
+            menu.show(parent, e.getX(), e.getY());
+            System.out.println(parent);
+        }
+        else
+            parent.dispatchEvent(e);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        parent.dispatchEvent(e);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        parent.dispatchEvent(e);
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        parent.dispatchEvent(e);
+    }
+
+    public void mouseExited(MouseEvent e) {
+        parent.dispatchEvent(e);
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        parent.dispatchEvent(e);
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        parent.dispatchEvent(e);
     }
 }
         
