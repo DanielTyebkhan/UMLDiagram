@@ -21,5 +21,6 @@ public class RemoveHandler implements ActionListener {
     
     public void actionPerformed(ActionEvent e) {
         action.accept(toRemove);
+        System.out.println("Should Remove");
     }
 }
