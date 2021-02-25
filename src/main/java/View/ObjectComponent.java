@@ -142,11 +142,9 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
             for (ArrowDrawer arrow : arrows) {
                 if (arrow.getArrow().getFrom().equals(toDraw.getNotable())) {
                     arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
-                    System.out.println("arrowFrom");
                 }
                 if (arrow.getArrow().getTo().equals(toDraw.getNotable())) {
                     arrow.setToPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
-                    System.out.println("arrowto");
                 }
             }
         }

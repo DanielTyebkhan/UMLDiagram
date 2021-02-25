@@ -1,6 +1,6 @@
 package View;
 
-import javax.swing.JPanel;
+import java.awt.Graphics;
 
 import Document.Arrow;
 
@@ -23,6 +23,6 @@ public class SubtypeArrow extends ArrowDrawer {
      * @param panel the panel to draw the arrowhead on
      */
     @Override
-    public void drawHead(JPanel panel) {
+    public void drawHead(Graphics g) {
     }
 }

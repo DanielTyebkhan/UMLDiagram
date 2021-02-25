@@ -45,11 +45,11 @@ public abstract class ArrowDrawer {
             g.drawLine((int)from.getX(), (int)from.getY(), (int)to.getX(), (int)to.getY());
     }
 
-    public void drawArrow(JPanel panel) {
-        drawBody(panel.getGraphics());
-        drawHead(panel);
+    public void drawArrow(Graphics g) {
+        drawBody(g);
+        drawHead(g);
     }
 
-    abstract void drawHead(JPanel panel);
+    abstract void drawHead(Graphics g);
 
 }

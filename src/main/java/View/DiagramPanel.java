@@ -29,6 +29,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private JPopupMenu rcmenu;
     private JMenuItem newObjectItem;
     private ArrayList<ObjectComponent> components;
+    private ArrayList<ArrowDrawer> arrowDrawers;
 
     /**
      * Constructs a diagram panel
@@ -42,26 +43,39 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         addMouseListener(this);
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();
-
+        arrowDrawers = new ArrayList<ArrowDrawer>();
     }
-
+/*
     /**
      * Updates the content of the Diagram
-     */
+     * /
     private void updateView() {
         addComponents();
         removeClasses();
         removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
-        ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
+        arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
+        for (Arrow arrow : arrows) 
+            arrowDrawers.add(ArrowFactory.makeArrow(arrow));
+        for (ObjectComponent comp : components)
+            comp.drawShape(this, arrowDrawers);
+        repaint();
+        revalidate();
+    }
+*/
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        addComponents();
+        removeClasses();
+        removeAll();
+        List<Arrow> arrows = Storage.instance.getArrows();
+        arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));
         for (ObjectComponent comp : components)
             comp.drawShape(this, arrowDrawers);
         for (ArrowDrawer drawer : arrowDrawers)
-            drawer.drawArrow(this);
-        repaint();
-        revalidate();
+            drawer.drawArrow(g);
     }
 
     private void removeClasses() {
@@ -86,7 +100,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      * Updates when the status of its subjects changes
      */
     public void update() {
-        updateView();
+        repaint();
     }
 
     private boolean hasComponent(ObjectClass obj) {
