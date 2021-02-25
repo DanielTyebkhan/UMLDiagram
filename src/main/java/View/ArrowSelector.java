@@ -153,7 +153,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 					List<Notable> methodsAndVars = item.getMethods();
 					methodsAndVars.addAll(item.getInstanceVariables());
 					for (Notable entry: methodsAndVars) {
-						toNonObjects.addItem(entry.getName());
+						toNonObjects.addItem(entry);
 					}
 				}
 			else if (betweenNames.isSelected()) {
@@ -168,7 +168,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 				List<Notable> methodsAndVars = item.getMethods();
 				methodsAndVars.addAll(item.getInstanceVariables());
 				for (Notable entry: methodsAndVars) {
-					toNonObjects.addItem(entry.getName());
+					toNonObjects.addItem(entry);
 				}
 			}
 			else if (betweenNames.isSelected()) {
