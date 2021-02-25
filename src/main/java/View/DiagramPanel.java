@@ -15,6 +15,7 @@ import Document.ObjectClass;
 import Document.Arrow;
 import View.Listeners.AddClassListener;
 import General.Observer;
+import View.ArrowSelector;
 
 /**
  * The main canvas which displays the diagram
@@ -40,6 +41,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         addMouseListener(this);
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();
+
     }
 
     /**
@@ -49,6 +51,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         addComponents();
         removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
+        new ArrowSelector();
         ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));
