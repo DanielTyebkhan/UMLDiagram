@@ -18,12 +18,6 @@ import View.ArrowSelector;
  * @author Anhad Gande
  */
 public class AddArrowListener implements ActionListener {
-    
-    private DiagramPanel parent;
-
-    public AddClassListener(DiagramPanel parent) {
-        this.parent = parent;
-    }
 
     /**
      * 
