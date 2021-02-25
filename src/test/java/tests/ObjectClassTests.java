@@ -11,10 +11,11 @@ import org.junit.runners.JUnit4;
 import java.awt.Point;
 import Document.ObjectClass;
 import Document.Notable;
+import General.Observer;
 
 /**
  * Tests fo the ObjectClass class
- * @author Daniel Tyebkhan
+ * @author Daniel Tyebkhan and Sai Lyon Ho
  */
 @RunWith(JUnit4.class)
 public class ObjectClassTests {
@@ -43,32 +44,65 @@ public class ObjectClassTests {
         assertEquals("Setting name should change name", "TestName", testObj.getName());
     }
 
-    // @Test
-    // public void addInstanceVariable() {
-    //     Notable notable = new Notable("variable", "new");
-    //     testObj.addInstanceVariable(notable);
-    //     ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
-    //     objClass.addInstanceVariable(notable);
-    //     assertEquals("", testObj.getInstanceVariables(), objClass.getInstanceVariables());
-    // }
+    @Test
+    public void addInstanceVariable() {
+        Notable notable = new Notable("variable", "new");
+        testObj.addInstanceVariable(notable);
+        ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
+        objClass.addInstanceVariable(notable);
+        assertEquals("", testObj.getInstanceVariables(), objClass.getInstanceVariables());
+    }
 
-    // @Test
-    // public void removeInstanceVariable() {
-    //     Notable notable = new Notable("variable", "new");
-    //     testObj.addInstanceVariable(notable);
-    //     testObj.removeInstanceVariable(notable);        
-    //     assertTrue("", testObj.getInstanceVariables().isEmpty());
-    // }
+    @Test
+    public void removeInstanceVariable() {
+        Notable notable = new Notable("variable", "new");
+        testObj.addInstanceVariable(notable);
+        testObj.removeInstanceVariable(notable);        
+        assertTrue("", testObj.getInstanceVariables().isEmpty());
+    }
 
-    // @Test
-    // public void addStereotype() {
-    //     Notable notable = new Notable("stereotype", "new");
-    //     testObj.addStereotype(notable);
-    //     ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
-    //     objClass.addInstanceVariable(notable);
-    //     assertEquals("", testObj.getInstanceVariables(), objClass.getInstanceVariables());
-    // }
+    @Test
+    public void addStereotype() {
+        Notable notable = new Notable("stereotype", "new");
+        testObj.addStereotype(notable);
+        ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
+        objClass.addStereotype(notable);
+        assertEquals("", testObj.getStereotypes(), objClass.getStereotypes());
+    }
 
+    @Test
+    public void removeStereotype() {
+        Notable notable = new Notable("variable", "new");
+        testObj.addStereotype(notable);
+        testObj.removeStereotype(notable);        
+        assertTrue("", testObj.getStereotypes().isEmpty());
+    }
+
+    @Test
+    public void addMethod() {
+        Notable notable = new Notable("method", "new");
+        testObj.addMethod(notable);
+        ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
+        objClass.addMethod(notable);
+        assertEquals("", testObj.getMethods(), objClass.getMethods());
+    }
+
+    @Test
+    public void removeMethod() {
+        Notable notable = new Notable("variable", "new");
+        testObj.addMethod(notable);
+        testObj.removeMethod(notable);        
+        assertTrue("", testObj.getMethods().isEmpty());
+    }
+
+    @Test
+    public void equals() {
+        Notable notable = new Notable("method", "new");
+        testObj.addMethod(notable);
+        ObjectClass objClass = new ObjectClass("test", new Point(0,0));
+        objClass.addMethod(notable);
+        assertTrue("", testObj.equals(objClass));
+    }
 }
 
 
