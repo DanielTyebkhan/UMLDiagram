@@ -11,7 +11,6 @@ import java.util.function.Consumer;
 import Document.ObjectClass;
 import Document.Notable;
 import Document.Storage;
-import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
 import View.Listeners.NotableMenuListener;
 import View.Listeners.RemoveHandler;
@@ -23,16 +22,16 @@ import Document.Arrow;
  * @author Daniel Tyebkhan
  */
 public class NotableDrawer implements MouseListener, MouseMotionListener {
-    private static final int FONT_SIZE = 12;
-    private static final String FONT_NAME = "Calibri";
-    private static final String DELETE = "Delete";
-    private static final String ADD_ARROW = "Add Arrow From";
-    private Notable notable;
-    private JLabel label;
-    private JPanel parent;
-    private JPopupMenu menu;
+    protected static final int FONT_SIZE = 12;
+    protected static final String FONT_NAME = "Calibri";
+    protected static final String DELETE = "Delete";
+    protected static final String ADD_ARROW = "Add Arrow From";
+    protected Notable notable;
+    protected JLabel label;
+    protected JPanel parent;
+    protected JPopupMenu menu;
 
-    public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height, boolean bold) {
+    public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
         this.notable = notable;
         this.parent = parent;
         
@@ -47,13 +46,9 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
         label.setPreferredSize(new Dimension(width, height));
         label.setMaximumSize(new Dimension(width, height));
         label.setBorder(BorderFactory.createLineBorder(Color.black));
-        label.setFont(new Font(FONT_NAME, bold ? Font.BOLD : Font.PLAIN, FONT_SIZE));
+        label.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
         label.addMouseListener(this);
         label.addMouseMotionListener(this);
-    }
-
-    public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
-        this(notable, remover, parent, width, height, false);
     }
 
     public void draw() {
