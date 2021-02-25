@@ -80,14 +80,6 @@ public class Storage implements Subject, Observer, Serializable {
     }
 
     /**
-     * Gets the number of present objects
-     * @return the number of present objects
-     */
-    public int numObjects() {
-        return objects.size();
-    }
-
-    /**
      * Adds an object
      * @param object the object to be added
      */
