@@ -6,21 +6,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
 import Document.Storage;
 
 public class FileManager {
 	DataSerializer dataserializer;
+	dtype type;
+	DataSerializerFactory dfactory;
 	public FileManager() {
+		type=dtype.cg;
+		dfactory= new DataSerializerFactory();
 		
 	}
-	public void ExportImage() {
+	public void ExportImage(String Fname, JPanel panel) {
 		
 	}
 	public void SaveData(String Fname) {
-		Fname=FnameCheck(Fname);
 		try {
 			FileOutputStream f = new FileOutputStream(Fname);
-			dataserializer = new DataSerializer();
+			dataserializer = dfactory.createDataSerializer(type);
 			dataserializer.SerializeObject(f);
 			f.close();
 		} catch(IOException i) {
@@ -28,28 +32,13 @@ public class FileManager {
 		}
 		
 	}
-	public Storage LoadData(String Fname) {
-		Fname=FnameCheck(Fname);
+	public void LoadData(String Fname) {
 		try {
 			FileInputStream f = new FileInputStream(Fname);
-			dataserializer = new DataSerializer();
+			dataserializer = dfactory.createDataSerializer(type);
 			Storage.instance = dataserializer.DeserializeObject(f);
 			f.close();
-			return Storage.instance;
 		} catch(IOException i) {
-			return null;
 		}
-	}
-	private String FnameCheck(String Fname) {
-		if(Fname.contains(".")) {
-			if(!Fname.contains(".cg")) {
-				Fname+=".cg";
-			}
-			else {
-				//Display window stating incorrect file type, then break
-				Fname= Fname.substring(0, Fname.indexOf("."))+".cg";
-			}
-		}
-		return Fname;
 	}
 }
