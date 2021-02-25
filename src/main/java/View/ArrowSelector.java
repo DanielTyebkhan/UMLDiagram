@@ -12,7 +12,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 	private JFrame frame;
 	private JComboBox from;
+	private JComboBox fromNonObjects;
 	private JComboBox to;
+	private JComboBox toNonObjects;
 	JRadioButton betweenNames;
 	JRadioButton betweenMethodsOrVar;
 
@@ -22,6 +24,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 	JButton selectFrom;
 	JButton selectTo;
+	JButton makeArrow;
 
 	JPanel panel;
 
@@ -36,10 +39,14 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		}
 
 		from = new JComboBox(objArray);
+		fromNonObjects = new JComboBox();
+
 		to = new JComboBox(objArray);
+		toNonObjects = new JComboBox();
 
 		selectFrom = new JButton("select From");
 		selectTo = new JButton("select To");
+		makeArrow = new JButton("Make Arrow");
 
 		selectFrom.addActionListener(new selectFromButtonActionListener());
 
@@ -60,6 +67,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		groupArrowBetween.add(betweenMethodsOrVar);
 
 		JLabel type = new JLabel("Draw Arrows Between?");
+		JLabel textFrom = new JLabel("From");
+		JLabel textTo = new JLabel("To");
+		JLabel arrowTypes = new JLabel("Arrow Types");
 
 
 		subtype.addActionListener(new ActionListener() {
@@ -83,21 +93,38 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		from.addItemListener(this);
 		to.addItemListener(this);
 
-		panel.add(betweenNames);
 		panel.add(type);
+
+		panel.add(betweenNames);
 		panel.add(betweenMethodsOrVar);
+
+		panel.add(textFrom);
+
 		panel.add(from);
+		panel.add(fromNonObjects);
+
 		panel.add(selectFrom);
+
+		panel.add(textTo);
+
 		panel.add(to);
-		panel.add(subtype);
+		panel.add(toNonObjects);
+
+		
 		panel.add(selectTo);
+
+		panel.add(arrowTypes);
+
+		panel.add(subtype);
 		panel.add(delegation);
 		panel.add(containment);
 
-		panel.setLayout(new GridLayout(3,3));
+		panel.add(makeArrow);
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
 		frame.add(panel);
-		frame.setSize(400, 300);
+		frame.setSize(400, 500);
 		frame.setVisible(true);
 	}
 	public void itemStateChanged(ItemEvent e) {
