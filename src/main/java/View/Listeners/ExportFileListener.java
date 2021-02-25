@@ -18,12 +18,10 @@ import View.DiagramPanel;
  * @author Sai Lyon Ho
  */
 public class ExportFileListener implements ActionListener {
-    private String type;
     private DiagramPanel panel;
     private Filechoose fchoose = new Filechoose();
 
-    public ExportFileListener(String item, DiagramPanel panel){
-        this.type = item;
+    public ExportFileListener(DiagramPanel panel){
         this.panel = panel;
     }
 
