@@ -13,7 +13,6 @@ import Document.Notable;
 import Document.Storage;
 import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
-import View.Listeners.NotableMenuListener;
 import View.Listeners.RemoveHandler;
 import View.ArrowDrawer;
 import View.NotableDrawer;
@@ -24,26 +23,13 @@ import Document.Arrow;
 * @author Daniel Tyebkhan
 */
 public class ObjectComponent implements MouseListener, MouseMotionListener {
-    private static final String NEW_METHOD = "Add Method";
-    private static final String NEW_VARIABLE = "Add Variable";
-    private static final String NEW_STEREOTYPE = "Add Stereotype";
-    private static final String ENT_METHOD_NAME = "Enter Method Name";
-    private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
-    private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
     private static final String DELETE = "Delete";
-    private static final String STER_START = "<<";
-    private static final String STER_END = ">>";
     private static final String FONT_NAME = "Calibri";
 	private static final int HEIGHT = 30;
 	private static final int WIDTH  = 100;
     private static final int FONT_SIZE = 12;
 	private ObjectClass obj;
 	private JPanel panel;
-    private JPopupMenu rcmenu;
-    private JMenuItem newMethod;
-    private JMenuItem newVariable;
-    private JMenuItem newStereotype;
-    private JMenuItem delete;
 	private int incHeight = 0;
 	private int incWidth = 0;
     private boolean selected;
@@ -63,22 +49,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
 
-        rcmenu = new JPopupMenu();
-        newMethod = new JMenuItem(NEW_METHOD);
-        newVariable = new JMenuItem(NEW_VARIABLE);
-        newStereotype = new JMenuItem(NEW_STEREOTYPE);
-        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, obj::addMethod, panel));
-        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, obj::addInstanceVariable, panel));
-        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, obj::addStereotype, panel));
-        delete = new JMenuItem(DELETE);
-        delete.addActionListener(new RemoveHandler(obj, Storage.instance::removeObject));
-        rcmenu.add(newMethod);
-        rcmenu.add(newVariable);
-        rcmenu.add(newStereotype);
-        rcmenu.add(delete);
-
         nameLabel = new ArrayList<>();
-        nameLabel.add(new NotableDrawer(obj, Storage.instance::removeObject, panel, WIDTH, HEIGHT, true));
+        nameLabel.add(new ClassNotableDrawer(obj, panel, WIDTH, HEIGHT));
         stereotypeLabels = new ArrayList<>();
         methodLabels = new ArrayList<>();
         variableLabels = new ArrayList<>();
@@ -166,10 +138,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if(e.getButton() == MouseEvent.BUTTON3) {
-			rcmenu.show(panel, e.getX(), e.getY());
-		}
 	}
+
 	public void mouseEntered(MouseEvent e) {
 
 	}

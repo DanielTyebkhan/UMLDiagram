@@ -61,7 +61,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON3 && !(getNotable() instanceof ObjectClass)) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
             menu.show(parent, e.getX(), e.getY());
         }
         else
