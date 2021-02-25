@@ -28,6 +28,7 @@ public class MenuPanel extends JComponent {
         export(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
+
     /**
      * Constructs open button that allows user to choose which file 
      * to keep working on by using JFileChooser
@@ -38,6 +39,7 @@ public class MenuPanel extends JComponent {
         menuBar.add(m);
         m.addMouseListener(new OpenFileListener());
     } 
+
     /**
      * Constructs export button that allows user to export and convert
      * file to JPEG 
@@ -48,6 +50,7 @@ public class MenuPanel extends JComponent {
         menuBar.add(m);
         m.addMouseListener(new ExportFileListener(diagramPanel));
     }
+
     /**
      * Constructs save button that allows user to save the current project
      * by using the JFileChooser

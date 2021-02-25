@@ -3,8 +3,9 @@ package Filemanagement;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Robot;
-import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JPanel;
 
 /**
  * Class that converts JPanels to Images
@@ -18,6 +19,7 @@ public class JPanelToImage{
 	public JPanelToImage() {
 		
 	}
+
 	/**
 	* Gets an BufferedImage from a Jpanel
 	* @param JPanel panel to convert to image

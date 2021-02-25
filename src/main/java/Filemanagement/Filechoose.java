@@ -1,16 +1,19 @@
 package Filemanagement;
 
 import java.io.File; 
+import java.io.IOException;
+import java.lang.ClassNotFoundException;
+
 import javax.swing.JFrame;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import java.io.IOException;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Robot;
 import java.awt.image.BufferedImage;
-import java.lang.ClassNotFoundException;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Robot;
+
 import Document.Storage;
 
 /**
@@ -18,6 +21,7 @@ import Document.Storage;
  * @author Lawson Wheatley
  */
 public class Filechoose{
+
 	FileManager fmanager;
 	JFileChooser fileChooser;
 
@@ -60,6 +64,7 @@ public class Filechoose{
    			fmanager.ExportImage(fileToSave.getAbsolutePath(), panel);
 		}
 	}
+
 	/**
 	* Loads a file to the program
 	*/

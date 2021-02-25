@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Document.Storage;
 import Document.ObjectClass;
 import Document.Arrow;
+
 /**
  * A class that exports relevant values to load to the Storage.instance
  * @author Lawson Wheatley

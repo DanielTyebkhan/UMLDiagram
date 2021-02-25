@@ -5,5 +5,9 @@ package General;
  * @author Daniel Tyebkhan
  */
 public interface Observer {
-    public void update();
+	
+	/**
+	* Updates state of observer
+	*/
+	public void update();
 }
