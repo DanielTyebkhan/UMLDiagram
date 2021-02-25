@@ -13,7 +13,8 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	private JFrame frame;
 	private JComboBox from;
 	private JComboBox to;
-	private boolean betweenNames = false;
+	JRadioButton betweenNames;
+	JRadioButton betweenMethodsOrVar;
 
 	JRadioButton subtype;
 	JRadioButton delegation;
@@ -40,14 +41,26 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		selectFrom = new JButton("select From");
 		selectTo = new JButton("select To");
 
+		selectFrom.addActionListener(new selectFromButtonActionListener());
+
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
 		containment = new JRadioButton("containment");
 
-		ButtonGroup group = new ButtonGroup();
-		group.add(subtype);
-		group.add(delegation);
-		group.add(containment);
+		betweenNames = new JRadioButton("Between Classes");
+		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
+
+		ButtonGroup groupArrowType = new ButtonGroup();
+		groupArrowType.add(subtype);
+		groupArrowType.add(delegation);
+		groupArrowType.add(containment);
+
+		ButtonGroup groupArrowBetween = new ButtonGroup();
+		groupArrowBetween.add(betweenNames);
+		groupArrowBetween.add(betweenMethodsOrVar);
+
+		JLabel type = new JLabel("Draw Arrows Between?");
+
 
 		subtype.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
@@ -70,6 +83,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		from.addItemListener(this);
 		to.addItemListener(this);
 
+		panel.add(betweenNames);
+		panel.add(type);
+		panel.add(betweenMethodsOrVar);
 		panel.add(from);
 		panel.add(selectFrom);
 		panel.add(to);
@@ -78,8 +94,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		panel.add(delegation);
 		panel.add(containment);
 
+		panel.setLayout(new GridLayout(3,3));
+
 		frame.add(panel);
-		frame.setLayout(new GridLayout(3,3));
 		frame.setSize(400, 300);
 		frame.setVisible(true);
 	}
@@ -95,11 +112,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	public static void main(String[] args) {
 		new ArrowSelector();
 	}
-	class RadioButtonActionListener implements ActionListener {
+	class selectFromButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-			if (subtype.isSelected()) {
-
-			}
+			
 		}
 
 	}
