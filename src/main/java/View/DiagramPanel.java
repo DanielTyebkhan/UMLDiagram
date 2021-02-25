@@ -46,6 +46,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         arrowDrawers = new ArrayList<ArrowDrawer>();
     }
 
+    /**
+     * Draws the appropriate components
+     * @param g the graphics object to draw with
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         addComponents();
@@ -62,6 +66,9 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         revalidate();
     }
 
+    /**
+     * Removes classes which are no longer in storage
+     */
     private void removeClasses() {
         ArrayList<ObjectComponent> toRemove = new ArrayList<>();
         for (ObjectComponent comp : components) {
@@ -72,6 +79,9 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             components.remove(comp);
     }
 
+    /**
+     * Adds components in storage to the diagram
+     */
     private void addComponents() {
         for (ObjectClass obj : Storage.instance.getObjects()) {
             if (!hasComponent(obj))
@@ -87,6 +97,11 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         repaint();
     }
 
+    /**
+     * Checks if there is a component for an ObjectClass
+     * @param obj the object to check for
+     * @return true if there is a component else false
+     */
     private boolean hasComponent(ObjectClass obj) {
         boolean present = false;
         for (ObjectComponent comp : components) {
@@ -96,6 +111,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         return present;
     }
 
+    /**
+     * Gets the location of the last click in the diagram
+     * @return the location of the last click
+     */
     public Point getClickLocation() {
         return clickLocation;
     }

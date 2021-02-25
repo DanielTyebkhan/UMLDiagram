@@ -19,9 +19,10 @@ import View.NotableDrawer;
 import Document.Arrow;
 
 /**
-* @author Anhad Gande
-* @author Daniel Tyebkhan
-*/
+ * A class to draw objects on the diagram
+ * @author Daniel Tyebkhan
+ * @author Anhad Gande
+ */
 public class ObjectComponent implements MouseListener, MouseMotionListener {
     private static final String DELETE = "Delete";
     private static final String FONT_NAME = "Calibri";
@@ -40,6 +41,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private ArrayList<NotableDrawer> variableLabels;
     private ArrayList<NotableDrawer> nameLabel;
 
+    /**
+     * Constructs an item to draw an object
+     * @param obj the object to draw
+     */
     public ObjectComponent(ObjectClass obj) {
         this.obj = obj;
         panel = new JPanel();
@@ -56,10 +61,17 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         variableLabels = new ArrayList<>();
     }
 
+    /**
+     * Gets the associated object
+     * @return the associated object
+     */
     public ObjectClass getObject() {
         return obj;
     }
 
+    /**
+     * Updates the names of the class, variables, stereotypes, and methods
+     */
     private void updateLabels() {
         for (Notable variable : obj.getInstanceVariables()) {
             if (!hasLabel(variableLabels, variable)) 
@@ -78,6 +90,9 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         removeNotPresent(methodLabels, obj.getMethods());
     }
 
+    /**
+     * Removes components which are no longer needed
+     */
     private void removeNotPresent(List<NotableDrawer> drawers, List<Notable> present) {
         ArrayList<NotableDrawer> toRemove = new ArrayList<>();
         for (NotableDrawer d : drawers) {
@@ -89,6 +104,12 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Checks if there is a component for an object
+     * @param labels the list of labels to check
+     * @param nble the object to check for
+     * @return true if the object is present else false
+     */
     private boolean hasLabel(ArrayList<NotableDrawer> labels, Notable nble) {
         boolean present = false;
         for (NotableDrawer d : labels) {
@@ -98,14 +119,25 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         return present;
     }
 
+    /**
+     * Increments the height of the object
+     */
 	private void incrementHeight() {
 		incHeight += HEIGHT;
 	}
 
+    /**
+     * Increments the width of the object
+     */
 	private void incrementWidth() {
 		incWidth += WIDTH;
 	}
 
+    /**
+     * Draws a set of items and associates their arrows with their positions on screen
+     * @param list the items to draw
+     * @param arrows the arrows to associate
+     */
     private void drawLabelList(List<NotableDrawer> list, List<ArrowDrawer> arrows) {
         Point clicked = obj.getPosition();
         for (NotableDrawer toDraw : list) {
@@ -122,6 +154,11 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Draws the object being represented
+     * @param reference the componenet being drawn on
+     * @param arrows arrows to associate with parts of the component
+     */
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
         panel.removeAll();
 		Point clicked = obj.getPosition();
@@ -147,6 +184,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void mouseExited(MouseEvent e) {
 
 	}
+
+    /**
+     * Handles mouse being pressed
+     */
 	public void mousePressed(MouseEvent e) {
         clickX = e.getXOnScreen();
         clickY = e.getYOnScreen();
@@ -154,11 +195,18 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         panel.setBorder(BorderFactory.createLineBorder(Color.blue));
 
 	}
+
+    /**
+     * Handles mouse being released
+     */
 	public void mouseReleased(MouseEvent e) {
         selected = false;
         panel.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
+    /**
+     * Handles mouse being dragged
+     */
     public void mouseDragged(MouseEvent e) {
         int deltaX = e.getXOnScreen() - clickX;
         int deltaY = e.getYOnScreen() - clickY;

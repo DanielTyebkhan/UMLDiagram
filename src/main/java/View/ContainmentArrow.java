@@ -18,6 +18,10 @@ public class ContainmentArrow extends ArrowDrawer {
         super(arrow);
     }
 
+    /**
+     * Draws the arrow's head
+     * @param g the graphics to draw with
+     */
     public void DrawHead(Graphics g) {
         int toX = (int) getToPosition().getX();
         int toY = (int) getToPosition().getY();
