@@ -13,10 +13,11 @@ import Document.Arrow;
 import Document.ArrowType;
 import View.Listeners.ArrowBetweenActionListener;
 import View.Listeners.RefreshListener;
+import View.Listeners.MakeArrowActionListener;
 
 /**
 * Displays a pop box where the user can decide to choose to draw arrows.
-*@author Anhad Gande
+* @author Anhad Gande
 */
 
 public class ArrowSelector extends JFrame {
@@ -67,12 +68,6 @@ public class ArrowSelector extends JFrame {
 		betweenNames = new JRadioButton("Between Classes");
 		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
 
-		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
-		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
-
-		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
-		makeArrow.addActionListener(new ArrowTypeGroupActionListener());
-
 		ButtonGroup groupArrowType = new ButtonGroup();
 		groupArrowType.add(subtype);
 		groupArrowType.add(delegation);
@@ -81,6 +76,12 @@ public class ArrowSelector extends JFrame {
 		ButtonGroup groupArrowBetween = new ButtonGroup();
 		groupArrowBetween.add(betweenNames);
 		groupArrowBetween.add(betweenMethodsOrVar);
+
+		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+
+		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+		makeArrow.addActionListener(new MakeArrowActionListener(notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));
 
 		JLabel type = new JLabel("Draw Arrows Between?");
 		JLabel textFrom = new JLabel("From");
@@ -118,27 +119,10 @@ public class ArrowSelector extends JFrame {
 		this.setSize(400, 500);
 		this.setVisible(true);
 	}
-	class SelectToListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (betweenMethodsOrVar.isSelected()) {
-				toNonObjects.removeAllItems();
-				ObjectClass item = (ObjectClass) to.getSelectedItem();
-				List<Notable> methodsAndVars = item.getMethods();
-				methodsAndVars.addAll(item.getInstanceVariables());
-				for (Notable entry: methodsAndVars) {
-					toNonObjects.addItem(entry);
-				}
-			}
-			else if (betweenNames.isSelected()) {
-				toNonObjects.removeAllItems();
-			}
-		}
-	}
 	class ArrowTypeGroupActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			ArrowType typeArrow = null;
 			if (subtype.isSelected()) {
-				
 				typeArrow = ArrowType.SUBTYPE;
 			}
 			else if (delegation.isSelected()) {
@@ -146,7 +130,6 @@ public class ArrowSelector extends JFrame {
 			}
 			else if (containment.isSelected()) {
 				typeArrow = ArrowType.CONTAINMENT;
-
 			}
 			Notable toNotable = null;
 			if (betweenMethodsOrVar.isSelected()) {
