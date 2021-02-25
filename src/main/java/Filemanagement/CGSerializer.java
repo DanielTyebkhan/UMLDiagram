@@ -11,13 +11,24 @@ import Document.ObjectClass;
 import Document.Arrow;
 import java.util.List;
 import java.util.ArrayList;
+
 /**
+ * Serializes data to the custom CG style file
  * @author Lawson Wheatley
  */
 public class CGSerializer implements DataSerializer{
+
+	/**
+	* Initializes CGSerializer()
+	*/
 	public CGSerializer() {
 		
 	}
+	
+	/**
+	* Serializes an Object as a .cg file
+	* @param File
+	*/
 	public void SerializeObject(FileOutputStream f) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(f);
@@ -27,6 +38,11 @@ public class CGSerializer implements DataSerializer{
             System.out.println(i);
 		}
 	}
+
+	/**
+	* Serialize Object
+	* @return FileInputStream filestream to input
+	*/
 	public Storage DeserializeObject(FileInputStream f) {
 		try{ 
 			ObjectInputStream in = new ObjectInputStream(f);

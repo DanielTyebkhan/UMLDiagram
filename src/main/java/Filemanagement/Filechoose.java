@@ -12,15 +12,25 @@ import java.awt.image.BufferedImage;
 import java.lang.ClassNotFoundException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Document.Storage;
+
 /**
+ * GUI for choosing files
  * @author Lawson Wheatley
  */
 public class Filechoose{
 	FileManager fmanager;
 	JFileChooser fileChooser;
+
+	/**
+	* Constructor Method
+	*/
 	public Filechoose() {
 		fmanager = new FileManager();
 	}
+
+	/**
+	* Saves a File
+	*/
 	public void SaveFile(){
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
@@ -33,6 +43,11 @@ public class Filechoose{
    			fmanager.SaveData(fileToSave.getAbsolutePath());
 		}
 	}
+	
+	/**
+	* Exports an Image from a JPanel
+	* @param JPanel panel
+	*/
 	public void ExportImg(JPanel panel){
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
@@ -45,6 +60,9 @@ public class Filechoose{
    			fmanager.ExportImage(fileToSave.getAbsolutePath(), panel);
 		}
 	}
+	/**
+	* Loads a file to the program
+	*/
 	public void LoadFile(){
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
