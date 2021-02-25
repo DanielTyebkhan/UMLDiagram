@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import Document.Storage;
+import Document.ObjectClass;
 
 public class FileManager {
 	DataSerializer dataserializer;
@@ -23,6 +24,7 @@ public class FileManager {
 	}
 	public void SaveData(String Fname) {
 		try {
+			type=dt(Fname);
 			FileOutputStream f = new FileOutputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
 			dataserializer.SerializeObject(f);
@@ -34,19 +36,25 @@ public class FileManager {
 	}
 	public void LoadData(String Fname) {
 		try {
+			type=dt(Fname);
 			FileInputStream f = new FileInputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
-			Storage.instance = dataserializer.DeserializeObject(f);
+            Storage temp = dataserializer.DeserializeObject(f);
+			Storage.instance.setStorage(temp);
+            for (ObjectClass obj : Storage.instance.getObjects()) 
+                System.out.println(obj.getName());
+            System.out.println("Desserialized");
 			f.close();
 		} catch(IOException i) {
 		}
 	}
 	private dtype dt(String Fname){
+		System.out.println("Fname" + Fname);
 		String a = Fname.substring(Fname.indexOf("."));
 		if(a==".cg"){
 			return dtype.cg;
 		}
-		return null;
+		return dtype.cg;
 	}
 	private imgtype imgt(String Fname){
 		String a = Fname.substring(Fname.indexOf("."));
@@ -55,6 +63,6 @@ public class FileManager {
 		} else if (a==".png"){
 			return imgtype.png;
 		}
-		return null;
+		return imgtype.jpeg;
 	}
 }

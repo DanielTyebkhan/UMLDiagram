@@ -2,12 +2,13 @@ package Document;
 
 import Document.Notable;
 import Document.ArrowType;
+import java.io.Serializable; 
 
 /**
  * Represents an arrow
  * @author Daniel Tyebkhan
  */
-public class Arrow {
+public class Arrow implements Serializable{
     private Notable from;
     private Notable to;
     private ArrowType type;

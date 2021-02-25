@@ -6,18 +6,19 @@ import Document.ObjectClass;
 import Document.Arrow;
 import General.Observer;
 import General.Subject;
+import java.io.Serializable; 
 
 /**
  * Tracks the state of all objects in a diagram
  * Storage is a singleton and should be accessed via Storage.instance
  * @author Daniel Tyebkhan
  */
-public class Storage implements Subject, Observer {
+public class Storage implements Subject, Observer, Serializable {
     public static Storage instance = new Storage();
 
     private ArrayList<ObjectClass> objects;
     private ArrayList<Arrow> arrows;
-    private ArrayList<Observer> observers;
+    private transient ArrayList<Observer> observers;
 
     /**
      * Constructs a new storage object
@@ -26,6 +27,13 @@ public class Storage implements Subject, Observer {
         objects = new ArrayList<ObjectClass>();
         observers = new ArrayList<Observer>();
         arrows = new ArrayList<Arrow>();
+    }
+
+    public void setStorage(Storage storage) {
+        for (ObjectClass obj : storage.getObjects())
+            instance.addObject(obj);
+        for (Arrow arr : storage.getArrows())
+            instance.addArrow(arr);
     }
 
     /**

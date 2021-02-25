@@ -1,10 +1,11 @@
 package Document;
+import java.io.Serializable; 
 
 /**
  * Represents an object with a name and an attachable note
  * @author Daniel Tyebkhan
  */
-public class Notable {
+public class Notable implements Serializable{
     String name,
            note;
 
