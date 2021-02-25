@@ -22,6 +22,10 @@ public class AddArrowListener implements ActionListener {
 
 	private Notable notable;
 
+    /**
+     * Constructs the listener
+     * @param notable the object to add the arrow from
+     */
 	public AddArrowListener(Notable notable) {
 		this.notable = notable;
 	}

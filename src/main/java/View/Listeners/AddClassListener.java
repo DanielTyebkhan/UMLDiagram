@@ -21,6 +21,10 @@ public class AddClassListener implements ActionListener {
     
     private DiagramPanel parent;
 
+    /**
+     * Constructs the listener
+     * @param parent the object to draw in
+     */
     public AddClassListener(DiagramPanel parent) {
         this.parent = parent;
     }

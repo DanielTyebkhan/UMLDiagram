@@ -17,12 +17,22 @@ public class AddEditNotable implements ActionListener {
     private Consumer<Notable> action;
     private JPanel parent;
 
+    /**
+     * Constructs the listener
+     * @param prompt the prompt to get user input
+     * @param action the action to perform with the input
+     * @param parent the object to show the prompt in
+     */
     public AddEditNotable(String prompt, Consumer<Notable> action, JPanel parent) {
         this.prompt = prompt;
         this.action = action;
         this.parent = parent;
     }
     
+    /**
+     * Performs the given action
+     * @param e the trigger
+     */
     public void actionPerformed(ActionEvent e) {
         String name = JOptionPane.showInputDialog(parent, prompt);
         if (name != null && !name.equals(""))
