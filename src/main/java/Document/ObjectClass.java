@@ -8,12 +8,13 @@ import General.Subject;
 import General.Observer;
 
 import Document.Notable;
+import java.io.Serializable; 
 
 /**
  * Represents an object in a class diagram
  * @author Daniel Tyebkhan
  */
-public class ObjectClass extends Notable implements Subject {
+public class ObjectClass extends Notable implements Subject, Serializable {
 	private ArrayList<Notable> instanceVariables;
 	private ArrayList<Notable> stereotypes;
 	private ArrayList<Notable> methods;
