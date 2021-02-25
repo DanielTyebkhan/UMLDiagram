@@ -13,24 +13,28 @@ import View.DiagramPanel;
 * @author  Sai Lyon Ho
 */
 public class WindowClass extends JPanel{
-    private static final int SIZE = 500;
+	private static final int SIZE = 500;
 
-    /**
-     * Constructs frame of WindowClass where MenuPanel and 
-     * DiagramPanel are instantiated   
-     */
-    public WindowClass() {
-        JFrame frame = new JFrame("Build Your Diagram!");
-        DiagramPanel diagramPanel = new DiagramPanel();
-        new MenuPanel(frame, diagramPanel);
+	/**
+	 * Constructs frame of WindowClass where MenuPanel and 
+	 * DiagramPanel are instantiated   
+	 */
+	public WindowClass() {
+		JFrame frame = new JFrame("Build Your Diagram!");
+		DiagramPanel diagramPanel = new DiagramPanel();
+		new MenuPanel(frame, diagramPanel);
 
-        frame.add(BorderLayout.CENTER, diagramPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(SIZE, SIZE);
-        frame.setVisible(true); 
-    }
+		frame.add(BorderLayout.CENTER, diagramPanel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(SIZE, SIZE);
+		frame.setVisible(true); 
+	}
 
-    public static void main(String[] args){
-        new WindowClass();
-    }  
+	/**
+	 * Main method
+	 * @param String[] args
+	 */
+	public static void main(String[] args){
+		new WindowClass();
+	}  
 }
