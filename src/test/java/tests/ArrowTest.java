@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.awt.Point;
 import Document.Arrow;
 import Document.ArrowType;
 import Document.Notable;
@@ -29,8 +28,8 @@ public class ArrowTest {
     @Before
     public void setUp() {
         this.type = ArrowType.SUBTYPE;
-        this.from = new Notable("Arrow1");
-        this.to = new Notable("Arrow2");
+        this.from = new Notable("Arrow1", "Note");
+        this.to = new Notable("Arrow2", "Note");
         this.testArrow = new Arrow(type, from, to);
     }
 
@@ -41,22 +40,22 @@ public class ArrowTest {
 
     @Test
     public void getFrom() {
-        Notable testFrom = new Notable("Arrow1");
-        assertEquals("Constructor should create the arrow pointing from", 
-            testArrow.getFrom(), testFrom);
+        Notable testFrom = new Notable("Arrow1", "Note");
+        assertTrue("Constructor should create the arrow pointing from", 
+            testArrow.getFrom().equals(testFrom));
     }
 
     @Test
     public void getTo() {
-        Notable testTo = new Notable("Arrow2");
-        assertEquals("Constructor should create the arrow pointing to", 
-            testArrow.getTo(), testTo);
+        Notable testTo = new Notable("Arrow2", "Note");
+        assertTrue("Constructor should create the arrow pointing to", 
+            testArrow.getTo().equals(testTo));
     }
 
     @Test 
     public void equalsFalse() {
         Arrow testDifferentArrow = new Arrow(ArrowType.SUBTYPE, 
-            new Notable("Arrow3"), new Notable("Arrow4"));
+            new Notable("Arrow3", "Note"), new Notable("Arrow4", "Note"));
         assertFalse("testArrow and testDifferentArrow SHOULD NOT BE equal", 
             testArrow.equals(testDifferentArrow));
     }
@@ -64,7 +63,7 @@ public class ArrowTest {
     @Test 
     public void equalsTrue() {
         Arrow testDifferentArrow = new Arrow(ArrowType.SUBTYPE, 
-            new Notable("Arrow1"), new Notable("Arrow2"));
+            new Notable("Arrow1", "Note"), new Notable("Arrow2", "Note"));
         assertTrue("testArrow and testDifferentArrow SHOULD BE equal", 
             testArrow.equals(testDifferentArrow));
     }
