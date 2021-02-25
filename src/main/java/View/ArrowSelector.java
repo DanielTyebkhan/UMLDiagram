@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
+import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Storage;
@@ -29,7 +30,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 	JPanel panel;
 
-	public ArrowSelector(){
+	public ArrowSelector() {
 		frame = new JFrame("Arrow Selector");
 		panel = new JPanel();
 
@@ -40,6 +41,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		}
 
 		from = new JComboBox(objArray);
+		from.setSelectedIndex(0);
 		fromNonObjects = new JComboBox();
 
 		to = new JComboBox(objArray);
@@ -57,6 +59,8 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 		betweenNames = new JRadioButton("Between Classes");
 		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
+
+		betweenMethodsOrVar.addActionListener(new methodsOrVarRadioButtonActionListener());
 
 		ButtonGroup groupArrowType = new ButtonGroup();
 		groupArrowType.add(subtype);
@@ -140,8 +144,13 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	class methodsOrVarRadioButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			if (betweenMethodsOrVar.isSelected()) {
-				String item = (String) from.getSelectedItem();
-				// List<Notable> = Storage.instance.
+				ObjectClass item = (ObjectClass) from.getSelectedItem();
+				List<Notable> methodsAndVars = item.getMethods();
+				methodsAndVars.addAll(item.getInstanceVariables());
+				for (Notable entry: methodsAndVars) {
+					fromNonObjects.addItem(entry.getName());
+					System.out.println("here");
+				}
 			}
 		}
 	}

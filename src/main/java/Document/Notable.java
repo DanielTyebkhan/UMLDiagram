@@ -75,4 +75,11 @@ public class Notable implements Serializable{
         }
         return false;
     }
+    /**
+    * Defines String representation for Notable object
+    */
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
