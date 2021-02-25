@@ -14,14 +14,17 @@ import Document.Storage;
 import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
 import View.Listeners.NotableMenuListener;
+import View.Listeners.RemoveHandler;
 import View.ArrowDrawer;
 import Document.Arrow;
+
 /**
  * @author Daniel Tyebkhan
  */
 public class NotableDrawer implements MouseListener, MouseMotionListener {
     private static final int FONT_SIZE = 12;
     private static final String FONT_NAME = "Calibri";
+    private static final String DELETE = "Delete";
     private Notable notable;
     private JLabel label;
     private JPanel parent;
@@ -32,6 +35,9 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
         this.parent = parent;
         
         menu = new JPopupMenu();
+        JMenuItem deleteItem = new JMenuItem(DELETE);
+        deleteItem.addActionListener(new RemoveHandler(notable, remover));
+        menu.add(deleteItem);
         label = new JLabel(notable.getName());
         label.setPreferredSize(new Dimension(width, height));
         label.setMaximumSize(new Dimension(width, height));
@@ -53,10 +59,10 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
     public Notable getNotable() {
         return notable;
     }
+
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3 && !(getNotable() instanceof ObjectClass)) {
             menu.show(parent, e.getX(), e.getY());
-            System.out.println(parent);
         }
         else
             parent.dispatchEvent(e);

@@ -115,10 +115,18 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	}
 
     private void drawLabelList(List<NotableDrawer> list, List<ArrowDrawer> arrows) {
+        Point clicked = obj.getPosition();
         for (NotableDrawer toDraw : list) {
             toDraw.draw();
             incrementHeight();
-            //TODO: add arrow logic
+            for (ArrowDrawer arrow : arrows) {
+                if (arrow.getArrow().getFrom().equals(toDraw)) {
+                    arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
+                }
+                if (arrow.getArrow().getTo().equals(toDraw)) {
+                    arrow.setToPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
+                }
+            }
         }
     }
 
