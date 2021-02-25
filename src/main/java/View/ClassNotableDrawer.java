@@ -9,6 +9,7 @@ import Document.ObjectClass;
 import Document.Storage;
 
 /**
+ * Draws a class name
  * @author Daniel Tyebkhan
  */
 public class ClassNotableDrawer extends NotableDrawer {
@@ -19,6 +20,13 @@ public class ClassNotableDrawer extends NotableDrawer {
     private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
 
+    /**
+     * Constructs an object to draw a class name
+     * @param object the object to draw
+     * @param parent the object to draw in
+     * @param width the width of the object
+     * @param height the height of the object
+     */
     public ClassNotableDrawer(ObjectClass object, JPanel parent, int width, int height) {
         super(object, Storage.instance::removeObject, parent, width, height);
         label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));

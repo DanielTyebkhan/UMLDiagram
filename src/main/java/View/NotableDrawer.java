@@ -19,6 +19,7 @@ import View.ArrowDrawer;
 import Document.Arrow;
 
 /**
+ * Draws the name of a variable, class, method, or stereotype
  * @author Daniel Tyebkhan
  */
 public class NotableDrawer implements MouseListener, MouseMotionListener {
@@ -31,6 +32,14 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
     protected JPanel parent;
     protected JPopupMenu menu;
 
+    /**
+     * Constructs an object to do the drawing
+     * @param notable the object to draw
+     * @param remover the function to remove the object from the diagram
+     * @param parent the object to draw in
+     * @param width the width of the object
+     * @param height the height of the object
+     */
     public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
         this.notable = notable;
         this.parent = parent;
@@ -51,15 +60,26 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
         label.addMouseMotionListener(this);
     }
 
+    /**
+     * Draws the object
+     */
     public void draw() {
         label.setText(notable.getName());
         parent.add(label);
     }
 
+    /**
+     * Gets the associated object
+     * @return the associated object
+     */
     public Notable getNotable() {
         return notable;
     }
 
+    /**
+     * Handles the object being clicked
+     * @param e the click event
+     */
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {
             menu.show(parent, e.getX(), e.getY());
@@ -68,26 +88,50 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
             parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the object being pressed
+     * @param e the trigger
+     */
     public void mousePressed(MouseEvent e) {
         parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the object being released
+     * @param e the trigger
+     */
     public void mouseReleased(MouseEvent e) {
         parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the object being entered
+     * @param e the trigger
+     */
     public void mouseEntered(MouseEvent e) {
         parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the object being exited
+     * @param e the trigger
+     */
     public void mouseExited(MouseEvent e) {
         parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the mouse being moved
+     * @param e the trigger
+     */
     public void mouseMoved(MouseEvent e) {
         parent.dispatchEvent(e);
     }
 
+    /**
+     * Handles the object being dragged
+     * @param e the trigger
+     */
     public void mouseDragged(MouseEvent e) {
         parent.dispatchEvent(e);
     }
