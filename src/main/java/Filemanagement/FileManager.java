@@ -23,6 +23,7 @@ public class FileManager {
 	}
 	public void SaveData(String Fname) {
 		try {
+			type=dt(Fname);
 			FileOutputStream f = new FileOutputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
 			dataserializer.SerializeObject(f);
@@ -34,6 +35,7 @@ public class FileManager {
 	}
 	public void LoadData(String Fname) {
 		try {
+			type=dt(Fname);
 			FileInputStream f = new FileInputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
 			Storage.instance = dataserializer.DeserializeObject(f);
@@ -42,11 +44,12 @@ public class FileManager {
 		}
 	}
 	private dtype dt(String Fname){
+		System.out.println("Fname" + Fname);
 		String a = Fname.substring(Fname.indexOf("."));
 		if(a==".cg"){
 			return dtype.cg;
 		}
-		return null;
+		return dtype.cg;
 	}
 	private imgtype imgt(String Fname){
 		String a = Fname.substring(Fname.indexOf("."));
@@ -55,6 +58,6 @@ public class FileManager {
 		} else if (a==".png"){
 			return imgtype.png;
 		}
-		return null;
+		return imgtype.jpeg;
 	}
 }
