@@ -48,7 +48,7 @@ public class Storage implements Subject, Observer, Serializable {
      * Removes an observer
      */
     public void detachObserver(Observer obs) {
-        return;
+        observers.remove(obs);
     }
 
     /**

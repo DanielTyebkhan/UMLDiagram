@@ -200,7 +200,7 @@ public class ObjectClass extends Notable implements Subject, Serializable {
      * @param obs the observer to remove
      */
     public void detachObserver(Observer obs) {
-        return;
+        observers.remove(obs);
     }
 
     /**
