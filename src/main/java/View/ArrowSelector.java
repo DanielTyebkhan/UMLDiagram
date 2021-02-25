@@ -24,6 +24,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	JRadioButton delegation;
 	JRadioButton containment;
 
+	JButton selectTo;
 	JButton makeArrow;
 
 	JPanel panel;
@@ -44,9 +45,10 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		to = new JComboBox(objArray);
 		toNonObjects = new JComboBox();
 
+		selectTo = new JButton("Select To");
 		makeArrow = new JButton("Make Arrow");
 
-
+		selectTo.addActionListener(new SelectToListener());
 		subtype = new JRadioButton("Subtype");
 		delegation = new JRadioButton("Delegation");
 		containment = new JRadioButton("containment");
@@ -98,6 +100,8 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		panel.add(to);
 		panel.add(toNonObjects);
 
+		panel.add(selectTo);
+
 
 		panel.add(arrowTypes);
 
@@ -133,7 +137,6 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 				methodsAndVars.addAll(item.getInstanceVariables());
 				for (Notable entry: methodsAndVars) {
 					fromNonObjects.addItem(entry.getName());
-					System.out.println("here");
 				}
 			}
 		}
@@ -142,15 +145,30 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	class methodsOrVarRadioButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
 			if (betweenMethodsOrVar.isSelected()) {
-				ObjectClass item = (ObjectClass) from.getSelectedItem();
+					ObjectClass item = (ObjectClass) from.getSelectedItem();
+					List<Notable> methodsAndVars = item.getMethods();
+					methodsAndVars.addAll(item.getInstanceVariables());
+					for (Notable entry: methodsAndVars) {
+						fromNonObjects.addItem(entry.getName());
+					}
+				}
+			else if (betweenNames.isSelected()) {
+				fromNonObjects.removeAllItems();
+			}
+		}
+	}
+	class SelectToListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (betweenMethodsOrVar.isSelected()) {
+				ObjectClass item = (ObjectClass) to.getSelectedItem();
 				List<Notable> methodsAndVars = item.getMethods();
 				methodsAndVars.addAll(item.getInstanceVariables());
 				for (Notable entry: methodsAndVars) {
-					fromNonObjects.addItem(entry.getName());
+					toNonObjects.addItem(entry.getName());
 				}
 			}
 			else if (betweenNames.isSelected()) {
-				fromNonObjects.removeAllItems();
+				toNonObjects.removeAllItems();
 			}
 		}
 	}
