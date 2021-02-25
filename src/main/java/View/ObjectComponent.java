@@ -43,6 +43,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private JMenuItem newMethod;
     private JMenuItem newVariable;
     private JMenuItem newStereotype;
+    private JMenuItem delete;
 	private int incHeight = 0;
 	private int incWidth = 0;
     private boolean selected;
@@ -69,11 +70,11 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, obj::addMethod, panel));
         newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, obj::addInstanceVariable, panel));
         newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, obj::addStereotype, panel));
+        delete = new JMenuItem(DELETE);
+        delete.addActionListener(new RemoveHandler(obj, Storage.instance::removeObject));
         rcmenu.add(newMethod);
         rcmenu.add(newVariable);
         rcmenu.add(newStereotype);
-        JMenuItem delete = new JMenuItem(DELETE);
-        delete.addActionListener(new RemoveHandler(obj, Storage.instance::removeObject));
         rcmenu.add(delete);
 
         nameLabel = new ArrayList<>();

@@ -103,6 +103,7 @@ public class Storage implements Subject, Observer, Serializable {
         while (index < numObjects()) {
             if (getObjects().get(index).equals(object))
                 toRemove = index;
+            index += 1;
         }
         if (toRemove > -1) {
             objects.remove(toRemove);

@@ -55,6 +55,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      */
     private void updateView() {
         addComponents();
+        removeClasses();
         removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
         ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
@@ -66,6 +67,16 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
             drawer.drawArrow(this);
         repaint();
         revalidate();
+    }
+
+    private void removeClasses() {
+        ArrayList<ObjectComponent> toRemove = new ArrayList<>();
+        for (ObjectComponent comp : components) {
+            if (!Storage.instance.getObjects().contains(comp.getObject()))
+                toRemove.add(comp);
+        }
+        for (ObjectComponent comp : toRemove)
+            components.remove(comp);
     }
 
     private void addComponents() {
