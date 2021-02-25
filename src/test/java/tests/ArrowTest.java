@@ -67,8 +67,6 @@ public class ArrowTest {
         assertTrue("testArrow and testDifferentArrow SHOULD BE equal", 
             testArrow.equals(testDifferentArrow));
     }
-
-
 }
 
 

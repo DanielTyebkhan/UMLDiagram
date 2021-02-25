@@ -1,15 +1,11 @@
 package View;
 
-import java.awt.event.*; 
-import java.awt.*; 
-import javax.swing.*;
-
-import Document.Storage;
-import Document.ObjectClass;
-
 import View.Listeners.OpenFileListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
+
+import java.awt.*; 
+import javax.swing.*;
 
 /**
 * MenuPanel creates the a panel containing 
@@ -46,7 +42,7 @@ public class MenuPanel extends JComponent {
 
     /**
      * Constructs export button that allows user to export and convert
-     * file into... 
+     * file to JPEG 
      */
     public void export(DiagramPanel diagramPanel)
     {
