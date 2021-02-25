@@ -18,7 +18,7 @@ public class Storage implements Subject, Observer, Serializable {
 
     private ArrayList<ObjectClass> objects;
     private ArrayList<Arrow> arrows;
-    private ArrayList<Observer> observers;
+    private transient ArrayList<Observer> observers;
 
     /**
      * Constructs a new storage object
