@@ -97,20 +97,15 @@ public class Storage implements Subject, Observer, Serializable {
      * Removes an object 
      * @param object the object to remove
      */
-    public boolean removeObject(Notable object) {
-        int toRemove = -1;
-        int index = 0;
-        while (index < numObjects()) {
-            if (getObjects().get(index).equals(object))
-                toRemove = index;
-            index += 1;
+    public void removeObject(Notable object) {
+        objects.remove(object);
+        ArrayList<Arrow> toRemove = new ArrayList<Arrow>();
+        for (Arrow arrow : arrows) {
+            if (arrow.getFrom().equals(object) || arrow.getTo().equals(object))
+                toRemove.add(arrow);
         }
-        if (toRemove > -1) {
-            objects.remove(toRemove);
-            notifyObservers();
-            return true;
-        }
-        return false;
+        for (Arrow arrow : toRemove) 
+            removeArrow(arrow);
     }
 
     /**
