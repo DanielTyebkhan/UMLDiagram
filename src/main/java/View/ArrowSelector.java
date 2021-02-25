@@ -11,6 +11,7 @@ import Document.Storage;
 import Document.Notable;
 import Document.Arrow;
 import Document.ArrowType;
+import View.Listeners.ArrowBetweenActionListener;
 
 /**
 * Displays a pop box where the user can decide to choose to draw arrows.
@@ -68,8 +69,8 @@ public class ArrowSelector extends JFrame {
 		betweenNames = new JRadioButton("Between Classes");
 		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
 
-		betweenNames.addActionListener(new methodsOrVarRadioButtonActionListener());
-		betweenMethodsOrVar.addActionListener(new methodsOrVarRadioButtonActionListener());
+		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 
 		ButtonGroup groupArrowType = new ButtonGroup();
 		groupArrowType.add(subtype);
