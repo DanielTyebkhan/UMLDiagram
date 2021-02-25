@@ -8,13 +8,13 @@ import Document.Arrow;
  * A class which draws subtype arrows
  * @author Daniel Tyebkhan
  */
-public class SubtypeArrow extends ArrowDrawer {
+public class ContainmentArrow extends ArrowDrawer {
 
     /**
      * Constructs a SubtypeArrow
      * @param arrow the arrow to be drawn
      */
-    public SubtypeArrow(Arrow arrow) {
+    public ContainmentArrow(Arrow arrow) {
         super(arrow);
     }
 
@@ -24,6 +24,9 @@ public class SubtypeArrow extends ArrowDrawer {
      */
     @Override
     public void drawHead(Graphics g) {
-        g.drawPolygon(new int[] {10, 20, 30}, new int[] {100, 20, 100}, 3);
+        int toX = (int) getToPosition().getX();
+        int toY = (int) getToPosition().getY();
+        int halfHeight = (int)(HEIGHT / 2);
+        g.drawPolygon(new int[] {toX-WIDTH, toX-WIDTH, toX}, new int[] {toY+halfHeight, toY-halfHeight, toY}, 3);
     }
 }

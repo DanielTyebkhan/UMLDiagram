@@ -8,13 +8,13 @@ import Document.Arrow;
  * A class which draws subtype arrows
  * @author Daniel Tyebkhan
  */
-public class SubtypeArrow extends ArrowDrawer {
+public class DelegationArrow extends ArrowDrawer {
 
     /**
      * Constructs a SubtypeArrow
      * @param arrow the arrow to be drawn
      */
-    public SubtypeArrow(Arrow arrow) {
+    public DelegationArrow(Arrow arrow) {
         super(arrow);
     }
 

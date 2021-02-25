@@ -10,6 +10,8 @@ import Document.Arrow;
  * @author Daniel Tyebkhan
  */
 public abstract class ArrowDrawer {
+    protected static final int HEIGHT = 10;
+    protected static final int WIDTH = 10;
     private Arrow arrow;
     private Point fromPos;
     private Point toPos;
@@ -42,7 +44,7 @@ public abstract class ArrowDrawer {
         Point from = getFromPosition();
         Point to = getToPosition();
         if (from != null && to != null)
-            g.drawLine((int)from.getX(), (int)from.getY(), (int)to.getX(), (int)to.getY());
+            g.drawLine((int)from.getX(), (int)from.getY(), (int)to.getX()-WIDTH, (int)to.getY());
     }
 
     public void drawArrow(Graphics g) {

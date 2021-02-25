@@ -17,8 +17,12 @@ public class ArrowFactory {
         switch (arrow.getType()) {
             case SUBTYPE:
                 return new SubtypeArrow(arrow);
+            case CONTAINMENT:
+                return new ContainmentArrow(arrow);
+            case DELEGATION:
+                return new DelegationArrow(arrow);
             default:
-                return new SubtypeArrow(arrow);
+                return new DelegationArrow(arrow);
         }
     }
 }
