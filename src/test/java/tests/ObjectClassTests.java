@@ -50,7 +50,8 @@ public class ObjectClassTests {
         testObj.addInstanceVariable(notable);
         ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
         objClass.addInstanceVariable(notable);
-        assertEquals("", testObj.getInstanceVariables(), objClass.getInstanceVariables());
+        assertEquals("Should add new Instance Variable as notable", 
+            testObj.getInstanceVariables(), objClass.getInstanceVariables());
     }
 
     @Test
@@ -58,7 +59,8 @@ public class ObjectClassTests {
         Notable notable = new Notable("variable", "new");
         testObj.addInstanceVariable(notable);
         testObj.removeInstanceVariable(notable);        
-        assertTrue("", testObj.getInstanceVariables().isEmpty());
+        assertTrue("Should remove the instance variable as notable returning empty list", 
+            testObj.getInstanceVariables().isEmpty());
     }
 
     @Test
@@ -67,7 +69,8 @@ public class ObjectClassTests {
         testObj.addStereotype(notable);
         ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
         objClass.addStereotype(notable);
-        assertEquals("", testObj.getStereotypes(), objClass.getStereotypes());
+        assertEquals("Should add stereotype as notable", 
+            testObj.getStereotypes(), objClass.getStereotypes());
     }
 
     @Test
@@ -75,7 +78,8 @@ public class ObjectClassTests {
         Notable notable = new Notable("variable", "new");
         testObj.addStereotype(notable);
         testObj.removeStereotype(notable);        
-        assertTrue("", testObj.getStereotypes().isEmpty());
+        assertTrue("Should remove stereotype returning empty lsit", 
+            testObj.getStereotypes().isEmpty());
     }
 
     @Test
@@ -84,7 +88,8 @@ public class ObjectClassTests {
         testObj.addMethod(notable);
         ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
         objClass.addMethod(notable);
-        assertEquals("", testObj.getMethods(), objClass.getMethods());
+        assertEquals("Should add method as notable", 
+            testObj.getMethods(), objClass.getMethods());
     }
 
     @Test
@@ -92,7 +97,8 @@ public class ObjectClassTests {
         Notable notable = new Notable("variable", "new");
         testObj.addMethod(notable);
         testObj.removeMethod(notable);        
-        assertTrue("", testObj.getMethods().isEmpty());
+        assertTrue("Should remove method returning empty list", 
+            testObj.getMethods().isEmpty());
     }
 
     @Test
@@ -101,7 +107,16 @@ public class ObjectClassTests {
         testObj.addMethod(notable);
         ObjectClass objClass = new ObjectClass("test", new Point(0,0));
         objClass.addMethod(notable);
-        assertTrue("", testObj.equals(objClass));
+        assertTrue("Both objects should be the same", 
+            testObj.equals(objClass));
+    }
+
+    @Test
+    public void setPosition() {
+        testObj.setPosition(new Point(1,1));
+        ObjectClass objClass = new ObjectClass("test", new Point(1,1));
+        assertEquals("Both objects should have same position", 
+            testObj.getPosition(), objClass.getPosition());
     }
 }
 
