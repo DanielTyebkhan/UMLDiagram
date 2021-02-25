@@ -6,6 +6,7 @@ import Document.ObjectClass;
 import Document.Arrow;
 import General.Observer;
 import General.Subject;
+import Filemanagement.StorageContainer;
 import java.io.Serializable; 
 
 /**
@@ -18,7 +19,7 @@ public class Storage implements Subject, Observer, Serializable {
 
     private ArrayList<ObjectClass> objects;
     private ArrayList<Arrow> arrows;
-    private transient ArrayList<Observer> observers;
+    private ArrayList<Observer> observers;
 
     /**
      * Constructs a new storage object
@@ -29,10 +30,10 @@ public class Storage implements Subject, Observer, Serializable {
         arrows = new ArrayList<Arrow>();
     }
 
-    public void setStorage(Storage storage) {
-        for (ObjectClass obj : storage.getObjects())
+    public void setStorage(StorageContainer storage) {
+        for (ObjectClass obj : storage.objects)
             instance.addObject(obj);
-        for (Arrow arr : storage.getArrows())
+        for (Arrow arr : storage.arrows)
             instance.addArrow(arr);
     }
 
@@ -102,6 +103,7 @@ public class Storage implements Subject, Observer, Serializable {
         while (index < numObjects()) {
             if (getObjects().get(index).equals(object))
                 toRemove = index;
+            index += 1;
         }
         if (toRemove > -1) {
             objects.remove(toRemove);
