@@ -15,6 +15,7 @@ import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
 import View.Listeners.NotableMenuListener;
 import View.Listeners.RemoveHandler;
+import View.Listeners.AddArrowListener;
 import View.ArrowDrawer;
 import Document.Arrow;
 
@@ -39,6 +40,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
         JMenuItem deleteItem = new JMenuItem(DELETE);
         JMenuItem addArrow = new JMenuItem(ADD_ARROW);
         deleteItem.addActionListener(new RemoveHandler(notable, remover));
+        addArrow.addActionListener(new AddArrowListener(getNotable()));
         menu.add(deleteItem);
         menu.add(addArrow);
         label = new JLabel(notable.getName());
