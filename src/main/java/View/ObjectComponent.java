@@ -14,6 +14,7 @@ import Document.Storage;
 import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
 import View.Listeners.NotableMenuListener;
+import View.Listeners.RemoveHandler;
 import View.ArrowDrawer;
 import View.NotableDrawer;
 import Document.Arrow;
@@ -29,6 +30,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private static final String ENT_METHOD_NAME = "Enter Method Name";
     private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
+    private static final String DELETE = "Delete";
     private static final String STER_START = "<<";
     private static final String STER_END = ">>";
     private static final String FONT_NAME = "Calibri";
@@ -70,6 +72,9 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         rcmenu.add(newMethod);
         rcmenu.add(newVariable);
         rcmenu.add(newStereotype);
+        JMenuItem delete = new JMenuItem(DELETE);
+        delete.addActionListener(new RemoveHandler(obj, Storage.instance::removeObject));
+        rcmenu.add(delete);
 
         nameLabel = new ArrayList<>();
         nameLabel.add(new NotableDrawer(obj, Storage.instance::removeObject, panel, WIDTH, HEIGHT, true));
@@ -94,6 +99,20 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         for (Notable method : obj.getMethods()) {
             if (!hasLabel(methodLabels, method)) 
                 methodLabels.add(new NotableDrawer(method, obj::removeMethod, panel, WIDTH, HEIGHT));
+        }
+        removeNotPresent(variableLabels, obj.getInstanceVariables());
+        removeNotPresent(stereotypeLabels, obj.getStereotypes());
+        removeNotPresent(methodLabels, obj.getMethods());
+    }
+
+    private void removeNotPresent(List<NotableDrawer> drawers, List<Notable> present) {
+        ArrayList<NotableDrawer> toRemove = new ArrayList<>();
+        for (NotableDrawer d : drawers) {
+            if (!present.contains(d.getNotable()))
+                toRemove.add(d);
+        }
+        for (NotableDrawer d : toRemove) {
+            drawers.remove(d);
         }
     }
 
