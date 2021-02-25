@@ -95,6 +95,20 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
             if (!hasLabel(methodLabels, method)) 
                 methodLabels.add(new NotableDrawer(method, obj::removeMethod, panel, WIDTH, HEIGHT));
         }
+        removeNotPresent(variableLabels, obj.getInstanceVariables());
+        removeNotPresent(stereotypeLabels, obj.getStereotypes());
+        removeNotPresent(methodLabels, obj.getMethods());
+    }
+
+    private void removeNotPresent(List<NotableDrawer> drawers, List<Notable> present) {
+        ArrayList<NotableDrawer> toRemove = new ArrayList<>();
+        for (NotableDrawer d : drawers) {
+            if (!present.contains(d.getNotable()))
+                toRemove.add(d);
+        }
+        for (NotableDrawer d : toRemove) {
+            drawers.remove(d);
+        }
     }
 
     private boolean hasLabel(ArrayList<NotableDrawer> labels, Notable nble) {
