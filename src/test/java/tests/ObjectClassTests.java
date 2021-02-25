@@ -15,7 +15,8 @@ import General.Observer;
 
 /**
  * Tests fo the ObjectClass class
- * @author Daniel Tyebkhan and Sai Lyon Ho
+ * @author Daniel Tyebkhan
+ * @author Sai Lyon Ho
  */
 @RunWith(JUnit4.class)
 public class ObjectClassTests {

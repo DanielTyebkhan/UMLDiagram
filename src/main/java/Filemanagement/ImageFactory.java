@@ -1,23 +1,28 @@
 package Filemanagement;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Robot;
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
 import java.lang.ClassNotFoundException;
-import Document.Storage;
+
 /**
+ * Factory method for creating an image
  * @author Lawson Wheatley
  */
 public class ImageFactory{
-	public ImageFactory(){}
+
+	/**
+	* Constructor Method
+	*/
+	public ImageFactory(){
+
+	}
+	
+	/**
+	* Creates an Image
+	* @param enum imgtype Imagetype
+	* @param JPanel panel to export to Image
+	* @param String Fname Filename to export
+	*/
 	public void createImage(imgtype img, JPanel panel, String Fname){
 		JPanelToImage j = new JPanelToImage();
 		switch(img){

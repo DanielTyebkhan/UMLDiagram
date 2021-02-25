@@ -1,10 +1,12 @@
 package View;
 
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import java.awt.Font;
 
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
 import View.Listeners.AddNotableHandler;
+
 import Document.ObjectClass;
 import Document.Storage;
 
@@ -34,9 +36,11 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newMethod = new JMenuItem(NEW_METHOD);
         JMenuItem newVariable = new JMenuItem(NEW_VARIABLE);
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
+
         newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, parent));
         newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, parent));
         newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, parent));
+
         menu.add(newMethod);
         menu.add(newVariable);
         menu.add(newStereotype);

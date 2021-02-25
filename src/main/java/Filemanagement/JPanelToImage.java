@@ -1,24 +1,30 @@
 package Filemanagement;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Robot;
-import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
-import java.lang.ClassNotFoundException;
-import Document.Storage;
+
+import javax.swing.JPanel;
+
 /**
+ * Class that converts JPanels to Images
  * @author Lawson Wheatley
  */
 public class JPanelToImage{
+
+	/**
+	* JPanelToImage Constructor
+	*/
 	public JPanelToImage() {
 		
 	}
+
+	/**
+	* Gets an BufferedImage from a Jpanel
+	* @param JPanel panel to convert to image
+	* @return BufferedImage
+	*/
 	public BufferedImage getImage(JPanel panel){
 		BufferedImage bufimage = new BufferedImage(panel.getSize().width, panel.getSize().height, BufferedImage.TYPE_INT_RGB);
 		Graphics g = bufimage.createGraphics();

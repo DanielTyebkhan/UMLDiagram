@@ -8,9 +8,21 @@ import java.util.List;
  * @author Daniel Tyebkhan
  */
 public interface Subject {
-    public void attachObserver(Observer obs);
+	
+	/**
+	* Proper use: ttaches an Observer to an Object(subject)
+	* @param Observer
+	*/
+	public void attachObserver(Observer obs);
 
-    public void detachObserver(Observer obs);
+	/**
+	* Proper use: etaches an Observer to an Object(subject)
+	* @param Observer
+	*/
+	public void detachObserver(Observer obs);
 
-    public void notifyObservers();
+	/**
+	* Proper use: Notifies all observers in subject
+	*/
+	public void notifyObservers();
 }

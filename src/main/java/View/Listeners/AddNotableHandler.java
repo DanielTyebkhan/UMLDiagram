@@ -13,19 +13,29 @@ import Document.Notable;
  * @author Daniel Tyebkhan 
  */
 public class AddNotableHandler implements ActionListener {
-    private String prompt;
-    private Consumer<Notable> action;
-    private JPanel parent;
+	private String prompt;
+	private Consumer<Notable> action;
+	private JPanel parent;
 
-    public AddNotableHandler(String prompt, Consumer<Notable> action, JPanel parent) {
-        this.prompt = prompt;
-        this.action = action;
-        this.parent = parent;
-    }
-    
-    public void actionPerformed(ActionEvent e) {
-        String name = JOptionPane.showInputDialog(parent, prompt);
-        if (name != null && !name.equals(""))
-            action.accept(new Notable(name));
-    }
+	/**
+	 * AddNotableHandler Constructor
+	 * @param String Prompt
+	 * @param Consumer<Notable> action
+	 * @param JPanel panel
+	 */
+	public AddNotableHandler(String prompt, Consumer<Notable> action, JPanel parent) {
+		this.prompt = prompt;
+		this.action = action;
+		this.parent = parent;
+	}
+	
+	/**
+	 * actionPerformed
+	 * @param ActionEvent e
+	 */
+	public void actionPerformed(ActionEvent e) {
+		String name = JOptionPane.showInputDialog(parent, prompt);
+		if (name != null && !name.equals(""))
+			action.accept(new Notable(name));
+	}
 }
