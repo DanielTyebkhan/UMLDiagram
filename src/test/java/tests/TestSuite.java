@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses
 ({
     ObjectClassTests.class,
+    ArrowTest.class,
 })
 
 public class TestSuite {
