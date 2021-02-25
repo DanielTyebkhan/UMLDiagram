@@ -51,7 +51,6 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         addComponents();
         removeAll();
         List<Arrow> arrows = Storage.instance.getArrows();
-        new ArrowSelector();
         ArrayList<ArrowDrawer> arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));

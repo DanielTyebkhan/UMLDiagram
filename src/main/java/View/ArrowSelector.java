@@ -7,12 +7,15 @@ import java.util.List;
 
 import Document.ObjectClass;
 import Document.Storage;
+import Document.Notable;
 
 public class ArrowSelector extends JFrame implements ActionListener, ItemListener {
 
 	private JFrame frame;
 	private JComboBox from;
+	private JComboBox fromNonObjects;
 	private JComboBox to;
+	private JComboBox toNonObjects;
 	JRadioButton betweenNames;
 	JRadioButton betweenMethodsOrVar;
 
@@ -22,6 +25,7 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 
 	JButton selectFrom;
 	JButton selectTo;
+	JButton makeArrow;
 
 	JPanel panel;
 
@@ -30,16 +34,20 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		panel = new JPanel();
 
 		List<ObjectClass> objects = Storage.instance.getObjects();
-		String[] objArray = new String[objects.size()];
+		ObjectClass[] objArray = new ObjectClass[objects.size()];
 		for (int i = 0; i < objects.size(); i++) {
-			objArray[i] = objects.get(i).getName();
+			objArray[i] = objects.get(i);
 		}
 
 		from = new JComboBox(objArray);
+		fromNonObjects = new JComboBox();
+
 		to = new JComboBox(objArray);
+		toNonObjects = new JComboBox();
 
 		selectFrom = new JButton("select From");
 		selectTo = new JButton("select To");
+		makeArrow = new JButton("Make Arrow");
 
 		selectFrom.addActionListener(new selectFromButtonActionListener());
 
@@ -60,15 +68,9 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		groupArrowBetween.add(betweenMethodsOrVar);
 
 		JLabel type = new JLabel("Draw Arrows Between?");
-
-
-		subtype.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent a) {
-
-			}
-		});
-
-
+		JLabel textFrom = new JLabel("From");
+		JLabel textTo = new JLabel("To");
+		JLabel arrowTypes = new JLabel("Arrow Types");
 
 		int selectFromIndex = 0;
 		// selectFrom.addActionListener(new ActionListener()
@@ -83,21 +85,38 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		from.addItemListener(this);
 		to.addItemListener(this);
 
-		panel.add(betweenNames);
 		panel.add(type);
+
+		panel.add(betweenNames);
 		panel.add(betweenMethodsOrVar);
+
+		panel.add(textFrom);
+
 		panel.add(from);
+		panel.add(fromNonObjects);
+
 		panel.add(selectFrom);
+
+		panel.add(textTo);
+
 		panel.add(to);
-		panel.add(subtype);
+		panel.add(toNonObjects);
+
+		
 		panel.add(selectTo);
+
+		panel.add(arrowTypes);
+
+		panel.add(subtype);
 		panel.add(delegation);
 		panel.add(containment);
 
-		panel.setLayout(new GridLayout(3,3));
+		panel.add(makeArrow);
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
 		frame.add(panel);
-		frame.setSize(400, 300);
+		frame.setSize(400, 500);
 		frame.setVisible(true);
 	}
 	public void itemStateChanged(ItemEvent e) {
@@ -117,5 +136,13 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 			
 		}
 
+	}
+	class methodsOrVarRadioButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent a) {
+			if (betweenMethodsOrVar.isSelected()) {
+				String item = (String) from.getSelectedItem();
+				// List<Notable> = Storage.instance.
+			}
+		}
 	}
 }

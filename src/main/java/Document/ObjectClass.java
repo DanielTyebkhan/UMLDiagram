@@ -210,4 +210,10 @@ public class ObjectClass extends Notable implements Subject {
             obs.update();
         }
     }
+    /**
+    * Defines String represenation of ObjectClass
+    */
+    public String toString() {
+        return getName();
+    }
 }
