@@ -31,7 +31,7 @@ public class WindowClass extends JPanel{
 	}
 
 	/**
-	 * Main method
+	 * Main method (for running program!)
 	 * @param String[] args
 	 */
 	public static void main(String[] args){
