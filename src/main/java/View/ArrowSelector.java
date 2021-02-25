@@ -15,9 +15,18 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	private JComboBox to;
 	private boolean betweenNames = false;
 
+	JRadioButton subtype;
+	JRadioButton delegation;
+	JRadioButton containment;
+
+	JButton selectFrom;
+	JButton selectTo;
+
+	JPanel panel;
+
 	public ArrowSelector(){
 		frame = new JFrame("Arrow Selector");
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 
 		List<ObjectClass> objects = Storage.instance.getObjects();
 		String[] objArray = new String[objects.size()];
@@ -28,12 +37,23 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 		from = new JComboBox(objArray);
 		to = new JComboBox(objArray);
 
-		JButton selectFrom = new JButton("select From");
-		JButton selectTo = new JButton("select To");
+		selectFrom = new JButton("select From");
+		selectTo = new JButton("select To");
 
-		JRadioButton subtype = new JRadioButton("Subtype", true);
-		JRadioButton delegation = new JRadioButton("Subtype", false);
-		JRadioButton containment = new JRadioButton("containment", false);
+		subtype = new JRadioButton("Subtype");
+		delegation = new JRadioButton("Delegation");
+		containment = new JRadioButton("containment");
+
+		ButtonGroup group = new ButtonGroup();
+		group.add(subtype);
+		group.add(delegation);
+		group.add(containment);
+
+		subtype.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent a) {
+
+			}
+		});
 
 
 
@@ -74,5 +94,13 @@ public class ArrowSelector extends JFrame implements ActionListener, ItemListene
 	}
 	public static void main(String[] args) {
 		new ArrowSelector();
+	}
+	class RadioButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent a) {
+			if (subtype.isSelected()) {
+
+			}
+		}
+
 	}
 }
