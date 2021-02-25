@@ -88,7 +88,7 @@ public class Storage implements Subject, Observer {
      * Removes an object 
      * @param object the object to remove
      */
-    public boolean removeObject(ObjectClass object) {
+    public boolean removeObject(Notable object) {
         int toRemove = -1;
         int index = 0;
         while (index < numObjects()) {

@@ -1,6 +1,5 @@
 package View;
 
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -11,9 +10,12 @@ import java.util.function.Consumer;
 
 import Document.ObjectClass;
 import Document.Notable;
+import Document.Storage;
 import View.Listeners.AddClassListener;
 import View.Listeners.AddNotableHandler;
+import View.Listeners.NotableMenuListener;
 import View.ArrowDrawer;
+import View.NotableDrawer;
 import Document.Arrow;
 
 /**
@@ -44,6 +46,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
     private boolean selected;
     private int clickX;
     private int clickY;
+    private ArrayList<NotableDrawer> stereotypeLabels;
+    private ArrayList<NotableDrawer> methodLabels;
+    private ArrayList<NotableDrawer> variableLabels;
+    private ArrayList<NotableDrawer> nameLabel;
 
     public ObjectComponent(ObjectClass obj) {
         this.obj = obj;
@@ -64,26 +70,41 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
         rcmenu.add(newMethod);
         rcmenu.add(newVariable);
         rcmenu.add(newStereotype);
+
+        nameLabel = new ArrayList<>();
+        nameLabel.add(new NotableDrawer(obj, Storage.instance::removeObject, panel, WIDTH, HEIGHT, true));
+        stereotypeLabels = new ArrayList<>();
+        methodLabels = new ArrayList<>();
+        variableLabels = new ArrayList<>();
     }
 
     public ObjectClass getObject() {
         return obj;
     }
 
-	private void addLabel(String text) {
-        addLabel(text, false);
+    private void updateLabels() {
+        for (Notable variable : obj.getInstanceVariables()) {
+            if (!hasLabel(variableLabels, variable)) 
+                variableLabels.add(new NotableDrawer(variable, obj::removeInstanceVariable, panel, WIDTH, HEIGHT));
+        }
+        for (Notable stereotype : obj.getStereotypes()) {
+            if (!hasLabel(stereotypeLabels, stereotype)) 
+                stereotypeLabels.add(new NotableDrawer(stereotype, obj::removeStereotype, panel, WIDTH, HEIGHT));
+        }
+        for (Notable method : obj.getMethods()) {
+            if (!hasLabel(methodLabels, method)) 
+                methodLabels.add(new NotableDrawer(method, obj::removeMethod, panel, WIDTH, HEIGHT));
+        }
     }
 
-	private void addLabel(String text, boolean bold) {
-		JLabel label = new JLabel(text);
-	 	label.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-	 	label.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-	 	label.setBorder(BorderFactory.createLineBorder(Color.black));
-        label.setFont(new Font(FONT_NAME, bold ? Font.BOLD : Font.PLAIN, FONT_SIZE));
-	 	incrementHeight();
-	 	incrementWidth();
-        panel.add(label);
-	}
+    private boolean hasLabel(ArrayList<NotableDrawer> labels, Notable nble) {
+        boolean present = false;
+        for (NotableDrawer d : labels) {
+            if (d.getNotable().equals(nble))
+                present = true;
+        }
+        return present;
+    }
 
 	private void incrementHeight() {
 		incHeight += HEIGHT;
@@ -92,69 +113,30 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private void incrementWidth() {
 		incWidth += WIDTH;
 	}
-	/**
-	* Adds a class name to the class diagram
-	*/
-	public void addName(String name) {
-		obj.setName(name);
-	}
-	/**
-	* Adds a method to the class diagram
-	*/
-	public void addMethod(String method) {
-		obj.addMethod(new Notable(method));
-	}
-	/**
-	* Removes a method from the class diagram
-	*/
-	public void removeMethod(String method) {
-		obj.removeMethod(new Notable(method));
-	}
 
-	public void addVariable(String var) {
-		obj.addInstanceVariable(new Notable(var));
-	}
-
-	public void removeVariable(String var) {
-		obj.removeInstanceVariable(new Notable(var));
-	}
-
-    private String Stereotypify(String stereotype) {
-        return STER_START + stereotype + STER_END; 
+    private void drawLabelList(List<NotableDrawer> list, List<ArrowDrawer> arrows) {
+        for (NotableDrawer toDraw : list) {
+            toDraw.draw();
+            incrementHeight();
+            //TODO: add arrow logic
+        }
     }
 
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
         panel.removeAll();
 		Point clicked = obj.getPosition();
-        for (Notable stereotype : obj.getStereotypes()) {
-            addLabel(Stereotypify(stereotype.getName()));
-        }
-        addLabel(obj.getName(), true);
-		for (Notable method : obj.getMethods()) {
-			addLabel(method.getName());
-			for (ArrowDrawer arrow : arrows) {
-				if ( arrow.getArrow().getFrom().equals(method)) {
-				    arrow.setFromPosition(new Point((int)clicked.getX() + incWidth, HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
-				}
-				if ( arrow.getArrow().getTo().equals(method)) {
-				    arrow.setFromPosition(new Point((int)clicked.getX(), HEIGHT + (1/2) *(incHeight) + (int)clicked.getY()));
-				}
-			}
-		}
-		for (Notable variable : obj.getInstanceVariables()) {
-            addLabel(variable.getName());
-			for (ArrowDrawer arrow : arrows) {
-				if ( arrow.getArrow().getFrom().equals(variable)) {
-				// arrow.setFromPosition(point);
-				}
-			}
-		}
+        updateLabels();
+        drawLabelList(stereotypeLabels, arrows);
+        drawLabelList(nameLabel, arrows);
+        drawLabelList(variableLabels, arrows);
+        drawLabelList(methodLabels, arrows);
+
 		Dimension dimension = reference.getSize();
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
-
 	}
+
 	public void mouseClicked(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON3) {
 			rcmenu.show(panel, e.getX(), e.getY());

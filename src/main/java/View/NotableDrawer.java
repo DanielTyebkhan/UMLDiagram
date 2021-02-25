@@ -35,7 +35,7 @@ public class NotableDrawer {
         label.setMaximumSize(new Dimension(width, height));
         label.setBorder(BorderFactory.createLineBorder(Color.black));
         label.setFont(new Font(FONT_NAME, bold ? Font.BOLD : Font.PLAIN, FONT_SIZE));
-        label.addMouseListener(new NotableMenuListener(notable, remover, parent));
+        //label.addMouseListener(new NotableMenuListener(notable, remover, parent));
     }
 
     public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
@@ -45,6 +45,10 @@ public class NotableDrawer {
     public void draw() {
         label.setText(notable.getName());
         parent.add(label);
+    }
+
+    public Notable getNotable() {
+        return notable;
     }
 }
         

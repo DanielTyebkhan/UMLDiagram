@@ -68,7 +68,9 @@ public class Notable {
     public boolean equals(Object other) {
         if (other instanceof Notable) {
             Notable oNot = (Notable) other;
-            return getName().equals(oNot.getName()) && getNote().equals(oNot.getNote());
+            if (getNote() != null)
+                return getName().equals(oNot.getName()) && getNote().equals(oNot.getNote());
+            return getName().equals(oNot.getName()) && oNot.getNote() == null;
         }
         return false;
     }
