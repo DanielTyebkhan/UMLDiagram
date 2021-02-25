@@ -12,6 +12,7 @@ import Document.Storage;
 import Filemanagement.Filechoose;
 
 /**
+ * Saves the diagram to a file when the button is clicked
  * @author Sai Lyon Ho 
  */
 public class SaveFileListener implements MouseListener {
