@@ -15,7 +15,7 @@ import Document.ArrowType;
 import Document.Notable;
 
 /**
- * Tests fo the ObjectClass class
+ * Tests fo the Arrow class
  * @author Sai Lyon Ho
  */
 @RunWith(JUnit4.class)

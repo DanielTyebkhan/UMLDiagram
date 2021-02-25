@@ -19,9 +19,10 @@ public class SaveFileListener implements MouseListener {
 
     public void mouseClicked(MouseEvent e) 
     {
-        if (e.getButton() == MouseEvent.BUTTON1) 
-		fchoose.SaveFile();
+        if (e.getButton() == MouseEvent.BUTTON1){
+            fchoose.SaveFile();
         	System.out.println("Clicked Save!");
+        }
     }
     public void mouseEntered(MouseEvent e)
     {
