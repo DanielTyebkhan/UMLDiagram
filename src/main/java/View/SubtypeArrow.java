@@ -21,7 +21,7 @@ public class SubtypeArrow extends ArrowDrawer {
 
     /**
      * Draws a subtype arrowhead
-     * @param panel the panel to draw the arrowhead on
+     * @param g the graphics to use in drawing
      */
     @Override
     public void drawHead(Graphics g) {

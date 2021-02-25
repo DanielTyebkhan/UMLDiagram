@@ -26,7 +26,7 @@ public class NotableMenuListener implements MouseListener, MouseMotionListener {
     /**
      * Constructs the listener
      * @param notable the object to perform actions on
-     * @param remove the method to remove the object from the diagram
+     * @param remover the method to remove the object from the diagram
      * @param parent the component to show prompts in
      */
     public NotableMenuListener(Notable notable, Consumer<Notable> remover, JPanel parent) {

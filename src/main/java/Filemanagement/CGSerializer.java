@@ -25,7 +25,7 @@ public class CGSerializer implements DataSerializer{
 			out.writeObject(Storage.instance.getArrows());
 			out.close();
 		} catch(IOException i){
-			return;
+            System.out.println(i);
 		}
 	}
 	public StorageContainer DeserializeObject(FileInputStream f) {
