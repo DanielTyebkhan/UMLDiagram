@@ -15,9 +15,10 @@ public class OpenFileListener implements MouseListener {
     private Filechoose fchoose = new Filechoose();
     public void mouseClicked(MouseEvent e) 
     {
-        if (e.getButton() == MouseEvent.BUTTON1) 
-		fchoose.LoadFile();
-        	System.out.println("Clicked Open!");
+        if (e.getButton() == MouseEvent.BUTTON1){
+            fchoose.LoadFile();
+            System.out.println("Clicked Open!");
+        }
     }
     public void mouseEntered(MouseEvent e)
     {

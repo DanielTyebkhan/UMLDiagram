@@ -51,7 +51,7 @@ public class Filechoose{
 		fileChooser.setDialogTitle("Specify a file to open");  
 		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Class Graph Files (*.cg)", "*.cg");
 		fileChooser.setFileFilter(extFilter);
-		int userSelection = fileChooser.showSaveDialog(frame);
+		int userSelection = fileChooser.showOpenDialog(frame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
     			File fileToSave = fileChooser.getSelectedFile();
    			fmanager.LoadData(fileToSave.getAbsolutePath());
