@@ -18,12 +18,7 @@ public class ContainmentArrow extends ArrowDrawer {
         super(arrow);
     }
 
-    /**
-     * Draws a subtype arrowhead
-     * @param panel the panel to draw the arrowhead on
-     */
-    @Override
-    public void drawHead(Graphics g) {
+    public void DrawHead(Graphics g) {
         int toX = (int) getToPosition().getX();
         int toY = (int) getToPosition().getY();
         int halfHeight = (int)(HEIGHT / 2);

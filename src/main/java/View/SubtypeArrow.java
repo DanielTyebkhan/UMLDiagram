@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 import Document.Arrow;
 
@@ -24,6 +25,10 @@ public class SubtypeArrow extends ArrowDrawer {
      */
     @Override
     public void drawHead(Graphics g) {
-        g.drawPolygon(new int[] {10, 20, 30}, new int[] {100, 20, 100}, 3);
+        int toX = (int) getToPosition().getX();
+        int toY = (int) getToPosition().getY();
+        int halfHeight = (int)(HEIGHT / 2);
+        Polygon head = new Polygon(new int[] {toX-WIDTH, toX-WIDTH, toX}, new int[] {toY+halfHeight, toY-halfHeight, toY}, 3);
+        g.drawPolygon(head);
     }
 }

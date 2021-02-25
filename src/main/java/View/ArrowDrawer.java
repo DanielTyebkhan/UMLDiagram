@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Point;
+import java.awt.Polygon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 
@@ -52,6 +53,13 @@ public abstract class ArrowDrawer {
         drawHead(g);
     }
 
-    abstract void drawHead(Graphics g);
+    protected void drawHead(Graphics g) {
+        int toX = (int) getToPosition().getX();
+        int toY = (int) getToPosition().getY();
+        int halfHeight = (int)(HEIGHT / 2);
+        Polygon head = new Polygon(new int[] {toX-WIDTH, toX-WIDTH, toX}, new int[] {toY+halfHeight, toY-halfHeight, toY}, 3);
+        g.drawPolygon(head);
+        g.fillPolygon(head);
+    }
 
 }
