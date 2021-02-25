@@ -39,6 +39,9 @@ public class ArrowSelector extends JFrame {
 
 	private JPanel panel;
 
+	/**
+	* Creates the frame and displays it
+	*/
 	public ArrowSelector(Notable notableFrom) {
 		super("Arrow Selector");
 		this.notableFrom = notableFrom;
@@ -118,27 +121,5 @@ public class ArrowSelector extends JFrame {
 		this.add(panel);
 		this.setSize(400, 500);
 		this.setVisible(true);
-	}
-	class ArrowTypeGroupActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent a) {
-			ArrowType typeArrow = null;
-			if (subtype.isSelected()) {
-				typeArrow = ArrowType.SUBTYPE;
-			}
-			else if (delegation.isSelected()) {
-				typeArrow = ArrowType.DELEGATION;
-			}
-			else if (containment.isSelected()) {
-				typeArrow = ArrowType.CONTAINMENT;
-			}
-			Notable toNotable = null;
-			if (betweenMethodsOrVar.isSelected()) {
-				toNotable = (Notable) toNonObjects.getSelectedItem();
-			}
-			else {
-				toNotable = (Notable) to.getSelectedItem();
-			}
-			Storage.instance.addArrow(new Arrow(typeArrow, notableFrom, toNotable));
-		}
 	}
 }
