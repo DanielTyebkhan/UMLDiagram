@@ -21,24 +21,24 @@ public class CGSerializer implements DataSerializer{
 	public void SerializeObject(FileOutputStream f) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(f);
-			out.writeObject(Storage.instance.getObjects());
-			out.writeObject(Storage.instance.getArrows());
+			out.writeObject(Storage.instance);
 			out.close();
 		} catch(IOException i){
             System.out.println(i);
 		}
 	}
-	public StorageContainer DeserializeObject(FileInputStream f) {
+	public Storage DeserializeObject(FileInputStream f) {
 		try{ 
 			ObjectInputStream in = new ObjectInputStream(f);
-			List<ObjectClass> a = (ArrayList<ObjectClass>)in.readObject();
-			List<Arrow> b = (ArrayList<Arrow>)in.readObject();
+			Storage stor = (Storage) in.readObject();
 			in.close();
-			return new StorageContainer(a,b);
+			return stor;
 		} catch (IOException i){
-			return new StorageContainer();
+			System.out.println(i);
+			return null;
 		} catch (ClassNotFoundException c){
-			return new StorageContainer();
+			System.out.println(c);
+			return null;
 		}
 	}
 }

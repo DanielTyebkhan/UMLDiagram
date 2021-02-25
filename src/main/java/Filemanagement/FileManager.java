@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import Document.Storage;
 import Document.ObjectClass;
+import General.Observer;
 
 public class FileManager {
 	DataSerializer dataserializer;
@@ -39,9 +40,10 @@ public class FileManager {
 			type=dt(Fname);
 			FileInputStream f = new FileInputStream(Fname);
 			dataserializer = dfactory.createDataSerializer(type);
-            		StorageContainer temp = dataserializer.DeserializeObject(f);
-			Storage.instance.setStorage(temp);
-            		System.out.println("Desserialized");
+			Storage temp = dataserializer.DeserializeObject(f);
+			temp.setObservers(new ArrayList<Observer>());
+			Storage.instance.setStorage(temp.getObjects(), temp.getArrows());
+
 			f.close();
 		} catch(IOException i) {
 		}

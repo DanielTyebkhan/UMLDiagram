@@ -15,6 +15,7 @@ import java.io.Serializable;
  * @author Daniel Tyebkhan
  */
 public class Storage implements Subject, Observer, Serializable {
+    private static final long serialVersionUID = 1;
     public static Storage instance = new Storage();
 
     private ArrayList<ObjectClass> objects;
@@ -30,10 +31,11 @@ public class Storage implements Subject, Observer, Serializable {
         arrows = new ArrayList<Arrow>();
     }
 
-    public void setStorage(StorageContainer storage) {
-        for (ObjectClass obj : storage.objects)
+    public void setStorage(List<ObjectClass> obs, List<Arrow> arrs) {
+        clear();
+        for (ObjectClass obj : obs)
             instance.addObject(obj);
-        for (Arrow arr : storage.arrows)
+        for (Arrow arr : arrs)
             instance.addArrow(arr);
     }
 
@@ -49,6 +51,10 @@ public class Storage implements Subject, Observer, Serializable {
      */
     public void detachObserver(Observer obs) {
         observers.remove(obs);
+    }
+
+    public void setObservers(ArrayList<Observer> obs) {
+        observers = obs;
     }
 
     /**

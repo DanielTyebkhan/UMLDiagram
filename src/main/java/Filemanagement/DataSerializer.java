@@ -6,5 +6,5 @@ import Document.Storage;
 
 public interface DataSerializer {
 	public void SerializeObject(FileOutputStream f);
-	public StorageContainer DeserializeObject(FileInputStream f);
+	public Storage DeserializeObject(FileInputStream f);
 }
