@@ -3,12 +3,12 @@ package View;
 import java.awt.Color;
 
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import java.awt.*;
 
+/**
+ *  
+ * @author Sai Lyon Ho
+ */
 public class ThemeObject extends JFrame {
     private final static String FRAME_NAME = "Theme Selector";
     private final static String CLASS_COLOR = "Class Color";
@@ -20,13 +20,18 @@ public class ThemeObject extends JFrame {
     private final static String FONT = "Font";
 
     private ColorChooserButton classColorChooser;
-    // private ColorChooserButton borderColorChooser;
-    // private ColorChooserButton diagramColorChooser;
-    // private ColorChooserButton arrowColorChooser;
+    private ColorChooserButton borderColorChooser;
+    private ColorChooserButton diagramColorChooser;
+    private ColorChooserButton arrowColorChooser;
 
 	private JComboBox font;
 
 	private JButton save;
+
+    // private JPanel classColorPanel;
+	// private JPanel borderColorPanel;
+	// private JPanel diagramColorPanel;
+	// private JPanel arrowColorPanel;
 	private JPanel panel;
 
     public ThemeObject()
@@ -34,13 +39,33 @@ public class ThemeObject extends JFrame {
         super(FRAME_NAME);
         panel = new JPanel();
 
-        JLabel classColorText = new JLabel(CLASS_COLOR);
-        classColorChooser = new ColorChooserButton(Color.BLACK);
-
-        panel.add(classColorText); 
+        // JLabel classColorText = new JLabel(CLASS_COLOR);
+        classColorChooser = new ColorChooserButton(Color.BLACK, CLASS_COLOR);
+        // classColorPanel.add(classColorText); 
+        // classColorPanel.add(classColorChooser);
+        // panel.add(classColorText); 
         panel.add(classColorChooser);
+        // classColorPanel.setLayout(new BoxLayout(classColorPanel, BoxLayout.X_AXIS));
+        // panel.add(classColorPanel);
+
+        // JLabel borderColorText = new JLabel(BORDER_COLOR);
+        borderColorChooser = new ColorChooserButton(Color.BLACK, BORDER_COLOR);
+        // panel.add(borderColorText); 
+        panel.add(borderColorChooser);
+
+        // JLabel diagramColorText = new JLabel(DIAGRAM_COLOR);
+        diagramColorChooser = new ColorChooserButton(Color.BLACK, DIAGRAM_COLOR);
+        // panel.add(diagramColorText); 
+        panel.add(diagramColorChooser);
+
+        // JLabel arrowColorText = new JLabel(ARROW_COLOR);
+        arrowColorChooser = new ColorChooserButton(Color.BLACK, ARROW_COLOR);
+        // panel.add(arrowColorText); 
+        panel.add(arrowColorChooser);
+
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        // panel.setLayout(new GridLayout(0,2));
 
 		this.add(panel);
 		this.setSize(400, 500);

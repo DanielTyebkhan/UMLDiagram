@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,14 +14,17 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
 public class ColorChooserButton extends JButton {
-
+    
     private Color current;
 
-    public ColorChooserButton(Color c) {
+    public ColorChooserButton(Color c, String label) {
         setSelectedColor(c); 
+        setText(label);
+        setSize(new Dimension(200, 200));
+        
         addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
+            public void actionPerformed(ActionEvent e) {
                 Color newColor = JColorChooser.showDialog(null, "Choose a color", current);
                 setSelectedColor(newColor);
             }
