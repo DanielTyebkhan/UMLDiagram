@@ -165,7 +165,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 
 	/**
 	 * Draws the object being represented
-	 * @param reference the componenet being drawn on
+	 * @param reference the component being drawn on
 	 * @param arrows arrows to associate with parts of the component
 	 */
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {

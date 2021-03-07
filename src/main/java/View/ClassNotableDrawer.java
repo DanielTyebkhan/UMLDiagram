@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Listeners.AddNotableHandler;
-
+import View.Listeners.ThemeObjectListener;
 import Document.ObjectClass;
 import Document.Storage;
 
@@ -21,6 +21,8 @@ public class ClassNotableDrawer extends NotableDrawer {
     private static final String ENT_METHOD_NAME = "Enter Method Name";
     private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
+    private static final String CHANGE_THEME = "Change Theme";
+
 
     /**
      * Constructs an object to draw a class name
@@ -36,13 +38,16 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newMethod = new JMenuItem(NEW_METHOD);
         JMenuItem newVariable = new JMenuItem(NEW_VARIABLE);
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
+        JMenuItem newTheme = new JMenuItem(CHANGE_THEME);
 
         newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, parent));
         newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, parent));
         newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, parent));
+        newTheme.addActionListener(new ThemeObjectListener());
 
         menu.add(newMethod);
         menu.add(newVariable);
         menu.add(newStereotype);
+        menu.add(newTheme);
     }
 }

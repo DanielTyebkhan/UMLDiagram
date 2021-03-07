@@ -20,7 +20,7 @@ import View.Listeners.MakeArrowActionListener;
 * @author Anhad Gande
 */
 
-public class ArrowSelector extends JFrame {
+public class ArrowSelector extends JFrame { 
 	private final static String FRAME_NAME = "Arrow Selector";
 	private final static String REFRESH = "Refresh";
 	private final static String MAKE_ARROW = "Make Arrow";
