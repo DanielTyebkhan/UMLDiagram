@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class ThemeObject extends JFrame 
 {
-    public static ThemeObject theme = new ThemeObject();
+    // public static ThemeObject theme = new ThemeObject();
 
     private final static String FRAME_NAME = "Theme Selector";
     private final static String CLASS_COLOR = "Class Color";
@@ -45,7 +45,7 @@ public class ThemeObject extends JFrame
     {
         super(FRAME_NAME);
         panel = new JPanel();
-        objectsList = Storage.instance.getObjects();
+        // objectsList = Storage.instance.getObjects();
 
         setClassColor();
         setBorderColor();

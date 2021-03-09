@@ -216,7 +216,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
 		selected = true;
-		panel.setBorder(BorderFactory.createLineBorder(Color.blue));
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
 	}
 
