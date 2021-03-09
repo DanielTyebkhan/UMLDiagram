@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Listeners.AddNotableHandler;
-import View.Listeners.ThemeObjectListener;
+import View.Listeners.ThemeSelectorListener;
 import Document.ObjectClass;
 import Document.Storage;
 
@@ -43,7 +43,7 @@ public class ClassNotableDrawer extends NotableDrawer {
         newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, parent));
         newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, parent));
         newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, parent));
-        newTheme.addActionListener(new ThemeObjectListener());
+        newTheme.addActionListener(new ThemeSelectorListener());
 
         menu.add(newMethod);
         menu.add(newVariable);
