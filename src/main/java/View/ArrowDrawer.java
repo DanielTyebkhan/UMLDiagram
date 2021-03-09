@@ -82,6 +82,7 @@ public abstract class ArrowDrawer {
      * @param g the graphics to draw with
      */
     public void drawArrow(Graphics g) {
+        g.setColor(ThemeObject.theme.getArrowColor());
         drawBody(g);
         drawHead(g);
     }

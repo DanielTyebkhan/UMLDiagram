@@ -18,13 +18,8 @@ import java.awt.*;
 public class ThemeSelectorFrame extends JFrame 
 {
     private final static String FRAME_NAME = "Theme Selector";
-
-    // private ColorChooserButton classColorChooser;
-    // private ColorChooserButton borderColorChooser;
-    // private ColorChooserButton diagramColorChooser;
-    // private ColorChooserButton arrowColorChooser;
     
-    private JButton save;
+    private JButton close;
 
     private JPanel panel; 
 
@@ -35,13 +30,14 @@ public class ThemeSelectorFrame extends JFrame
         panel = new JPanel();
 
         panel.add(ThemeObject.theme.setClassColor());
+        panel.add(ThemeObject.theme.setBorderColor());
         panel.add(ThemeObject.theme.setDiagramColor());
         panel.add(ThemeObject.theme.setArrowColor());
-        panel.add(ThemeObject.theme.setBorderColor());
         
-        save = new JButton("Save");
+        
+        close = new JButton("Close");
         // save.addActionListener(SaveThemeActionListener(setBorderColor(), getPanel());
-        panel.add(save);
+        panel.add(close);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         this.add(panel);

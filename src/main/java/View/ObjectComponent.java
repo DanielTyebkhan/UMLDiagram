@@ -60,8 +60,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getClassColor()));
-		// panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panel.setBackground(ThemeObject.theme.getClassColor());
+		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 
@@ -217,7 +217,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		clickY = e.getYOnScreen();
 		selected = true;
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-
 	}
 
 	/**
@@ -226,8 +225,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 */
 	public void mouseReleased(MouseEvent e) {
 		selected = false;
-		// panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getClassColor()));
+		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
 	}
 
 	/**

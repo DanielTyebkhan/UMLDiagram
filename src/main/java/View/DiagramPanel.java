@@ -123,7 +123,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     public Point getClickLocation() {
         return clickLocation;
     }
-
+    
     /**
      * Handles mouseclicks
      * On right click shows a menu of actions

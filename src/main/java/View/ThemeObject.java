@@ -23,9 +23,10 @@ public class ThemeObject extends JFrame
 	private final static String BORDER_COLOR = "Border Color";
 	private final static String DIAGRAM_COLOR = "Diagram Color";
 	private final static String ARROW_COLOR = "Arrow Color";
+    private final static String FONT_COLOR = "Font Color";
 	private final static String ARROW_THICKNESS = "Arrow Thickness";
 	private final static String BORDER_THICKNESS = "Border Thickness";
-    private final static String FONT = "Font";
+    private final static String FONT_STYLE = "Font Style";
 
     private ColorChooserButton classColorChooser;
     private ColorChooserButton borderColorChooser;
@@ -45,7 +46,7 @@ public class ThemeObject extends JFrame
 
     public ColorChooserButton setClassColor() 
     {   
-        classColorChooser = new ColorChooserButton(Color.BLACK, CLASS_COLOR);
+        classColorChooser = new ColorChooserButton(Color.WHITE, CLASS_COLOR);
         return classColorChooser;
     }
 
@@ -56,18 +57,34 @@ public class ThemeObject extends JFrame
     }
     public ColorChooserButton setDiagramColor() 
     {
-        diagramColorChooser = new ColorChooserButton(Color.BLACK, DIAGRAM_COLOR);
+        diagramColorChooser = new ColorChooserButton(Color.WHITE, DIAGRAM_COLOR);
         return diagramColorChooser;
     }
     public ColorChooserButton setArrowColor() 
     {
-        arrowColorChooser = new ColorChooserButton(Color.BLACK, ARROW_COLOR);
+        arrowColorChooser = new ColorChooserButton(Color.RED, ARROW_COLOR);
         return arrowColorChooser;
     }
 
+    /** ------------------------------------------------------------------------------------ */
     public Color getClassColor()
     {
         return classColorChooser.getSelectedColor();
+    }
+
+    public Color getBorderColor()
+    {
+        return borderColorChooser.getSelectedColor();
+    }
+
+    public Color getDiagramColor()
+    {
+        return diagramColorChooser.getSelectedColor();
+    }
+
+    public Color getArrowColor()
+    {
+        return arrowColorChooser.getSelectedColor();
     }
     
 }

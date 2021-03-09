@@ -22,6 +22,8 @@ public class WindowClass extends JPanel{
 	public WindowClass() {
 		JFrame frame = new JFrame("Build Your Diagram!");
 		DiagramPanel diagramPanel = new DiagramPanel();
+		diagramPanel.setBackground(ThemeObject.theme.getDiagramColor());
+
 		new MenuPanel(frame, diagramPanel);
 
 		frame.add(BorderLayout.CENTER, diagramPanel);
