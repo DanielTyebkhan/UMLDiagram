@@ -3,6 +3,8 @@ package View;
 import View.Listeners.OpenFileListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
+import View.Listeners.ThemeSelectorListener;
+import View.Listeners.ThemeSelectorMouseListener;
 
 import java.awt.*; 
 import javax.swing.*;
@@ -26,6 +28,7 @@ public class MenuPanel extends JComponent {
         open();
         saveAs();
         export(diagramPanel);
+        changeTheme();
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
 
@@ -60,5 +63,12 @@ public class MenuPanel extends JComponent {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
         m.addMouseListener(new SaveFileListener());
+    }
+
+    public void changeTheme()
+    {
+        JMenu m = new JMenu("Change Theme");
+        menuBar.add(m);
+        m.addMouseListener(new ThemeSelectorMouseListener());
     }
 }
