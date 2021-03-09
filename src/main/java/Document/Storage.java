@@ -108,6 +108,7 @@ public class Storage implements Subject, Observer, Serializable {
         }
         for (Arrow arrow : toRemove) 
             removeArrow(arrow);
+        notifyObservers();
     }
 
     /**
