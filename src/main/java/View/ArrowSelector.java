@@ -27,6 +27,12 @@ public class ArrowSelector extends JFrame {
 	private final static String SUBTYPE_ARROW = "Subtype";
 	private final static String DELEGTION_ARROW = "Delegation";
 	private final static String CONTAINMENT_ARROW = "containment";
+	private final static String BETWEEN_CLASSES = "Between Class";
+	private final static String BETWEEN_METHODS_OR_VARS = "Between Methods or Variables";
+	private final static String DRAW_ARROWS_BETWEEN = "Draw Arrows Between?";
+	private final static String TEXT_FROM = "From?";
+	private final static String TEXT_TO = "To?";
+	private final static String ARROW_TYPES = "Arrow Types";
 
 	private JComboBox to;
 	private JComboBox toNonObjects;
@@ -74,8 +80,8 @@ public class ArrowSelector extends JFrame {
 		delegation = new JRadioButton(DELEGTION_ARROW);
 		containment = new JRadioButton(CONTAINMENT_ARROW);
 
-		betweenNames = new JRadioButton("Between Classes");
-		betweenMethodsOrVar = new JRadioButton("Between Methods or Variables");
+		betweenNames = new JRadioButton(BETWEEN_CLASSES);
+		betweenMethodsOrVar = new JRadioButton(BETWEEN_METHODS_OR_VARS);
 
 		ButtonGroup groupArrowType = new ButtonGroup();
 		groupArrowType.add(subtype);
@@ -92,10 +98,10 @@ public class ArrowSelector extends JFrame {
 		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 		makeArrow.addActionListener(new MakeArrowActionListener(notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));
 
-		JLabel type = new JLabel("Draw Arrows Between?");
-		JLabel textFrom = new JLabel("From");
-		JLabel textTo = new JLabel("To");
-		JLabel arrowTypes = new JLabel("Arrow Types");
+		JLabel type = new JLabel(DRAW_ARROWS_BETWEEN);
+		JLabel textFrom = new JLabel(TEXT_FROM);
+		JLabel textTo = new JLabel(TEXT_TO);
+		JLabel arrowTypes = new JLabel(ARROW_TYPES);
 
 		panel.add(textFrom);
 
