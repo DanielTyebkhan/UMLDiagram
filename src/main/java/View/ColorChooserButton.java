@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
+
 public class ColorChooserButton extends JButton {
     
     private Color current;
@@ -21,7 +22,7 @@ public class ColorChooserButton extends JButton {
         setSelectedColor(c); 
         setText(label);
         setSize(new Dimension(200, 200));
-        
+
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +45,7 @@ public class ColorChooserButton extends JButton {
         if (newColor == null) return;
 
         current = newColor;
-        setIcon(createIcon(current, 16, 16));
+        setIcon(createIcon(current, 30, 30));
         repaint();
 
         if (notify) {

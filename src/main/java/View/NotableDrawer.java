@@ -62,7 +62,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 		label = new JLabel(notable.getName());
 		label.setPreferredSize(new Dimension(width, height));
 		label.setMaximumSize(new Dimension(width, height));
-		label.setBorder(BorderFactory.createLineBorder(Color.black));
+		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		label.setFont(new Font(FONT_NAME, Font.PLAIN, FONT_SIZE));
 		label.addMouseListener(this);
 		label.addMouseMotionListener(this);

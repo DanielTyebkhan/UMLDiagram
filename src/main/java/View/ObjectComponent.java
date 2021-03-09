@@ -19,6 +19,7 @@ import View.Listeners.AddNotableHandler;
 import View.Listeners.RemoveHandler;
 import View.ArrowDrawer;
 import View.NotableDrawer;
+import View.ThemeObject;
 
 
 /**
@@ -50,6 +51,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private ArrayList<NotableDrawer> variableLabels;
 	private ArrayList<NotableDrawer> stereotypeLabels;
 
+
 	/**
 	 * Constructs an item to draw an object
 	 * @param obj the object to draw
@@ -59,7 +61,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 
@@ -224,7 +226,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 */
 	public void mouseReleased(MouseEvent e) {
 		selected = false;
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 
 	/**
