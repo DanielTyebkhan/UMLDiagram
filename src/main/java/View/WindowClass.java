@@ -22,7 +22,7 @@ public class WindowClass extends JPanel{
 	public WindowClass() {
 		JFrame frame = new JFrame("Build Your Diagram!");
 		DiagramPanel diagramPanel = new DiagramPanel();
-		diagramPanel.setBackground(ThemeObject.theme.getDiagramColor());
+		// diagramPanel.setBackground(ThemeObject.theme.getDiagramColor());
 
 		new MenuPanel(frame, diagramPanel);
 
@@ -30,6 +30,7 @@ public class WindowClass extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(SIZE, SIZE);
 		frame.setVisible(true); 
+		// SwingUtilities.updateComponentTreeUI(frame);
 	}
 
 	/**

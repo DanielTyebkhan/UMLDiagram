@@ -48,6 +48,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();
         arrowDrawers = new ArrayList<ArrowDrawer>();
+        this.setBackground(ThemeObject.theme.getDiagramColor());
     }
 
     /**
@@ -123,7 +124,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     public Point getClickLocation() {
         return clickLocation;
     }
-    
+
     /**
      * Handles mouseclicks
      * On right click shows a menu of actions

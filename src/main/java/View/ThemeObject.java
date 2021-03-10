@@ -41,7 +41,6 @@ public class ThemeObject extends JFrame
         setBorderColor();
         setDiagramColor();
         setArrowColor();
-		
     }
 
     public ColorChooserButton setClassColor() 
@@ -62,7 +61,7 @@ public class ThemeObject extends JFrame
     }
     public ColorChooserButton setArrowColor() 
     {
-        arrowColorChooser = new ColorChooserButton(Color.RED, ARROW_COLOR);
+        arrowColorChooser = new ColorChooserButton(Color.BLACK, ARROW_COLOR);
         return arrowColorChooser;
     }
 
