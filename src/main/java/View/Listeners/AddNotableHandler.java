@@ -41,6 +41,6 @@ public class AddNotableHandler extends Listener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String name = JOptionPane.showInputDialog(parent, prompt);
 		if (name != null && !name.equals(""))
-			getPanel().getCommandHandler().executeCommand(new NotableCommand(new Notable(name), action, unaction));
+			getPanel().getCommandHandler().executeCommand(new NotableCommand<Notable>(new Notable(name), action, unaction));
 	}
 }
