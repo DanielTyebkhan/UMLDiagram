@@ -1,0 +1,31 @@
+package View.Listeners;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import Document.ObjectClass;
+import View.DiagramPanel;
+import View.Commands.RemoveObjectCommand;
+
+/**
+ * A listener to add a class to the diagram
+ * @author Daniel Tyebkhan
+ */
+public class RemoveClassListener extends Listener implements ActionListener {
+    private ObjectClass object;
+
+    public RemoveClassListener(DiagramPanel parent, ObjectClass object) {
+        super(parent);
+        this.object = object;
+    }
+
+    /**
+     * Prompts the user for a classname then adds the class to the diagram
+     * @param e the trigger
+     */
+    public void actionPerformed(ActionEvent e) {
+        getParent().getCommandHandler().executeCommand(new RemoveObjectCommand(object));
+    }
+}
+
+

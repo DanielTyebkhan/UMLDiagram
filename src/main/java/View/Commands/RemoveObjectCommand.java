@@ -1,7 +1,5 @@
 package View.Commands;
 
-import java.awt.Point;
-
 import Document.ObjectClass;
 import Document.Storage;
 import General.Command;
@@ -10,7 +8,7 @@ import General.Command;
  * Command to add an object to the diagram
  * @author Daniel Tyebkhan
  */
-public class AddObjectCommand implements Command{
+public class RemoveObjectCommand implements Command{
     private ObjectClass object;
 
     /**
@@ -18,17 +16,18 @@ public class AddObjectCommand implements Command{
      * @param name the name of the object
      * @param position the initial position of the object
      */
-    public AddObjectCommand(String name, Point position) {
-        object = new ObjectClass(name, position);
+    public RemoveObjectCommand(ObjectClass object) {
+        this.object = object;
     }
 
     @Override
     public void execute() {
-        Storage.instance.addObject(object);
+        Storage.instance.removeObject(object);
     }
 
     @Override
     public void unexecute() {
-        Storage.instance.removeObject(object);
+        Storage.instance.addObject(object);
     }
 }
+
