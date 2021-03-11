@@ -3,23 +3,14 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 import Document.ObjectClass;
+import View.Commands.DragCommand;
+import View.Listeners.Listener;
 import Document.Notable;
-import Document.Storage;
-import Document.Arrow;
-
-import View.Listeners.AddClassListener;
-import View.Listeners.AddNotableHandler;
-import View.Listeners.RemoveHandler;
-import View.ArrowDrawer;
-import View.NotableDrawer;
-import View.ThemeObject;
 
 
 /**
@@ -27,24 +18,18 @@ import View.ThemeObject;
  * @author Daniel Tyebkhan
  * @author Anhad Gande
  */
-public class ObjectComponent implements MouseListener, MouseMotionListener {
-	private static final String DELETE = "Delete";
-
+public class ObjectComponent extends Listener implements MouseListener, MouseMotionListener {
 	private static final int WIDTH  = 100;
 	private static final int HEIGHT = 30;
-
-	private static final int FONT_SIZE = 12;
-	private static final String FONT_NAME = "Calibri";
 
 	private JPanel panel;
 	private ObjectClass obj;
 
 	private int clickX;
 	private int clickY;
-	private int incWidth = 0;
 	private int incHeight = 0;
-
-	private boolean selected;
+	private boolean dragging;
+	private Point oldPosition;
 
 	private ArrayList<NotableDrawer> nameLabel;
 	private ArrayList<NotableDrawer> methodLabels;
@@ -55,8 +40,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * Constructs an item to draw an object
 	 * @param obj the object to draw
 	 */
-	public ObjectComponent(ObjectClass obj) {
+	public ObjectComponent(DiagramPanel parent, ObjectClass obj) {
+		super(parent);
 		this.obj = obj;
+		oldPosition = obj.getPosition();
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
@@ -70,6 +57,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		stereotypeLabels = new ArrayList<>();
 		methodLabels = new ArrayList<>();
 		variableLabels = new ArrayList<>();
+		dragging = false;
 	}
 
 	/**
@@ -138,13 +126,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	}
 
 	/**
-	 * Increments the width of the object
-	 */
-	private void incrementWidth() {
-		incWidth += WIDTH;
-	}
-
-	/**
 	 * Draws a set of items and associates their arrows with their positions on screen
 	 * @param list the items to draw
 	 * @param arrows the arrows to associate
@@ -179,7 +160,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		drawLabelList(variableLabels, arrows);
 		drawLabelList(methodLabels, arrows);
 
-		Dimension dimension = reference.getSize();
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
@@ -215,7 +195,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void mousePressed(MouseEvent e) {
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
-		selected = true;
+		oldPosition = obj.getPosition();
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 
@@ -224,7 +204,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * @param MouseEvent e
 	 */
 	public void mouseReleased(MouseEvent e) {
-		selected = false;
+		if (dragging) {
+			getPanel().getCommandHandler().executeCommand(new DragCommand(obj, oldPosition));
+			dragging = false;
+		}
 		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
 	}
 
@@ -233,10 +216,12 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * @param MouseEvent e
 	 */
 	public void mouseDragged(MouseEvent e) {
+		dragging = true;
 		int deltaX = e.getXOnScreen() - clickX;
 		int deltaY = e.getYOnScreen() - clickY;
 		Point prevPos = obj.getPosition();
-		obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
+		Point newPos = new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY);
+		obj.setPosition(newPos);
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
 	}

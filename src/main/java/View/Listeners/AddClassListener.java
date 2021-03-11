@@ -2,15 +2,10 @@ package View.Listeners;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Container;
-import java.awt.Point;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import Document.ObjectClass;
-import Document.Storage;
 
 import View.DiagramPanel;
+import View.Commands.AddObjectCommand;
 
 /**
  * A listener to add a class to the diagram
@@ -36,8 +31,7 @@ public class AddClassListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String name = JOptionPane.showInputDialog(parent, CLASS_NAME_PROMPT);
         if (name != null && !name.equals(""))
-            Storage.instance.addObject(new ObjectClass(name, parent.getClickLocation()));
-        System.out.println(parent.getClickLocation());
+            parent.getCommandHandler().executeCommand(new AddObjectCommand(name, parent.getClickLocation()));
     }
 }
 

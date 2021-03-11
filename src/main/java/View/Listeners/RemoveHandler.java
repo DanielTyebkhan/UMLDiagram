@@ -20,7 +20,6 @@ public class RemoveHandler implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e) {
-        System.out.println("removing");
         action.accept(toRemove);
     }
 }
