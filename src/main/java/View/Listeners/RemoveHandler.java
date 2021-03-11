@@ -15,6 +15,7 @@ public class RemoveHandler extends Listener implements ActionListener {
 
     public RemoveHandler(DiagramPanel panel, Command remover) {
         super(panel);
+        this.remover = remover;
     }
     
     public void actionPerformed(ActionEvent e) {
