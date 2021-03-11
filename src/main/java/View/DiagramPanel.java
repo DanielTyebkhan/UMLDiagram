@@ -17,9 +17,7 @@ import Document.ObjectClass;
 import Document.Arrow;
 
 import View.Listeners.AddClassListener;
-import View.Listeners.AddArrowListener;
-import View.ArrowSelector;
-
+import General.CommandHandler;
 import General.Observer;
 
 /**
@@ -27,6 +25,7 @@ import General.Observer;
  * @author Daniel Tyebkhan
  */
 public class DiagramPanel extends JPanel implements MouseListener, Observer {
+
     private static final String NEW_CLASS = "New Class";
 
     private Point clickLocation;
@@ -34,12 +33,14 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private JMenuItem newObjectItem;
     private ArrayList<ObjectComponent> components;
     private ArrayList<ArrowDrawer> arrowDrawers;
+    private CommandHandler commandHandler;
 
     /**
      * Constructs a diagram panel
      */
     public DiagramPanel() {
         Storage.instance.attachObserver(this);
+        commandHandler = new CommandHandler();
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
         newObjectItem.addActionListener(new AddClassListener(this));
@@ -49,6 +50,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
         components = new ArrayList<ObjectComponent>();
         arrowDrawers = new ArrayList<ArrowDrawer>();
         this.setBackground(ThemeObject.theme.getDiagramColor());
+    }
+
+    public CommandHandler getCommandHandler() {
+        return commandHandler;
     }
 
     /**
