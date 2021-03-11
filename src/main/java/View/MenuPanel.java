@@ -29,7 +29,7 @@ public class MenuPanel extends JComponent {
         saveAs();
         export(diagramPanel);
         changeTheme();
-        undo(diagramPanel);
+        //undo(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
 
