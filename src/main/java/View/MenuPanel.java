@@ -3,8 +3,8 @@ package View;
 import View.Listeners.OpenFileListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
-import View.Listeners.ThemeSelectorListener;
 import View.Listeners.ThemeSelectorMouseListener;
+import View.Listeners.UndoListener;
 
 import java.awt.*; 
 import javax.swing.*;
@@ -29,6 +29,7 @@ public class MenuPanel extends JComponent {
         saveAs();
         export(diagramPanel);
         changeTheme();
+        undo(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
 
@@ -42,6 +43,12 @@ public class MenuPanel extends JComponent {
         menuBar.add(m);
         m.addMouseListener(new OpenFileListener());
     } 
+
+    public void undo(DiagramPanel panel) {
+        JMenu m = new JMenu("Undo");
+        menuBar.add(m);
+        m.addActionListener(new UndoListener(panel));
+    }
 
     /**
      * Constructs export button that allows user to export and convert
