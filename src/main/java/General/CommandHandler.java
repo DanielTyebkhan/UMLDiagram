@@ -53,7 +53,7 @@ public class CommandHandler {
     public void redo() {
         if (!future.isEmpty()) {
             Command current = future.pop();
-            executeCommand(current);
+            executeCommandNoClear(current);
         }
     }
 }
