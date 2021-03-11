@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
 
 import Document.Notable;
+import General.Command;
+import View.DiagramPanel;
 
 /**
  * A class to handle actions performed on objects, variables, methods, and stereotypes
@@ -20,7 +22,7 @@ public class NotableMenuListener implements MouseListener, MouseMotionListener {
 	
 	private Notable notable;
 	private JPopupMenu menu;
-	private Consumer<Notable> remover;
+	private Command remover;
 	private JPanel parent;
 	
 	/**
@@ -29,13 +31,13 @@ public class NotableMenuListener implements MouseListener, MouseMotionListener {
 	 * @param remover the method to remove the object from the diagram
 	 * @param parent the component to show prompts in
 	 */
-	public NotableMenuListener(Notable notable, Consumer<Notable> remover, JPanel parent) {
+	public NotableMenuListener(Notable notable, Command remover, JPanel parent, DiagramPanel diagramPanel) {
 		this.notable = notable;
 		this.remover = remover;
 		this.parent = parent;
 		menu = new JPopupMenu();
 		JMenuItem delete = new JMenuItem(DELETE);
-		delete.addActionListener(new RemoveHandler(notable, remover));
+		delete.addActionListener(new RemoveHandler(diagramPanel, remover));
 	}
 
 	/**

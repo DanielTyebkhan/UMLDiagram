@@ -4,24 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
-import Document.ObjectClass;
 import Document.Notable;
-import Document.Storage;
 import General.Command;
-import Document.Arrow;
 
-import View.Listeners.AddNotableHandler;
-import View.Listeners.NotableMenuListener;
 import View.Listeners.RemoveHandler;
 import View.Listeners.AddArrowListener;
-
-import View.ArrowDrawer;
 
 /**
  * Draws the name of a variable, class, method, or stereotype

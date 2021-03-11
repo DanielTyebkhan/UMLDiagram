@@ -56,7 +56,7 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 		panel.addMouseMotionListener(this);
 
 		nameLabel = new ArrayList<>();
-		nameLabel.add(new ClassNotableDrawer(obj, panel, WIDTH, HEIGHT));
+		nameLabel.add(new ClassNotableDrawer(obj, panel, WIDTH, HEIGHT, getPanel()));
 		stereotypeLabels = new ArrayList<>();
 		methodLabels = new ArrayList<>();
 		variableLabels = new ArrayList<>();
