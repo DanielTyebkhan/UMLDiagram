@@ -1,8 +1,6 @@
-package View;
+package General;
 
 import java.util.Stack;
-
-import General.Command;
 
 /**
  * A class to handle commands for do and undo
