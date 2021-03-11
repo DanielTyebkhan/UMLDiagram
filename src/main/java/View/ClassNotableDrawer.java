@@ -41,9 +41,9 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
         JMenuItem newTheme = new JMenuItem(CHANGE_THEME);
 
-        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, parent));
-        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, parent));
-        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, parent));
+        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, object::removeMethod, parent, diagramPanel));
+        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
+        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
         newTheme.addActionListener(new ThemeSelectorListener());
 
         menu.add(newMethod);
