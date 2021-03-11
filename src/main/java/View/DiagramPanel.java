@@ -2,6 +2,8 @@ package View;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Point;
 import java.awt.Graphics;
 
@@ -24,7 +26,7 @@ import General.Observer;
  * The main canvas which displays the diagram
  * @author Daniel Tyebkhan
  */
-public class DiagramPanel extends JPanel implements MouseListener, Observer {
+public class DiagramPanel extends JPanel implements MouseListener, Observer, KeyListener {
 
     private static final String NEW_CLASS = "New Class";
 
@@ -34,6 +36,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     private ArrayList<ObjectComponent> components;
     private ArrayList<ArrowDrawer> arrowDrawers;
     private CommandHandler commandHandler;
+    private boolean controlMod;
 
     /**
      * Constructs a diagram panel
@@ -41,11 +44,13 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     public DiagramPanel() {
         Storage.instance.attachObserver(this);
         commandHandler = new CommandHandler();
+        controlMod = false;
         rcmenu = new JPopupMenu();
         newObjectItem = new JMenuItem(NEW_CLASS);
         newObjectItem.addActionListener(new AddClassListener(this));
         rcmenu.add(newObjectItem);
         addMouseListener(this);
+        addKeyListener(this);
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();
         arrowDrawers = new ArrayList<ArrowDrawer>();
@@ -62,6 +67,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        requestFocus();
         addComponents();
         removeClasses();
         removeAll();
@@ -173,5 +179,40 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer {
     public void mouseReleased(MouseEvent e) 
     {
      	
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case 17:
+                controlMod = true;
+                break;
+            case 90:
+                if (controlMod)
+                    commandHandler.undo();
+                break;
+            case 89:
+                if (controlMod)
+                    commandHandler.redo();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case 17:
+                controlMod = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
     }
 }
