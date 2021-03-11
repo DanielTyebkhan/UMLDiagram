@@ -169,6 +169,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * @param e the trigger
      */
     public void mousePressed(MouseEvent e) {
+        requestFocus();
         clickLocation = new Point(e.getX(), e.getY());
     }
 

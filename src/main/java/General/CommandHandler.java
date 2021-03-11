@@ -40,16 +40,20 @@ public class CommandHandler {
      * Undoes the previous command
      */
     public void undo() {
-        Command current = previous.pop();
-        current.unexecute();
-        future.add(current);
+        if (!previous.isEmpty()) {
+            Command current = previous.pop();
+            current.unexecute();
+            future.add(current);
+        }
     }
 
     /**
      * Redoes the last undone command
      */
     public void redo() {
-        Command current = future.pop();
-        executeCommand(current);
+        if (!future.isEmpty()) {
+            Command current = future.pop();
+            executeCommand(current);
+        }
     }
 }

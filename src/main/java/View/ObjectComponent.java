@@ -3,23 +3,12 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 import Document.ObjectClass;
 import Document.Notable;
-import Document.Storage;
-import Document.Arrow;
-
-import View.Listeners.AddClassListener;
-import View.Listeners.AddNotableHandler;
-import View.Listeners.RemoveHandler;
-import View.ArrowDrawer;
-import View.NotableDrawer;
-import View.ThemeObject;
 
 
 /**
@@ -28,23 +17,15 @@ import View.ThemeObject;
  * @author Anhad Gande
  */
 public class ObjectComponent implements MouseListener, MouseMotionListener {
-	private static final String DELETE = "Delete";
-
 	private static final int WIDTH  = 100;
 	private static final int HEIGHT = 30;
-
-	private static final int FONT_SIZE = 12;
-	private static final String FONT_NAME = "Calibri";
 
 	private JPanel panel;
 	private ObjectClass obj;
 
 	private int clickX;
 	private int clickY;
-	private int incWidth = 0;
 	private int incHeight = 0;
-
-	private boolean selected;
 
 	private ArrayList<NotableDrawer> nameLabel;
 	private ArrayList<NotableDrawer> methodLabels;
@@ -138,13 +119,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	}
 
 	/**
-	 * Increments the width of the object
-	 */
-	private void incrementWidth() {
-		incWidth += WIDTH;
-	}
-
-	/**
 	 * Draws a set of items and associates their arrows with their positions on screen
 	 * @param list the items to draw
 	 * @param arrows the arrows to associate
@@ -179,7 +153,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		drawLabelList(variableLabels, arrows);
 		drawLabelList(methodLabels, arrows);
 
-		Dimension dimension = reference.getSize();
 		Dimension size = panel.getPreferredSize();
 		panel.setBounds((int)clicked.getX(),(int)clicked.getY(), size.width , size.height);
 		reference.add(panel);
@@ -215,7 +188,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void mousePressed(MouseEvent e) {
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
-		selected = true;
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 
@@ -224,7 +196,6 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * @param MouseEvent e
 	 */
 	public void mouseReleased(MouseEvent e) {
-		selected = false;
 		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
 	}
 
