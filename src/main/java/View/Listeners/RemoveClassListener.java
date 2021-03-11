@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import Document.ObjectClass;
 import Document.Storage;
 import View.DiagramPanel;
-import View.Commands.ObjectCommand;
+import View.Commands.NotableCommand;
 
 /**
  * A listener to add a class to the diagram
@@ -25,7 +25,7 @@ public class RemoveClassListener extends Listener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        getPanel().getCommandHandler().executeCommand(new ObjectCommand(object, Storage.instance::removeObject, Storage.instance::addObject));
+        getPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(object, Storage.instance::removeObject, Storage.instance::addObject));
     }
 }
 

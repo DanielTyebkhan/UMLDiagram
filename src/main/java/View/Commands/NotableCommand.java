@@ -9,12 +9,12 @@ import General.Command;
  * Removes a variable from an object
  * @author Daniel Tyebkhan
  */
-public class NotableCommand implements Command {
-    private Notable notable;
-    private Consumer<Notable> toExecute;
-    private Consumer<Notable> toUnexecute;
+public class NotableCommand<T extends Notable> implements Command {
+    private T notable;
+    private Consumer<T> toExecute;
+    private Consumer<T> toUnexecute;
     
-    public NotableCommand(Notable notable, Consumer<Notable> toExecute, Consumer<Notable> toUnexecute) {
+    public NotableCommand(T notable, Consumer<T> toExecute, Consumer<T> toUnexecute) {
         this.notable = notable;
         this.toExecute = toExecute;
         this.toUnexecute = toUnexecute;

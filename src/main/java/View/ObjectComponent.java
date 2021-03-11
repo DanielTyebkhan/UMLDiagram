@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Storage;
-import View.Commands.ClassCommand;
 import View.Commands.DragCommand;
 import View.Commands.NotableCommand;
 import View.Listeners.Listener;
@@ -77,15 +76,15 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 	private void updateLabels() {
 		for (Notable variable : obj.getInstanceVariables()) {
 			if (!hasLabel(variableLabels, variable)) 
-				variableLabels.add(new NotableDrawer(variable, new ClassCommand(obj, Storage.instance::removeObject, Storage.instance::addObject), panel, WIDTH, HEIGHT, getPanel()));
+				variableLabels.add(new NotableDrawer(variable, new NotableCommand<ObjectClass>(obj, Storage.instance::removeObject, Storage.instance::addObject), panel, WIDTH, HEIGHT, getPanel()));
 		}
 		for (Notable stereotype : obj.getStereotypes()) {
 			if (!hasLabel(stereotypeLabels, stereotype)) 
-				stereotypeLabels.add(new NotableDrawer(stereotype, new NotableCommand(stereotype, obj::removeStereotype, obj::addStereotype), panel, WIDTH, HEIGHT, getPanel()));
+				stereotypeLabels.add(new NotableDrawer(stereotype, new NotableCommand<Notable>(stereotype, obj::removeStereotype, obj::addStereotype), panel, WIDTH, HEIGHT, getPanel()));
 		}
 		for (Notable method : obj.getMethods()) {
 			if (!hasLabel(methodLabels, method)) 
-				methodLabels.add(new NotableDrawer(method, new NotableCommand(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getPanel()));
+				methodLabels.add(new NotableDrawer(method, new NotableCommand<Notable>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getPanel()));
 		}
 		removeNotPresent(variableLabels, obj.getInstanceVariables());
 		removeNotPresent(stereotypeLabels, obj.getStereotypes());
