@@ -14,8 +14,8 @@ import View.Commands.RemoveObjectCommand;
 public class RemoveClassListener extends Listener implements ActionListener {
     private ObjectClass object;
 
-    public RemoveClassListener(DiagramPanel parent, ObjectClass object) {
-        super(parent);
+    public RemoveClassListener(DiagramPanel panel, ObjectClass object) {
+        super(panel);
         this.object = object;
     }
 
@@ -24,7 +24,7 @@ public class RemoveClassListener extends Listener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        getParent().getCommandHandler().executeCommand(new RemoveObjectCommand(object));
+        getPanel().getCommandHandler().executeCommand(new RemoveObjectCommand(object));
     }
 }
 

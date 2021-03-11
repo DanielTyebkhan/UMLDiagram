@@ -1,10 +1,7 @@
 package View;
 
-import java.awt.event.*; 
 import java.awt.*; 
 import javax.swing.*;
-
-import View.DiagramPanel;
 
 /**
 * WindowClass creates a frame containing the MenuPanel 

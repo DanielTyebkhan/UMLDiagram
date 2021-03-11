@@ -3,13 +3,13 @@ package View.Listeners;
 import View.DiagramPanel;
 
 public abstract class Listener {
-    private DiagramPanel parent;
+    private DiagramPanel panel;
 
-    public Listener(DiagramPanel parent) {
-        this.parent = parent;
+    public Listener(DiagramPanel panel) {
+        this.panel = panel;
     }
 
-    public DiagramPanel getParent() {
-        return parent;
+    public DiagramPanel getPanel() {
+        return panel;
     }
 }
