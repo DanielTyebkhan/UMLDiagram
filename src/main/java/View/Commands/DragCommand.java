@@ -10,10 +10,10 @@ public class DragCommand implements Command{
     private Point newPosition;
     private ObjectClass object;
 
-    public DragCommand(ObjectClass object, Point oldPosition, Point newPosition) {
-        this.object =  object;
+    public DragCommand(ObjectClass object, Point oldPosition) {
+        this.object = object;
         this.oldPosition = oldPosition;
-        this.newPosition = newPosition;
+        this.newPosition = object.getPosition();
     }
 
     @Override

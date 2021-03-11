@@ -101,7 +101,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     private void addComponents() {
         for (ObjectClass obj : Storage.instance.getObjects()) {
             if (!hasComponent(obj))
-                components.add(new ObjectComponent(obj));
+                components.add(new ObjectComponent(this, obj));
         }
     }
 

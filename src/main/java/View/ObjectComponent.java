@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import Document.ObjectClass;
+import View.Commands.DragCommand;
+import View.Listeners.Listener;
 import Document.Notable;
 
 
@@ -16,7 +18,7 @@ import Document.Notable;
  * @author Daniel Tyebkhan
  * @author Anhad Gande
  */
-public class ObjectComponent implements MouseListener, MouseMotionListener {
+public class ObjectComponent extends Listener implements MouseListener, MouseMotionListener {
 	private static final int WIDTH  = 100;
 	private static final int HEIGHT = 30;
 
@@ -26,6 +28,8 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	private int clickX;
 	private int clickY;
 	private int incHeight = 0;
+	private boolean dragging;
+	private Point oldPosition;
 
 	private ArrayList<NotableDrawer> nameLabel;
 	private ArrayList<NotableDrawer> methodLabels;
@@ -36,8 +40,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * Constructs an item to draw an object
 	 * @param obj the object to draw
 	 */
-	public ObjectComponent(ObjectClass obj) {
+	public ObjectComponent(DiagramPanel parent, ObjectClass obj) {
+		super(parent);
 		this.obj = obj;
+		oldPosition = obj.getPosition();
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
@@ -51,6 +57,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 		stereotypeLabels = new ArrayList<>();
 		methodLabels = new ArrayList<>();
 		variableLabels = new ArrayList<>();
+		dragging = false;
 	}
 
 	/**
@@ -188,6 +195,7 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	public void mousePressed(MouseEvent e) {
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
+		oldPosition = obj.getPosition();
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 
@@ -196,6 +204,10 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * @param MouseEvent e
 	 */
 	public void mouseReleased(MouseEvent e) {
+		if (dragging) {
+			getPanel().getCommandHandler().executeCommand(new DragCommand(obj, oldPosition));
+			dragging = false;
+		}
 		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
 	}
 
@@ -204,10 +216,12 @@ public class ObjectComponent implements MouseListener, MouseMotionListener {
 	 * @param MouseEvent e
 	 */
 	public void mouseDragged(MouseEvent e) {
+		dragging = true;
 		int deltaX = e.getXOnScreen() - clickX;
 		int deltaY = e.getYOnScreen() - clickY;
 		Point prevPos = obj.getPosition();
-		obj.setPosition(new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY));
+		Point newPos = new Point((int)prevPos.getX() + deltaX, (int)prevPos.getY() + deltaY);
+		obj.setPosition(newPos);
 		clickX = e.getXOnScreen();
 		clickY = e.getYOnScreen();
 	}
