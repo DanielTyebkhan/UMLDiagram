@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import View.Commands.RemoveObjectCommand;
 import View.Listeners.AddNotableHandler;
 import View.Listeners.ThemeSelectorListener;
 import Document.ObjectClass;
@@ -31,8 +32,8 @@ public class ClassNotableDrawer extends NotableDrawer {
      * @param width the width of the object
      * @param height the height of the object
      */
-    public ClassNotableDrawer(ObjectClass object, JPanel parent, int width, int height) {
-        super(object, Storage.instance::removeObject, parent, width, height);
+    public ClassNotableDrawer(ObjectClass object, JPanel parent, int width, int height, DiagramPanel diagramPanel) {
+        super(object, new RemoveObjectCommand(object), parent, width, height, diagramPanel);
         label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         
         JMenuItem newMethod = new JMenuItem(NEW_METHOD);
@@ -40,9 +41,9 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
         JMenuItem newTheme = new JMenuItem(CHANGE_THEME);
 
-        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, parent));
-        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, parent));
-        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, parent));
+        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, object::removeMethod, parent, diagramPanel));
+        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
+        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
         newTheme.addActionListener(new ThemeSelectorListener());
 
         menu.add(newMethod);

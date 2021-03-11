@@ -4,23 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
-import Document.ObjectClass;
 import Document.Notable;
-import Document.Storage;
-import Document.Arrow;
+import General.Command;
 
-import View.Listeners.AddNotableHandler;
-import View.Listeners.NotableMenuListener;
 import View.Listeners.RemoveHandler;
 import View.Listeners.AddArrowListener;
-
-import View.ArrowDrawer;
 
 /**
  * Draws the name of a variable, class, method, or stereotype
@@ -48,14 +37,14 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 	 * @param height the height of the object
 	 */
  	
-	public NotableDrawer(Notable notable, Consumer<Notable> remover, JPanel parent, int width, int height) {
+	public NotableDrawer(Notable notable, Command remover, JPanel parent, int width, int height, DiagramPanel diagramPanel) {
 		this.notable = notable;
 		this.parent = parent;
 		
 		menu = new JPopupMenu();
 		JMenuItem deleteItem = new JMenuItem(DELETE);
 		JMenuItem addArrow = new JMenuItem(ADD_ARROW);
-		deleteItem.addActionListener(new RemoveHandler(notable, remover));
+		deleteItem.addActionListener(new RemoveHandler(diagramPanel, remover));
 		addArrow.addActionListener(new AddArrowListener(getNotable()));
 		menu.add(deleteItem);
 		menu.add(addArrow);

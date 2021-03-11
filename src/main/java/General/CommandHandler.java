@@ -2,8 +2,6 @@ package General;
 
 import java.util.Stack;
 
-import Document.Storage;
-
 /**
  * A class to handle commands for do and undo
  * @author Daniel Tyebkhan

@@ -2,24 +2,23 @@ package View.Listeners;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.function.Consumer;
 
-import Document.Notable;
+import General.Command;
+import View.DiagramPanel;
 
 /**
  * Removes a notable based on a given method 
  * @author Daniel Tyebkhan 
  */
-public class RemoveHandler implements ActionListener {
-    private Notable toRemove;
-    private Consumer<Notable> action;
+public class RemoveHandler extends Listener implements ActionListener {
+    private Command remover;
 
-    public RemoveHandler(Notable toRemove, Consumer<Notable> action) {
-        this.toRemove = toRemove;
-        this.action = action;
+    public RemoveHandler(DiagramPanel panel, Command remover) {
+        super(panel);
+        this.remover = remover;
     }
     
     public void actionPerformed(ActionEvent e) {
-        action.accept(toRemove);
+        getPanel().getCommandHandler().executeCommand(remover);
     }
 }
