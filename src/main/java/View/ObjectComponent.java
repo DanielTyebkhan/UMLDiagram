@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import Document.ObjectClass;
+import Document.Storage;
 import View.Commands.DragCommand;
-import View.Commands.RemoveVariableCommand;
+import View.Commands.NotableCommand;
 import View.Listeners.Listener;
 import Document.Notable;
 
@@ -75,7 +76,7 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 	private void updateLabels() {
 		for (Notable variable : obj.getInstanceVariables()) {
 			if (!hasLabel(variableLabels, variable)) 
-				variableLabels.add(new NotableDrawer(variable, new RemoveVariableCommand(obj, variable), panel, WIDTH, HEIGHT, getPanel()));
+				variableLabels.add(new NotableDrawer(variable, new NotableCommand(obj, Storage.instance::removeObject, Storage.instance::addObject), panel, WIDTH, HEIGHT, getPanel()));
 		}
 		for (Notable stereotype : obj.getStereotypes()) {
 			if (!hasLabel(stereotypeLabels, stereotype)) 
