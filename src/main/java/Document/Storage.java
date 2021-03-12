@@ -2,22 +2,16 @@ package Document;
 
 import java.util.List;
 import java.util.ArrayList;
-import Document.ObjectClass;
-import Document.Arrow;
+import java.io.Serializable; 
+
 import General.Observer;
 import General.Subject;
-import Filemanagement.StorageContainer;
-import java.io.Serializable; 
 
 /**
  * Tracks the state of all objects in a diagram
- * Storage is a singleton and should be accessed via Storage.instance
  * @author Daniel Tyebkhan
  */
 public class Storage implements Subject, Observer, Serializable {
-    private static final long serialVersionUID = 1;
-    public static Storage instance = new Storage();
-
     private ArrayList<ObjectClass> objects;
     private ArrayList<Arrow> arrows;
     private transient ArrayList<Observer> observers;
@@ -25,7 +19,7 @@ public class Storage implements Subject, Observer, Serializable {
     /**
      * Constructs a new storage object
      */
-    private Storage() {
+    public Storage() {
         objects = new ArrayList<ObjectClass>();
         observers = new ArrayList<Observer>();
         arrows = new ArrayList<Arrow>();
@@ -34,9 +28,9 @@ public class Storage implements Subject, Observer, Serializable {
     public void setStorage(List<ObjectClass> obs, List<Arrow> arrs) {
         clear();
         for (ObjectClass obj : obs)
-            instance.addObject(obj);
+            addObject(obj);
         for (Arrow arr : arrs)
-            instance.addArrow(arr);
+            addArrow(arr);
     }
 
     /**
