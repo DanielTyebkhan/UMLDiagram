@@ -11,7 +11,6 @@ import Document.Storage;
 */
 public interface DataSerializer {
 
-
 	/**
 	* Serialize Object
 	* @param FileOutputStream filestream to ouput

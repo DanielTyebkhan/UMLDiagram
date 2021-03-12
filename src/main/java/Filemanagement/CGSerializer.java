@@ -14,13 +14,14 @@ import Document.Storage;
  * Serializes data to the custom CG style file
  * @author Lawson Wheatley
  */
-public class CGSerializer implements DataSerializer{
+public class CGSerializer implements DataSerializer{	
+	Storage toSerialize;
 
 	/**
 	* Initializes CGSerializer()
 	*/
-	public CGSerializer() {
-		
+	public CGSerializer(Storage toSerialize) {
+		this.toSerialize = toSerialize;
 	}
 	
 	/**
@@ -30,7 +31,7 @@ public class CGSerializer implements DataSerializer{
 	public void SerializeObject(FileOutputStream f) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(f);
-			out.writeObject(Storage.instance);
+			out.writeObject(toSerialize);
 			out.close();
 		} catch(IOException i){
             		System.out.println(i);

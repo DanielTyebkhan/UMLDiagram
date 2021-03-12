@@ -31,6 +31,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
 
     private static final String NEW_CLASS = "New Class";
 
+    private Storage storage;
     private Point clickLocation;
     private JPopupMenu rcmenu;
     private JMenuItem newObjectItem;
@@ -43,7 +44,8 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * Constructs a diagram panel
      */
     public DiagramPanel() {
-        Storage.instance.attachObserver(this);
+        storage = new Storage();
+        storage.attachObserver(this);
         commandHandler = new CommandHandler();
         controlMod = false;
         rcmenu = new JPopupMenu();
@@ -72,7 +74,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         addComponents();
         removeClasses();
         removeAll();
-        List<Arrow> arrows = Storage.instance.getArrows();
+        List<Arrow> arrows = storage.getArrows();
         arrowDrawers = new ArrayList<ArrowDrawer>(arrows.size());
         for (Arrow arrow : arrows) 
             arrowDrawers.add(ArrowFactory.makeArrow(arrow));
@@ -89,7 +91,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     private void removeClasses() {
         ArrayList<ObjectComponent> toRemove = new ArrayList<>();
         for (ObjectComponent comp : components) {
-            if (!Storage.instance.getObjects().contains(comp.getObject()))
+            if (!storage.getObjects().contains(comp.getObject()))
                 toRemove.add(comp);
         }
         for (ObjectComponent comp : toRemove)
@@ -100,7 +102,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * Adds components in storage to the diagram
      */
     private void addComponents() {
-        for (ObjectClass obj : Storage.instance.getObjects()) {
+        for (ObjectClass obj : storage.getObjects()) {
             if (!hasComponent(obj))
                 components.add(new ObjectComponent(this, obj));
         }
