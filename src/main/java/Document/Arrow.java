@@ -1,9 +1,5 @@
 package Document;
 
-import Document.Notable;
-import Document.ArrowType;
-import java.io.Serializable; 
-
 /**
  * Represents an arrow
  * @author Daniel Tyebkhan

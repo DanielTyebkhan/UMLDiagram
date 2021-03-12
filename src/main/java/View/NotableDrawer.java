@@ -45,7 +45,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 		JMenuItem deleteItem = new JMenuItem(DELETE);
 		JMenuItem addArrow = new JMenuItem(ADD_ARROW);
 		deleteItem.addActionListener(new RemoveHandler(diagramPanel, remover));
-		addArrow.addActionListener(new AddArrowListener(getNotable()));
+		addArrow.addActionListener(new AddArrowListener(getNotable(), diagramPanel));
 		menu.add(deleteItem);
 		menu.add(addArrow);
 		label = new JLabel(notable.getName());

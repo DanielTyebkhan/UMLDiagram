@@ -1,16 +1,11 @@
 package View;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.List;
-import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Storage;
 import Document.Notable;
-import Document.Arrow;
-import Document.ArrowType;
 import View.Listeners.ArrowBetweenActionListener;
 import View.Listeners.RefreshListener;
 import View.Listeners.MakeArrowActionListener;
@@ -54,7 +49,7 @@ public class ArrowSelector extends JFrame {
 	/**
 	* Creates the frame and displays it
 	*/
-	public ArrowSelector(Notable notableFrom) {
+	public ArrowSelector(Notable notableFrom, DiagramPanel diagramPanel) {
 		super(FRAME_NAME);
 		this.notableFrom = notableFrom;
 		
@@ -96,7 +91,7 @@ public class ArrowSelector extends JFrame {
 		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 
 		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
-		makeArrow.addActionListener(new MakeArrowActionListener(notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));
+		makeArrow.addActionListener(new MakeArrowActionListener(diagramPanel, notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));
 
 		JLabel type = new JLabel(DRAW_ARROWS_BETWEEN);
 		JLabel textFrom = new JLabel(TEXT_FROM);

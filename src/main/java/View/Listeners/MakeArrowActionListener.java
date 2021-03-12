@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Storage;
+import View.DiagramPanel;
+import View.Commands.NotableCommand;
 import Document.Notable;
 import Document.Arrow;
 import Document.ArrowType;
@@ -19,7 +21,7 @@ import Document.ArrowType;
  * @author Anhad Gande
  */
 
-public class MakeArrowActionListener implements ActionListener {
+public class MakeArrowActionListener extends Listener implements ActionListener {
 	private Notable notableFrom;
 	
 	private JRadioButton subtype;
@@ -35,8 +37,8 @@ public class MakeArrowActionListener implements ActionListener {
      * Constructs the listener
      */
 
-	public MakeArrowActionListener(Notable notableFrom, JRadioButton subtype, JRadioButton delegation, JRadioButton containment, 
-		JRadioButton betweenMethodsOrVar, JComboBox to, JComboBox toNonObjects) {
+	public MakeArrowActionListener(DiagramPanel diagramPanel, Notable notableFrom, JRadioButton subtype, JRadioButton delegation, JRadioButton containment, JRadioButton betweenMethodsOrVar, JComboBox to, JComboBox toNonObjects) {
+		super(diagramPanel);
 		this.notableFrom = notableFrom;
 		this.subtype = subtype;
 		this.delegation = delegation;
@@ -70,6 +72,6 @@ public class MakeArrowActionListener implements ActionListener {
 		else {
 			toNotable = (Notable) to.getSelectedItem();
 		}
-		Storage.instance.addArrow(new Arrow(typeArrow, notableFrom, toNotable));
+		getPanel().getCommandHandler().executeCommand(new NotableCommand<Arrow>(new Arrow(typeArrow, notableFrom, toNotable), Storage.instance::addArrow, Storage.instance::removeArrow));
 	}
 }
