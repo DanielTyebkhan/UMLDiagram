@@ -8,7 +8,9 @@ import java.io.Serializable;
  * Represents an arrow
  * @author Daniel Tyebkhan
  */
-public class Arrow implements Serializable{
+public class Arrow extends Notable {
+    private static final String TO = "to";
+
     private Notable from;
     private Notable to;
     private ArrowType type;
@@ -20,6 +22,7 @@ public class Arrow implements Serializable{
      * @param to the destination
      */
     public Arrow(ArrowType type, Notable from, Notable to) {
+        super(from.getName() + TO + to.getName());
         this.from = from;
         this.to = to;
         this.type = type;
