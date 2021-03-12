@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Commands.NotableCommand;
-import View.Listeners.AddNotableHandler;
+import View.Listeners.AddNotableListener;
 import View.Theme.ThemeSelectorListener;
 import Document.ObjectClass;
 import Document.Storage;
@@ -41,9 +41,9 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
         JMenuItem newTheme = new JMenuItem(CHANGE_THEME);
 
-        newMethod.addActionListener(new AddNotableHandler(ENT_METHOD_NAME, object::addMethod, object::removeMethod, parent, diagramPanel));
-        newVariable.addActionListener(new AddNotableHandler(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
-        newStereotype.addActionListener(new AddNotableHandler(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
+        newMethod.addActionListener(new AddNotableListener(ENT_METHOD_NAME, object::addMethod, object::removeMethod, parent, diagramPanel));
+        newVariable.addActionListener(new AddNotableListener(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
+        newStereotype.addActionListener(new AddNotableListener(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
         newTheme.addActionListener(new ThemeSelectorListener());
 
         menu.add(newMethod);

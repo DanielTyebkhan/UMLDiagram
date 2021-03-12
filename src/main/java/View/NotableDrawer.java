@@ -8,7 +8,7 @@ import javax.swing.*;
 import Document.Notable;
 import General.Command;
 
-import View.Listeners.RemoveHandler;
+import View.Listeners.CommandListener;
 import View.Listeners.AddArrowListener;
 
 /**
@@ -44,7 +44,7 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 		menu = new JPopupMenu();
 		JMenuItem deleteItem = new JMenuItem(DELETE);
 		JMenuItem addArrow = new JMenuItem(ADD_ARROW);
-		deleteItem.addActionListener(new RemoveHandler(diagramPanel, remover));
+		deleteItem.addActionListener(new CommandListener(diagramPanel, remover));
 		addArrow.addActionListener(new AddArrowListener(getNotable(), diagramPanel));
 		menu.add(deleteItem);
 		menu.add(addArrow);

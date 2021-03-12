@@ -30,7 +30,6 @@ public class ExportFileListener extends Listener implements MouseListener {
     {
         if (e.getButton() == MouseEvent.BUTTON1){
             fchoose.ExportImg(getPanel());
-            System.out.println("Clicked Open!");
         }
     }
     public void mouseEntered(MouseEvent e)
