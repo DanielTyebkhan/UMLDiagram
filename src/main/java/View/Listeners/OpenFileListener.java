@@ -3,14 +3,18 @@ package View.Listeners;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import Filemanagement.Filechoose;
+import View.DiagramPanel;
 
-import javax.swing.JFileChooser;
 
 /**
  * Opens a file when the button is clicked
  * @author Sai Lyon Ho
  */
-public class OpenFileListener implements MouseListener {
+public class OpenFileListener extends Listener implements MouseListener {
+	public OpenFileListener(DiagramPanel panel) {
+		super(panel);
+	}
+
 	private Filechoose fchoose = new Filechoose();
 	
 	/**
@@ -21,7 +25,6 @@ public class OpenFileListener implements MouseListener {
 	{
 		if (e.getButton() == MouseEvent.BUTTON1){
 			fchoose.LoadFile();
-			System.out.println("Clicked Open!");
 		}
 	}
 

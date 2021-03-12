@@ -25,7 +25,7 @@ public class MenuPanel extends JComponent {
     public MenuPanel(JFrame frame, DiagramPanel diagramPanel)
     {   
         menuBar = new JMenuBar();
-        open();
+        open(diagramPanel);
         saveAs();
         export(diagramPanel);
         changeTheme();
@@ -37,11 +37,11 @@ public class MenuPanel extends JComponent {
      * Constructs open button that allows user to choose which file 
      * to keep working on by using JFileChooser
      */
-    public void open()
+    public void open(DiagramPanel panel)
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
-        m.addMouseListener(new OpenFileListener());
+        m.addMouseListener(new OpenFileListener(panel));
     } 
 
     public void undo(DiagramPanel panel) {

@@ -8,7 +8,6 @@ import Document.Storage;
 import Document.Notable;
 import View.DiagramPanel;
 import View.Listeners.ArrowBetweenActionListener;
-import View.Listeners.RefreshListener;
 import View.Listeners.MakeArrowActionListener;
 
 /**
@@ -18,7 +17,6 @@ import View.Listeners.MakeArrowActionListener;
 
 public class ArrowSelector extends JFrame { 
 	private final static String FRAME_NAME = "Arrow Selector";
-	private final static String REFRESH = "Refresh";
 	private final static String MAKE_ARROW = "Make Arrow";
 	private final static String SUBTYPE_ARROW = "Subtype";
 	private final static String DELEGTION_ARROW = "Delegation";
@@ -41,7 +39,6 @@ public class ArrowSelector extends JFrame {
 	private JRadioButton delegation;
 	private JRadioButton containment;
 
-	private JButton refresh;
 	private JButton makeArrow;
 
 	private JPanel panel;
@@ -67,7 +64,6 @@ public class ArrowSelector extends JFrame {
 		to = new JComboBox<Notable>(objArray);
 		toNonObjects = new JComboBox<Notable>();
 
-		refresh = new JButton(REFRESH);
 		makeArrow = new JButton(MAKE_ARROW);
 
 		subtype = new JRadioButton(SUBTYPE_ARROW);
@@ -89,7 +85,6 @@ public class ArrowSelector extends JFrame {
 		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects, diagramPanel));
 		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects, diagramPanel));
 
-		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 		makeArrow.addActionListener(new MakeArrowActionListener(diagramPanel, notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));
 
 		JLabel type = new JLabel(DRAW_ARROWS_BETWEEN);
@@ -110,9 +105,6 @@ public class ArrowSelector extends JFrame {
 
 		panel.add(to);
 		panel.add(toNonObjects);
-
-		panel.add(refresh);
-
 
 		panel.add(arrowTypes);
 
