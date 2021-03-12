@@ -1,4 +1,4 @@
-package View;
+package View.Arrows;
 
 import javax.swing.*;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import Document.ObjectClass;
 import Document.Storage;
 import Document.Notable;
+import View.DiagramPanel;
 import View.Listeners.ArrowBetweenActionListener;
 import View.Listeners.RefreshListener;
 import View.Listeners.MakeArrowActionListener;

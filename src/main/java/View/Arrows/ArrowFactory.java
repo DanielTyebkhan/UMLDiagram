@@ -1,6 +1,5 @@
-package View;
+package View.Arrows;
 
-import Document.ArrowType;
 import Document.Arrow;
 
 /**

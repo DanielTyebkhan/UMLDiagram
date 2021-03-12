@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import Document.Notable;
-import View.ArrowSelector;
+import View.Arrows.ArrowSelector;
 import View.DiagramPanel;
 
 /**

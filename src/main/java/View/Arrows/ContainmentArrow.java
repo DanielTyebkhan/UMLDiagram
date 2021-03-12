@@ -1,4 +1,4 @@
-package View;
+package View.Arrows;
 
 import java.awt.Graphics;
 

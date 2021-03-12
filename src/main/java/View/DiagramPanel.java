@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import Document.Storage;
 import Document.ObjectClass;
 import Document.Arrow;
-
+import View.Arrows.ArrowDrawer;
+import View.Arrows.ArrowFactory;
 import View.Listeners.AddClassListener;
 import General.CommandHandler;
 import General.Observer;

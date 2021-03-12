@@ -1,4 +1,4 @@
-package View;
+package View.Arrows;
 
 import java.awt.Point;
 import java.awt.Polygon;
@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 
 import Document.Arrow;
+import View.ThemeObject;
 
 /**
  * A class which draws arrows
