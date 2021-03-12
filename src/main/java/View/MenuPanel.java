@@ -3,7 +3,7 @@ package View;
 import View.Listeners.OpenFileListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
-import View.Listeners.ThemeSelectorMouseListener;
+import View.Theme.ThemeSelectorMouseListener;
 import View.Listeners.UndoListener;
 
 import java.awt.*; 
@@ -26,7 +26,7 @@ public class MenuPanel extends JComponent {
     {   
         menuBar = new JMenuBar();
         open(diagramPanel);
-        saveAs();
+        saveAs(diagramPanel);
         export(diagramPanel);
         changeTheme();
         //undo(diagramPanel);
@@ -65,11 +65,11 @@ public class MenuPanel extends JComponent {
      * Constructs save button that allows user to save the current project
      * by using the JFileChooser
      */
-    public void saveAs()
+    public void saveAs(DiagramPanel diagramPanel)
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
-        m.addMouseListener(new SaveFileListener());
+        m.addMouseListener(new SaveFileListener(diagramPanel));
     }
 
     public void changeTheme()

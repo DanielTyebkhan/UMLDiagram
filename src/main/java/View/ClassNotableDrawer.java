@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import View.Commands.NotableCommand;
 import View.Listeners.AddNotableHandler;
-import View.Listeners.ThemeSelectorListener;
+import View.Theme.ThemeSelectorListener;
 import Document.ObjectClass;
 import Document.Storage;
 

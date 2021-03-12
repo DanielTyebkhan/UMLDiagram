@@ -14,9 +14,7 @@ public class UndoListener extends Listener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("undoing");
         getPanel().getCommandHandler().undo();
-        System.out.println("undone");
     }
     
 }
