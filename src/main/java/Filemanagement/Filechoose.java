@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.awt.Robot;
 
 import Document.Storage;
+import View.DiagramPanel;
 
 /**
  * GUI for choosing files
@@ -28,8 +29,8 @@ public class Filechoose{
 	/**
 	* Constructor Method
 	*/
-	public Filechoose() {
-		fmanager = new FileManager();
+	public Filechoose(DiagramPanel panel) {
+		fmanager = new FileManager(panel);
 	}
 
 	/**

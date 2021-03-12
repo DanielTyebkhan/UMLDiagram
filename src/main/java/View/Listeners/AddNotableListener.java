@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.util.function.Consumer;
 
 import Document.Notable;
+import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;
 
@@ -14,7 +15,7 @@ import View.Commands.NotableCommand;
  * Invokes a method on a class with user input 
  * @author Daniel Tyebkhan 
  */
-public class AddNotableListener extends Listener implements ActionListener {
+public class AddNotableListener extends DiagramMember implements ActionListener {
 	private String prompt;
 	private Consumer<Notable> action;
 	private Consumer<Notable> unaction;
@@ -41,6 +42,6 @@ public class AddNotableListener extends Listener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String name = JOptionPane.showInputDialog(parent, prompt);
 		if (name != null && !name.equals(""))
-			getPanel().getCommandHandler().executeCommand(new NotableCommand<Notable>(new Notable(name), action, unaction));
+			getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<Notable>(new Notable(name), action, unaction));
 	}
 }

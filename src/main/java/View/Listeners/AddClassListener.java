@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import Document.ObjectClass;
 import Document.Storage;
+import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;
 
@@ -13,7 +14,7 @@ import View.Commands.NotableCommand;
  * A listener to add a class to the diagram
  * @author Daniel Tyebkhan
  */
-public class AddClassListener extends Listener implements ActionListener {
+public class AddClassListener extends DiagramMember implements ActionListener {
     private static final String CLASS_NAME_PROMPT = "Enter Class Name";
     
     /**
@@ -29,9 +30,9 @@ public class AddClassListener extends Listener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        String name = JOptionPane.showInputDialog(getPanel(), CLASS_NAME_PROMPT);
+        String name = JOptionPane.showInputDialog(getDiagramPanel(), CLASS_NAME_PROMPT);
         if (name != null && !name.equals(""))
-            getPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(new ObjectClass(name, getPanel().getClickLocation()), Storage.instance::addObject, Storage.instance::removeObject));
+            getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(new ObjectClass(name, getDiagramPanel().getClickLocation()), getDiagramPanel().getStorage()::addObject, getDiagramPanel().getStorage()::removeObject));
     }
 }
 

@@ -4,18 +4,21 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 import Filemanagement.Filechoose;
+import View.DiagramMember;
 import View.DiagramPanel;
 
 /**
  * Saves the diagram to a file when the button is clicked
  * @author Sai Lyon Ho 
  */
-public class SaveFileListener extends Listener implements MouseListener {
+public class SaveFileListener extends DiagramMember implements MouseListener {
+    private Filechoose fchoose;
+
     public SaveFileListener(DiagramPanel panel) {
         super(panel);
+        fchoose = new Filechoose(panel);
     }
 
-    private Filechoose fchoose = new Filechoose();
 
     public void mouseClicked(MouseEvent e) 
     {

@@ -12,7 +12,6 @@ import Document.Storage;
 import View.Arrows.ArrowDrawer;
 import View.Commands.DragCommand;
 import View.Commands.NotableCommand;
-import View.Listeners.Listener;
 import Document.Notable;
 
 
@@ -21,7 +20,7 @@ import Document.Notable;
  * @author Daniel Tyebkhan
  * @author Anhad Gande
  */
-public class ObjectComponent extends Listener implements MouseListener, MouseMotionListener {
+public class ObjectComponent extends DiagramMember implements MouseListener, MouseMotionListener {
 	private static final int WIDTH  = 100;
 	private static final int HEIGHT = 30;
 
@@ -56,7 +55,7 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 		panel.addMouseMotionListener(this);
 
 		nameLabel = new ArrayList<>();
-		nameLabel.add(new ClassNotableDrawer(obj, panel, WIDTH, HEIGHT, getPanel()));
+		nameLabel.add(new ClassNotableDrawer(obj, panel, WIDTH, HEIGHT, getDiagramPanel()));
 		stereotypeLabels = new ArrayList<>();
 		methodLabels = new ArrayList<>();
 		variableLabels = new ArrayList<>();
@@ -75,17 +74,18 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 	 * Updates the names of the class, variables, stereotypes, and methods
 	 */
 	private void updateLabels() {
+		Storage storage = getDiagramPanel().getStorage();
 		for (Notable variable : obj.getInstanceVariables()) {
 			if (!hasLabel(variableLabels, variable)) 
-				variableLabels.add(new NotableDrawer(variable, new NotableCommand<ObjectClass>(obj, Storage.instance::removeObject, Storage.instance::addObject), panel, WIDTH, HEIGHT, getPanel()));
+				variableLabels.add(new NotableDrawer(variable, new NotableCommand<ObjectClass>(obj, storage::removeObject, storage::addObject), panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
 		for (Notable stereotype : obj.getStereotypes()) {
 			if (!hasLabel(stereotypeLabels, stereotype)) 
-				stereotypeLabels.add(new NotableDrawer(stereotype, new NotableCommand<Notable>(stereotype, obj::removeStereotype, obj::addStereotype), panel, WIDTH, HEIGHT, getPanel()));
+				stereotypeLabels.add(new NotableDrawer(stereotype, new NotableCommand<Notable>(stereotype, obj::removeStereotype, obj::addStereotype), panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
 		for (Notable method : obj.getMethods()) {
 			if (!hasLabel(methodLabels, method)) 
-				methodLabels.add(new NotableDrawer(method, new NotableCommand<Notable>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getPanel()));
+				methodLabels.add(new NotableDrawer(method, new NotableCommand<Notable>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
 		removeNotPresent(variableLabels, obj.getInstanceVariables());
 		removeNotPresent(stereotypeLabels, obj.getStereotypes());
@@ -208,7 +208,7 @@ public class ObjectComponent extends Listener implements MouseListener, MouseMot
 	 */
 	public void mouseReleased(MouseEvent e) {
 		if (dragging) {
-			getPanel().getCommandHandler().executeCommand(new DragCommand(obj, oldPosition));
+			getDiagramPanel().getCommandHandler().executeCommand(new DragCommand(obj, oldPosition));
 			dragging = false;
 		}
 		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));

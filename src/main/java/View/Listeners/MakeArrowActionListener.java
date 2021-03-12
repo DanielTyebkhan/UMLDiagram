@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 import Document.Storage;
+import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;
 import Document.Notable;
@@ -16,7 +17,7 @@ import Document.ArrowType;
  * @author Anhad Gande
  */
 
-public class MakeArrowActionListener extends Listener implements ActionListener {
+public class MakeArrowActionListener extends DiagramMember implements ActionListener {
 	private Notable notableFrom;
 	
 	private JRadioButton subtype;
@@ -67,6 +68,6 @@ public class MakeArrowActionListener extends Listener implements ActionListener 
 		else {
 			toNotable = (Notable) to.getSelectedItem();
 		}
-		getPanel().getCommandHandler().executeCommand(new NotableCommand<Arrow>(new Arrow(typeArrow, notableFrom, toNotable), Storage.instance::addArrow, Storage.instance::removeArrow));
+		getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<Arrow>(new Arrow(typeArrow, notableFrom, toNotable), getDiagramPanel().getStorage()::addArrow, getDiagramPanel().getStorage()::removeArrow));
 	}
 }

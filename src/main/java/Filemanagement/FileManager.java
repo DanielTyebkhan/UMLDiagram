@@ -10,24 +10,27 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import Document.Storage;
-import Document.ObjectClass;
 import General.Observer;
+import View.DiagramPanel;
 
 /**
 * Class that manages files for the program
 * @author Lawson Wheatley
 */
 public class FileManager {
-
+	DiagramPanel diagramPanel;
 	DataSerializer dataserializer;
-	DataSerializerFactory dfactory = new DataSerializerFactory();
-	ImageFactory imgfactory = new ImageFactory();
+	DataSerializerFactory dfactory; 
+	ImageFactory imgfactory;
 	dtype type;
 
 	/**
 	* FileManager constructor
 	*/
-	public FileManager() {
+	public FileManager(DiagramPanel panel) {
+		this.diagramPanel = panel;
+		dfactory = new DataSerializerFactory(diagramPanel.getStorage());
+		imgfactory = new ImageFactory();
 	}
 
 	/**
@@ -67,7 +70,7 @@ public class FileManager {
 			dataserializer = dfactory.createDataSerializer(type);
 			Storage temp = dataserializer.DeserializeObject(f);
 			temp.setObservers(new ArrayList<Observer>());
-			Storage.instance.setStorage(temp.getObjects(), temp.getArrows());
+			diagramPanel.getStorage().setStorage(temp.getObjects(), temp.getArrows());
 
 			f.close();
 		} catch(IOException i) {

@@ -64,6 +64,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         return commandHandler;
     }
 
+    public Storage getStorage() {
+        return storage;
+    }
+
     /**
      * Draws the appropriate components
      * @param g the graphics object to draw with
@@ -91,7 +95,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     private void removeClasses() {
         ArrayList<ObjectComponent> toRemove = new ArrayList<>();
         for (ObjectComponent comp : components) {
-            if (!storage.getObjects().contains(comp.getObject()))
+            if (!getStorage().getObjects().contains(comp.getObject()))
                 toRemove.add(comp);
         }
         for (ObjectComponent comp : toRemove)
@@ -102,7 +106,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * Adds components in storage to the diagram
      */
     private void addComponents() {
-        for (ObjectClass obj : storage.getObjects()) {
+        for (ObjectClass obj : getStorage().getObjects()) {
             if (!hasComponent(obj))
                 components.add(new ObjectComponent(this, obj));
         }
@@ -125,7 +129,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     private boolean hasComponent(ObjectClass obj) {
         boolean present = false;
         for (ObjectComponent comp : components) {
-            if (comp.equals(obj))
+            if (comp.getObject().equals(obj))
                 present = true;
         }
         return present;

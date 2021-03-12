@@ -23,6 +23,7 @@ import General.Observer;
  */
 @RunWith(JUnit4.class)
 public class StorageTest {
+    Storage storage;
     private ObjectClass testObj;
     private ObjectClass testObj2;
     private Arrow testArr;
@@ -30,9 +31,9 @@ public class StorageTest {
 
     private void addAll() {
         testObj.addMethod(testNble);
-        Storage.instance.addObject(testObj);
-        Storage.instance.addObject(testObj2);
-        Storage.instance.addArrow(testArr);
+        storage.addObject(testObj);
+        storage.addObject(testObj2);
+        storage.addArrow(testArr);
     }
 
     @Before
@@ -41,34 +42,34 @@ public class StorageTest {
         testObj2 = new ObjectClass("object2", new Point(0,0));
         testNble = new Notable("notable");
         testArr = new Arrow(ArrowType.CONTAINMENT, testObj, testNble);
-        Storage.instance.clear();
+        storage = new Storage();
     }
     
     @Test
     public void addArrow() {
         addAll();
-        assertTrue("Adding arrow adds it to storage", Storage.instance.getArrows().contains(testArr));
+        assertTrue("Adding arrow adds it to storage", storage.getArrows().contains(testArr));
     }
 
     @Test 
     public void addObject() {
         addAll();
-        assertTrue("Adding object adds it to storage", Storage.instance.getObjects().contains(testObj));
+        assertTrue("Adding object adds it to storage", storage.getObjects().contains(testObj));
     }
 
     @Test
     public void removeArrow() {
         addAll();
-        Storage.instance.removeArrow(testArr);
-        assertFalse("Removing an arrow removes it from storage", Storage.instance.getArrows().contains(testArr));
+        storage.removeArrow(testArr);
+        assertFalse("Removing an arrow removes it from storage", storage.getArrows().contains(testArr));
     }
 
     @Test
     public void removeObject() {
         addAll();
-        Storage.instance.removeObject(testObj);
-        assertFalse("Removing an object removes it from storage", Storage.instance.getObjects().contains(testObj));
-        assertFalse("Removing an object removes associated arrows", Storage.instance.getArrows().contains(testArr));
+        storage.removeObject(testObj);
+        assertFalse("Removing an object removes it from storage", storage.getObjects().contains(testObj));
+        assertFalse("Removing an object removes associated arrows", storage.getArrows().contains(testArr));
     }
     
 }

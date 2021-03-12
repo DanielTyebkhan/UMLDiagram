@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.List;
 
 import Document.ObjectClass;
+import View.DiagramMember;
 import View.DiagramPanel;
 import Document.Notable;
 
@@ -13,7 +14,7 @@ import Document.Notable;
 * are being drawn between.
 * @author Anhad Gande
 */
-public class ArrowBetweenActionListener extends Listener implements ActionListener {
+public class ArrowBetweenActionListener extends DiagramMember implements ActionListener {
 
 	JRadioButton betweenMethodsOrVar;
 	JRadioButton betweenNames;

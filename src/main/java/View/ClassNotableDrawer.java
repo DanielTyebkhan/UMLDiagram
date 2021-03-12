@@ -33,7 +33,7 @@ public class ClassNotableDrawer extends NotableDrawer {
      * @param height the height of the object
      */
     public ClassNotableDrawer(ObjectClass object, JPanel parent, int width, int height, DiagramPanel diagramPanel) {
-        super(object, new NotableCommand<ObjectClass>(object, Storage.instance::removeObject, Storage.instance::addObject), parent, width, height, diagramPanel);
+        super(object, new NotableCommand<ObjectClass>(object, diagramPanel.getStorage()::removeObject, diagramPanel.getStorage()::addObject), parent, width, height, diagramPanel);
         label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         
         JMenuItem newMethod = new JMenuItem(NEW_METHOD);

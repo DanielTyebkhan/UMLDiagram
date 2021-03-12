@@ -51,7 +51,7 @@ public class ArrowSelector extends JFrame {
 		
 		panel = new JPanel();
 
-		List<ObjectClass> objects = Storage.instance.getObjects();
+		List<ObjectClass> objects = diagramPanel.getStorage().getObjects();
 		ObjectClass[] objArray = new ObjectClass[objects.size()];
 		for (int i = 0; i < objects.size(); i++) {
 			objArray[i] = objects.get(i);

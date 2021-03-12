@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 
 import Document.Notable;
 import View.Arrows.ArrowSelector;
+import View.DiagramMember;
 import View.DiagramPanel;
 
 /**
  * A listener to add a arrow to the diagram
  * @author Anhad Gande
  */
-public class AddArrowListener extends Listener implements ActionListener {
+public class AddArrowListener extends DiagramMember implements ActionListener {
 
 	private Notable notable;
 
@@ -28,7 +29,7 @@ public class AddArrowListener extends Listener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        new ArrowSelector(notable, getPanel());
+        new ArrowSelector(notable, getDiagramPanel());
     }
 }
 

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 
 import Document.ObjectClass;
 import Document.Storage;
+import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;
 
@@ -12,7 +13,7 @@ import View.Commands.NotableCommand;
  * A listener to add a class to the diagram
  * @author Daniel Tyebkhan
  */
-public class RemoveClassListener extends Listener implements ActionListener {
+public class RemoveClassListener extends DiagramMember implements ActionListener {
     private ObjectClass object;
 
     public RemoveClassListener(DiagramPanel panel, ObjectClass object) {
@@ -25,7 +26,7 @@ public class RemoveClassListener extends Listener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        getPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(object, Storage.instance::removeObject, Storage.instance::addObject));
+        getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(object, getDiagramPanel().getStorage()::removeObject, getDiagramPanel().getStorage()::addObject));
     }
 }
 

@@ -36,7 +36,7 @@ public class ThemeSelectorFrame extends JFrame
         
         
         close = new JButton("Close");
-        // save.addActionListener(SaveThemeActionListener(setBorderColor(), getPanel());
+        // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
         panel.add(close);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));

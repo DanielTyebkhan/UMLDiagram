@@ -4,15 +4,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 import Filemanagement.Filechoose;
-
+import View.DiagramMember;
 import View.DiagramPanel;
 
 /**
  * Listener Class for Export File button
  * @author Sai Lyon Ho
  */
-public class ExportFileListener extends Listener implements MouseListener {
-    private Filechoose fchoose = new Filechoose();
+public class ExportFileListener extends DiagramMember implements MouseListener {
+    private Filechoose fchoose;
 
     /**
      * Constructs the listener
@@ -20,6 +20,7 @@ public class ExportFileListener extends Listener implements MouseListener {
      */
     public ExportFileListener(DiagramPanel panel){
         super(panel);
+        fchoose = new Filechoose(panel);
     }
 
     /**
@@ -29,7 +30,8 @@ public class ExportFileListener extends Listener implements MouseListener {
     public void mouseClicked(MouseEvent e) 
     {
         if (e.getButton() == MouseEvent.BUTTON1){
-            fchoose.ExportImg(getPanel());
+            fchoose.ExportImg(getDiagramPanel());
+            System.out.println("Clicked Open!");
         }
     }
     public void mouseEntered(MouseEvent e)

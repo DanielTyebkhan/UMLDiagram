@@ -4,13 +4,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import General.Command;
+import View.DiagramMember;
 import View.DiagramPanel;
 
 /**
  * Listener to execute a command
  * @author Daniel Tyebkhan 
  */
-public class CommandListener extends Listener implements ActionListener {
+public class CommandListener extends DiagramMember implements ActionListener {
     private Command remover;
 
     public CommandListener(DiagramPanel panel, Command remover) {
@@ -19,6 +20,6 @@ public class CommandListener extends Listener implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e) {
-        getPanel().getCommandHandler().executeCommand(remover);
+        getDiagramPanel().getCommandHandler().executeCommand(remover);
     }
 }

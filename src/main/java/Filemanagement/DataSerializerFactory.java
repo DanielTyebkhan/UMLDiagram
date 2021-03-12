@@ -1,15 +1,19 @@
 package Filemanagement;
 
+import Document.Storage;
+
 /**
  * Factory class for all DataSerialization
  * @author Lawson Wheatley
  */
 public class DataSerializerFactory{
+	Storage storage;
 
 	/**
 	* Constructor
 	*/
-	public DataSerializerFactory(){
+	public DataSerializerFactory(Storage storage){
+		this.storage = storage;
 	}
 	
 	/**
@@ -39,6 +43,6 @@ public class DataSerializerFactory{
 	* @return CGSerializer for factory
 	*/
 	private CGSerializer CG(){
-		return new CGSerializer();
+		return new CGSerializer(storage);
 	}
 }
