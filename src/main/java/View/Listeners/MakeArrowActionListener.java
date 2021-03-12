@@ -30,14 +30,14 @@ public class MakeArrowActionListener extends Listener implements ActionListener 
 
 	private JRadioButton betweenMethodsOrVar;
 
-	private JComboBox to;
-	private JComboBox toNonObjects;
+	private JComboBox<Notable> to;
+	private JComboBox<Notable> toNonObjects;
 
 	/**
      * Constructs the listener
      */
 
-	public MakeArrowActionListener(DiagramPanel diagramPanel, Notable notableFrom, JRadioButton subtype, JRadioButton delegation, JRadioButton containment, JRadioButton betweenMethodsOrVar, JComboBox to, JComboBox toNonObjects) {
+	public MakeArrowActionListener(DiagramPanel diagramPanel, Notable notableFrom, JRadioButton subtype, JRadioButton delegation, JRadioButton containment, JRadioButton betweenMethodsOrVar, JComboBox<Notable> to, JComboBox<Notable> toNonObjects) {
 		super(diagramPanel);
 		this.notableFrom = notableFrom;
 		this.subtype = subtype;

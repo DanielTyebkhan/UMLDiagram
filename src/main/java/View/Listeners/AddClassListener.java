@@ -13,17 +13,15 @@ import View.Commands.NotableCommand;
  * A listener to add a class to the diagram
  * @author Daniel Tyebkhan
  */
-public class AddClassListener implements ActionListener {
+public class AddClassListener extends Listener implements ActionListener {
     private static final String CLASS_NAME_PROMPT = "Enter Class Name";
     
-    private DiagramPanel parent;
-
     /**
      * Constructs the listener
      * @param parent the object to draw in
      */
     public AddClassListener(DiagramPanel parent) {
-        this.parent = parent;
+        super(parent);
     }
 
     /**
@@ -31,9 +29,9 @@ public class AddClassListener implements ActionListener {
      * @param e the trigger
      */
     public void actionPerformed(ActionEvent e) {
-        String name = JOptionPane.showInputDialog(parent, CLASS_NAME_PROMPT);
+        String name = JOptionPane.showInputDialog(getPanel(), CLASS_NAME_PROMPT);
         if (name != null && !name.equals(""))
-            parent.getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(new ObjectClass(name, parent.getClickLocation()), Storage.instance::addObject, Storage.instance::removeObject));
+            getPanel().getCommandHandler().executeCommand(new NotableCommand<ObjectClass>(new ObjectClass(name, getPanel().getClickLocation()), Storage.instance::addObject, Storage.instance::removeObject));
     }
 }
 

@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
-import java.util.function.Consumer;
 
 import Document.Notable;
 import General.Command;

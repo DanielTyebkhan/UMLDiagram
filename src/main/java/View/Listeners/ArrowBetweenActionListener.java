@@ -1,34 +1,31 @@
 package View.Listeners;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
-import java.util.ArrayList;
 
 import Document.ObjectClass;
-import Document.Storage;
+import View.DiagramPanel;
 import Document.Notable;
-import Document.Arrow;
-import Document.ArrowType;
 
 /**
 * Defines action listener for JRadio Buttons that decide what the arrow
 * are being drawn between.
 * @author Anhad Gande
 */
-public class ArrowBetweenActionListener implements ActionListener {
+public class ArrowBetweenActionListener extends Listener implements ActionListener {
 
 	JRadioButton betweenMethodsOrVar;
 	JRadioButton betweenNames;
 
-	JComboBox to;
-	JComboBox toNonObjects;
+	JComboBox<Notable> to;
+	JComboBox<Notable> toNonObjects;
 
 	/**
      * Constructs the listener
      */
-	public ArrowBetweenActionListener(JRadioButton betweenMethodsOrVar, JRadioButton betweenNames, JComboBox to, JComboBox toNonObjects) {
+	public ArrowBetweenActionListener(JRadioButton betweenMethodsOrVar, JRadioButton betweenNames, JComboBox<Notable> to, JComboBox<Notable> toNonObjects, DiagramPanel diagramPanel) {
+		super(diagramPanel);
 		this.betweenMethodsOrVar = betweenMethodsOrVar;
 		this.betweenNames = betweenNames;
 		this.to = to;

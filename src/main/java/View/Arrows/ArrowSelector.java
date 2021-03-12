@@ -30,9 +30,8 @@ public class ArrowSelector extends JFrame {
 	private final static String TEXT_TO = "To?";
 	private final static String ARROW_TYPES = "Arrow Types";
 
-	private JComboBox to;
-	private JComboBox toNonObjects;
-	private Notable notableFrom;
+	private JComboBox<Notable> to;
+	private JComboBox<Notable> toNonObjects;
 	private JRadioButton betweenNames;
 	private JRadioButton betweenMethodsOrVar;
 
@@ -52,7 +51,6 @@ public class ArrowSelector extends JFrame {
 	*/
 	public ArrowSelector(Notable notableFrom, DiagramPanel diagramPanel) {
 		super(FRAME_NAME);
-		this.notableFrom = notableFrom;
 		
 		panel = new JPanel();
 
@@ -66,8 +64,8 @@ public class ArrowSelector extends JFrame {
 		source.setEditable(false);
 
 
-		to = new JComboBox(objArray);
-		toNonObjects = new JComboBox();
+		to = new JComboBox<Notable>(objArray);
+		toNonObjects = new JComboBox<Notable>();
 
 		refresh = new JButton(REFRESH);
 		makeArrow = new JButton(MAKE_ARROW);
@@ -88,8 +86,8 @@ public class ArrowSelector extends JFrame {
 		groupArrowBetween.add(betweenNames);
 		groupArrowBetween.add(betweenMethodsOrVar);
 
-		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
-		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
+		betweenNames.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects, diagramPanel));
+		betweenMethodsOrVar.addActionListener(new ArrowBetweenActionListener(betweenMethodsOrVar, betweenNames, to, toNonObjects, diagramPanel));
 
 		refresh.addActionListener(new RefreshListener(betweenMethodsOrVar, betweenNames, to, toNonObjects));
 		makeArrow.addActionListener(new MakeArrowActionListener(diagramPanel, notableFrom, subtype, delegation, containment, betweenMethodsOrVar, to, toNonObjects));

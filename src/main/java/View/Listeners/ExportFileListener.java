@@ -11,8 +11,7 @@ import View.DiagramPanel;
  * Listener Class for Export File button
  * @author Sai Lyon Ho
  */
-public class ExportFileListener implements MouseListener {
-    private DiagramPanel panel;
+public class ExportFileListener extends Listener implements MouseListener {
     private Filechoose fchoose = new Filechoose();
 
     /**
@@ -20,7 +19,7 @@ public class ExportFileListener implements MouseListener {
      * @param panel the panel to listen on
      */
     public ExportFileListener(DiagramPanel panel){
-        this.panel = panel;
+        super(panel);
     }
 
     /**
@@ -30,7 +29,7 @@ public class ExportFileListener implements MouseListener {
     public void mouseClicked(MouseEvent e) 
     {
         if (e.getButton() == MouseEvent.BUTTON1){
-            fchoose.ExportImg(panel);
+            fchoose.ExportImg(getPanel());
             System.out.println("Clicked Open!");
         }
     }
