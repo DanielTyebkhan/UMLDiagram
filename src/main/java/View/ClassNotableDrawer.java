@@ -9,7 +9,6 @@ import View.Commands.NotableCommand;
 import View.Listeners.AddNotableListener;
 import View.Theme.ThemeSelectorListener;
 import Document.ObjectClass;
-import Document.Storage;
 
 /**
  * Draws a class name

@@ -139,12 +139,10 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 			toDraw.draw();
 			incrementHeight();
 			for (ArrowDrawer arrow : arrows) {
-				if (arrow.getArrow().getFrom().equals(toDraw.getNotable())) {
-					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, incHeight - (1/4) * HEIGHT + (int)clicked.getY()));
-				}
-				if (arrow.getArrow().getTo().equals(toDraw.getNotable())) {
-					arrow.setToPosition(new Point((int)clicked.getX(), incHeight - (1/4) * HEIGHT + (int)clicked.getY()));
-				}
+				if (arrow.getArrow().getFrom().equals(toDraw.getNotable())) 
+					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, (int)clicked.getY()));
+				if (arrow.getArrow().getTo().equals(toDraw.getNotable())) 
+					arrow.setToPosition(new Point((int)clicked.getX(), (int)clicked.getY()));
 			}
 		}
 	}
