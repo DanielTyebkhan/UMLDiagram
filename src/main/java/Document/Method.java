@@ -7,11 +7,11 @@ public class Method extends Notable {
 
 	public Method(String name, ArrayList<String> parameters) {
 		super(name);
-		this.parameters = new ArrayList(parameters);
+		this.parameters = new ArrayList<String>(parameters);
 	} 
 
 	public ArrayList<String> getParameters() {
-		return new ArrayList(parameters);
+		return new ArrayList<String>(parameters);
 	}
 
 	public void addParameter(String name, int index) {

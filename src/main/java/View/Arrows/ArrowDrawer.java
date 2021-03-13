@@ -2,7 +2,6 @@ package View.Arrows;
 
 import java.awt.Point;
 import java.awt.Polygon;
-import javax.swing.JPanel;
 import java.awt.Graphics;
 
 import Document.Arrow;
@@ -83,6 +82,8 @@ public abstract class ArrowDrawer {
      * @param g the graphics to draw with
      */
     public void drawArrow(Graphics g) {
+        System.out.println("From: " + fromPos);
+        System.out.println("To: " + toPos);
         g.setColor(ThemeObject.theme.getArrowColor());
         drawBody(g);
         drawHead(g);
