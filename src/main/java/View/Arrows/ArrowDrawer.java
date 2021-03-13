@@ -82,8 +82,6 @@ public abstract class ArrowDrawer {
      * @param g the graphics to draw with
      */
     public void drawArrow(Graphics g) {
-        System.out.println("From: " + fromPos);
-        System.out.println("To: " + toPos);
         g.setColor(ThemeObject.theme.getArrowColor());
         drawBody(g);
         drawHead(g);
