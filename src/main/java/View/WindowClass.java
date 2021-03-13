@@ -13,37 +13,26 @@ import javax.swing.*;
 */
 public class WindowClass extends JPanel{
 	private static final int SIZE = 500;
-	private ArrayList<Tab> tabs;
-	private Tab currentTab;
+	private JTabbedPane tabPane;
 
 	/**
 	 * Constructs frame of WindowClass where MenuPanel and 
 	 * DiagramPanel are instantiated   
 	 */
 	public WindowClass() {
-		tabs = new ArrayList<Tab>();
-		addTab(new Tab("Diagram1", new DiagramPanel()));
-		currentTab = tabs.get(0);
-
 		JFrame frame = new JFrame("Build Your Diagram!");
-		JPanel contentPanel = new JPanel(new BorderLayout());
-		contentPanel.add(getCurrentDiagram(), BorderLayout.CENTER);
-		// diagramPanel.repaint();
-
+		tabPane = new JTabbedPane();
+		tabPane.addTab("Diagram1", new DiagramPanel());
 		
 		new MenuPanel(frame, getCurrentDiagram());
 
-		frame.add(BorderLayout.CENTER, contentPanel);
+		frame.add(BorderLayout.CENTER, tabPane);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(SIZE, SIZE);
 		frame.setVisible(true); 
 		// SwingUtilities.updateComponentTreeUI(frame);
 	}
 
-
-	public void addTab(Tab tab) {
-		tabs.add(tab);
-	}
 
 	/**
 	 * Main method (for running program!)
@@ -54,10 +43,6 @@ public class WindowClass extends JPanel{
 	}  
 
 	public DiagramPanel getCurrentDiagram() {
-		return currentTab.getDiagramPanel();
-	}
-
-	public void setCurrentTab(Tab tab) {
-		currentTab = tab;
+		return (DiagramPanel)tabPane.getSelectedComponent();
 	}
 }
