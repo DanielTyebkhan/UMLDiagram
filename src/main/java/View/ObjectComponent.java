@@ -29,7 +29,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 
 	private int clickX;
 	private int clickY;
-	private int incHeight = 0;
+	private int currHeight;
 	private boolean dragging;
 	private Point oldPosition;
 
@@ -45,6 +45,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 	public ObjectComponent(DiagramPanel parent, ObjectClass obj) {
 		super(parent);
 		this.obj = obj;
+		currHeight = 0;
 		oldPosition = obj.getPosition();
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -125,7 +126,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 	 * Increments the height of the object
 	 */
 	private void incrementHeight() {
-		incHeight += HEIGHT;
+		currHeight += HEIGHT;
 	}
 
 	/**
@@ -140,9 +141,9 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 			incrementHeight();
 			for (ArrowDrawer arrow : arrows) {
 				if (arrow.getArrow().getFrom().equals(toDraw.getNotable())) 
-					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, (int)clicked.getY()));
+					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, currHeight + (int)clicked.getY()));
 				if (arrow.getArrow().getTo().equals(toDraw.getNotable())) 
-					arrow.setToPosition(new Point((int)clicked.getX(), (int)clicked.getY()));
+					arrow.setToPosition(new Point((int)clicked.getX(), currHeight + (int)clicked.getY()));
 			}
 		}
 	}
@@ -153,6 +154,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 	 * @param arrows arrows to associate with parts of the component
 	 */
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
+		currHeight = 0;
 		panel.removeAll();
 		Point clicked = obj.getPosition();
 		updateLabels();
