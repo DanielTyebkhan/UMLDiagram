@@ -24,7 +24,7 @@ public class WindowClass extends JPanel{
 		tabPane = new JTabbedPane();
 		tabPane.addTab("Diagram1", new DiagramPanel());
 		
-		new MenuPanel(frame, getCurrentDiagram());
+		new MenuPanel(frame, this);
 
 		frame.add(BorderLayout.CENTER, tabPane);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

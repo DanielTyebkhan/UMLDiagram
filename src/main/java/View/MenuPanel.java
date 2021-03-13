@@ -22,12 +22,13 @@ public class MenuPanel extends JComponent {
      * Constructs the MenuPanel positioned at the top of the frame
      * @param frame a JFrame passed from WindowClass to position the MenuPanel
      */
-    public MenuPanel(JFrame frame, DiagramPanel diagramPanel)
+    public MenuPanel(JFrame frame, WindowClass window)
     {   
+
         menuBar = new JMenuBar();
-        open(diagramPanel);
-        saveAs(diagramPanel);
-        export(diagramPanel);
+        open(window);
+        saveAs(window);
+        export(window);
         changeTheme();
         //undo(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
@@ -37,39 +38,39 @@ public class MenuPanel extends JComponent {
      * Constructs open button that allows user to choose which file 
      * to keep working on by using JFileChooser
      */
-    public void open(DiagramPanel panel)
+    public void open(WindowClass window)
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
-        m.addMouseListener(new OpenFileListener(panel));
+        m.addMouseListener(new OpenFileListener(window.getCurrentDiagram()));
     } 
 
-    public void undo(DiagramPanel panel) {
+    public void undo(WindowClass window) {
         JMenu m = new JMenu("Undo");
         menuBar.add(m);
-        m.addActionListener(new UndoListener(panel));
+        m.addActionListener(new UndoListener(window.getCurrentDiagram()));
     }
 
     /**
      * Constructs export button that allows user to export and convert
      * file to JPEG 
      */
-    public void export(DiagramPanel diagramPanel)
+    public void export(WindowClass window)
     {
         JMenu m = new JMenu("Export");
         menuBar.add(m);
-        m.addMouseListener(new ExportFileListener(diagramPanel));
+        m.addMouseListener(new ExportFileListener(window.getCurrentDiagram()));
     }
 
     /**
      * Constructs save button that allows user to save the current project
      * by using the JFileChooser
      */
-    public void saveAs(DiagramPanel diagramPanel)
+    public void saveAs(WindowClass window)
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
-        m.addMouseListener(new SaveFileListener(diagramPanel));
+        m.addMouseListener(new SaveFileListener(window.getCurrentDiagram()));
     }
 
     public void changeTheme()
