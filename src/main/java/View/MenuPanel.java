@@ -1,6 +1,7 @@
 package View;
 
 import View.Listeners.OpenFileListener;
+import View.Listeners.AddDiagramListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
 import View.Theme.ThemeSelectorMouseListener;
@@ -17,6 +18,7 @@ import javax.swing.*;
 */
 public class MenuPanel extends JComponent {
     private JMenuBar menuBar;
+    private WindowClass window;
     
     /**
      * Constructs the MenuPanel positioned at the top of the frame
@@ -24,28 +26,35 @@ public class MenuPanel extends JComponent {
      */
     public MenuPanel(JFrame frame, WindowClass window)
     {   
-
+        this.window = window;
         menuBar = new JMenuBar();
-        open(window);
-        saveAs(window);
-        export(window);
+        open();
+        saveAs();
+        export();
         changeTheme();
+        addPanel();
         //undo(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
+    }
+
+    public void addPanel() {
+        JMenu m = new JMenu("New Diagram"); 
+        m.addMouseListener(new AddDiagramListener(window));
+        menuBar.add(m);
     }
 
     /**
      * Constructs open button that allows user to choose which file 
      * to keep working on by using JFileChooser
      */
-    public void open(WindowClass window)
+    public void open()
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
         m.addMouseListener(new OpenFileListener(window.getCurrentDiagram()));
     } 
 
-    public void undo(WindowClass window) {
+    public void undo() {
         JMenu m = new JMenu("Undo");
         menuBar.add(m);
         m.addActionListener(new UndoListener(window.getCurrentDiagram()));
@@ -55,7 +64,7 @@ public class MenuPanel extends JComponent {
      * Constructs export button that allows user to export and convert
      * file to JPEG 
      */
-    public void export(WindowClass window)
+    public void export()
     {
         JMenu m = new JMenu("Export");
         menuBar.add(m);
@@ -66,7 +75,7 @@ public class MenuPanel extends JComponent {
      * Constructs save button that allows user to save the current project
      * by using the JFileChooser
      */
-    public void saveAs(WindowClass window)
+    public void saveAs()
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
