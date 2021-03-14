@@ -138,14 +138,28 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 		Point clicked = obj.getPosition();
 		for (NotableDrawer toDraw : list) {
 			toDraw.draw();
-			incrementHeight();
+			int arrowsTo = countArrowsTo(toDraw.getNotable(), arrows);
+			int arrowHeight = HEIGHT / (arrowsTo + 1);
+			int heightPos = arrowHeight;
 			for (ArrowDrawer arrow : arrows) {
 				if (arrow.getArrow().getFrom().equals(toDraw.getNotable())) 
-					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, currHeight + (int)clicked.getY() - (int)(0.5*HEIGHT)));
-				if (arrow.getArrow().getTo().equals(toDraw.getNotable())) 
-					arrow.setToPosition(new Point((int)clicked.getX(), currHeight + (int)clicked.getY() - (int)(0.5*HEIGHT)));
+					arrow.setFromPosition(new Point((int)clicked.getX() + WIDTH, currHeight + (int)clicked.getY() + (int)(0.5*HEIGHT)));
+				if (arrow.getArrow().getTo().equals(toDraw.getNotable())) {
+					arrow.setToPosition(new Point((int)clicked.getX(), currHeight + (int)clicked.getY() + heightPos));
+					heightPos += arrowHeight;
+				}
 			}
+			incrementHeight();
 		}
+	}
+
+	private int countArrowsTo(Notable notable, List<ArrowDrawer> arrows) {
+		int count = 0;
+		for (ArrowDrawer drawer : arrows) {	
+			if (drawer.getArrow().getTo().equals(notable)) 
+				++count;
+		}
+		return count;
 	}
 
 	/**
