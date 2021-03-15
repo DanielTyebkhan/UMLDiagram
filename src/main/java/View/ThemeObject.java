@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Document.ObjectClass;
 import Document.Storage;
+import View.DiagramPanel;
 
 import java.awt.*;
 
@@ -15,7 +16,7 @@ import java.awt.*;
  *  
  * @author Sai Lyon Ho
  */
-public class ThemeObject extends JFrame 
+public class ThemeObject extends DiagramPanel 
 {
     public static ThemeObject theme = new ThemeObject();
 
@@ -35,12 +36,12 @@ public class ThemeObject extends JFrame
 
 	private JComboBox font;
 
-    public ThemeObject() 
-    {
+    public ThemeObject(){
         setClassColor();
         setBorderColor();
         setDiagramColor();
         setArrowColor();
+        update();
     }
 
     public ColorChooserButton setClassColor() 
@@ -85,5 +86,5 @@ public class ThemeObject extends JFrame
     {
         return arrowColorChooser.getSelectedColor();
     }
-    
+
 }
