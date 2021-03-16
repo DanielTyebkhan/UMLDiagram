@@ -44,6 +44,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * Constructs a diagram panel
      */
     public DiagramPanel() {
+        ThemeManager.instance.attachObserver(this);
         storage = new Storage();
         storage.attachObserver(this);
         commandHandler = new CommandHandler();
