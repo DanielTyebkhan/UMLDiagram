@@ -57,6 +57,22 @@ public class ThemeManager implements Subject {
         return currentTheme;
     }
 
+    public Color getDiagramColor() {
+        return currentTheme.getDiagramColor();
+    }
+
+    public Color getBorderColor() {
+        return currentTheme.getBorderColor();
+    }
+
+    public Color getArrowColor() {
+        return currentTheme.getArrowColor();
+    }
+
+    public Color getClassColor() {
+        return currentTheme.getClassColor();
+    }
+
     @Override
     public void attachObserver(Observer obs) {
         observers.add(obs);
