@@ -5,10 +5,10 @@ import java.awt.Color;
 public class DarkTheme extends ThemeObject {
     public DarkTheme() {
         type = ThemeType.DARK;
-        classColor = Color.BLACK;
-        diagramColor = Color.WHITE;
-        arrowColor = Color.BLACK;
-        borderColor = Color.BLACK;
+        classColor = Color.decode("#BDBDBD");
+        diagramColor = Color.decode("#212121");
+        arrowColor = Color.decode("#FF9800");
+        borderColor = Color.decode("#BDBDBD");
     }
 
     @Override 
