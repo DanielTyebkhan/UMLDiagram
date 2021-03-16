@@ -29,12 +29,6 @@ public class ThemeSelectorFrame extends JFrame
         super(FRAME_NAME);
         panel = new JPanel();
 
-        panel.add(ThemeObject.theme.setClassColor());
-        panel.add(ThemeObject.theme.setBorderColor());
-        panel.add(ThemeObject.theme.setDiagramColor());
-        panel.add(ThemeObject.theme.setArrowColor());
-        
-        
         close = new JButton("Close");
         // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
         panel.add(close);

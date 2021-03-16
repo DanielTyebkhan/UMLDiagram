@@ -225,7 +225,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 			getDiagramPanel().getCommandHandler().executeCommand(new DragCommand(obj, oldPosition));
 			dragging = false;
 		}
-		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
+		panel.setBorder(BorderFactory.createLineBorder(ThemeManager.instance.getBorderColor()));
 	}
 
 	/**

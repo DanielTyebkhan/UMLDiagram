@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.awt.Graphics;
 
 import Document.Arrow;
+import View.ThemeManager;
 import View.ThemeObject;
 
 /**
@@ -82,7 +83,7 @@ public abstract class ArrowDrawer {
      * @param g the graphics to draw with
      */
     public void drawArrow(Graphics g) {
-        g.setColor(ThemeObject.theme.getArrowColor());
+        g.setColor(ThemeManager.instance.getArrowColor());
         drawBody(g);
         drawHead(g);
     }

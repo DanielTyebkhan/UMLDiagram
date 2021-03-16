@@ -13,6 +13,10 @@ public abstract class ThemeObject implements Cloneable{
     private Color diagramColor;
     private Color arrowColor;
 
+    public Object clone() {
+        return null;
+    }
+
     public boolean isType(ThemeType type) {
         return this.type.equals(type);
     }

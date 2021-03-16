@@ -19,7 +19,6 @@ public class ThemeManager implements Subject {
     private ThemeManager() {
         observers = new ArrayList<Observer>();
         themes = new ArrayList<ThemeObject>();
-        Construct and add default themes
         currentTheme = themes.get(0);
     }
 
