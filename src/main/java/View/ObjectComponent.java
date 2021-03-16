@@ -50,8 +50,8 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-		panel.setBackground(ThemeObject.theme.getClassColor());
-		panel.setBorder(BorderFactory.createLineBorder(ThemeObject.theme.getBorderColor()));
+		panel.setBackground(ThemeManager.instance.getClassColor());
+		panel.setBorder(BorderFactory.createLineBorder(ThemeManager.instance.getBorderColor()));
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 
