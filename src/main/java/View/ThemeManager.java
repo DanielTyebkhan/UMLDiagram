@@ -32,8 +32,12 @@ public class ThemeManager implements Subject {
      * Gets available themes
      * @return a list of available themes
      */
-    public List<ThemeObject> getThemes() {
-        return new ArrayList<ThemeObject>(themes);
+    public ThemeObject[] getThemes() {
+        ThemeObject[] toReturn = new ThemeObject[themes.size()];
+        for (int i = 0; i < themes.size(); ++i) {
+            toReturn[i] = themes.get(i);
+        }
+        return toReturn;
     }
 
     public void setTheme(ThemeObject toSet) {
