@@ -34,6 +34,7 @@ public class ThemeSelectorFrame extends JFrame
         ColorChooserButton borderColor  = new ColorChooserButton(ThemeManager.instance.getBorderColor(), "Border Color", ThemeManager.instance::setBorderColor);
         ColorChooserButton arrowColor   = new ColorChooserButton(ThemeManager.instance.getArrowColor(), "Arrow Color", ThemeManager.instance::setArrowColor);
         JComboBox<ThemeObject> themesCombo = new JComboBox<ThemeObject>(ThemeManager.instance.getThemes());
+        themesCombo.addItemListener(new ThemeItemChangeListener());
 
         panel.add(themesCombo);
         panel.add(diagramColor);

@@ -45,6 +45,7 @@ public class ThemeManager implements Subject {
             if (theme.isType(toSet.getType()))
                 currentTheme = theme;
         }
+        notifyObservers();
     }
 
     private ThemeObject cloneCurrent() {
