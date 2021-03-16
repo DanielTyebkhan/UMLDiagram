@@ -30,8 +30,14 @@ public class ThemeSelectorFrame extends JFrame
         panel = new JPanel();
 
         ColorChooserButton diagramColor = new ColorChooserButton(ThemeManager.instance.getDiagramColor(), "Diagram Color", ThemeManager.instance::setDiagramColor);
+        ColorChooserButton classColor   = new ColorChooserButton(ThemeManager.instance.getClassColor(), "Class Color", ThemeManager.instance::setClassColor);
+        ColorChooserButton borderColor  = new ColorChooserButton(ThemeManager.instance.getBorderColor(), "Border Color", ThemeManager.instance::setBorderColor);
+        ColorChooserButton arrowColor   = new ColorChooserButton(ThemeManager.instance.getArrowColor(), "Arrow Color", ThemeManager.instance::setArrowColor);
 
         panel.add(diagramColor);
+        panel.add(classColor);
+        panel.add(borderColor);
+        panel.add(arrowColor);
         close = new JButton("Close");
         // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
         panel.add(close);
