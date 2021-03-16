@@ -57,7 +57,7 @@ public class MenuPanel extends JComponent {
     public void undo() {
         JMenu m = new JMenu("Undo");
         menuBar.add(m);
-        m.addActionListener(new UndoListener(window.getCurrentDiagram()));
+        m.addActionListener(new UndoListener(window));
     }
 
     /**
@@ -68,7 +68,7 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Export");
         menuBar.add(m);
-        m.addMouseListener(new ExportFileListener(window.getCurrentDiagram()));
+        m.addMouseListener(new ExportFileListener(window));
     }
 
     /**

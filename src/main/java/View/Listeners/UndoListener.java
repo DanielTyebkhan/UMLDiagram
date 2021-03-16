@@ -2,20 +2,20 @@ package View.Listeners;
 
 import java.awt.event.ActionListener;
 
-import View.DiagramMember;
-import View.DiagramPanel;
+import View.WindowClass;
 
 import java.awt.event.ActionEvent;
 
-public class UndoListener extends DiagramMember implements ActionListener {
+public class UndoListener implements ActionListener {
+    public WindowClass window;
 
-    public UndoListener(DiagramPanel panel) {
-        super(panel);
+    public UndoListener(WindowClass window) {
+        this.window = window;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        getDiagramPanel().getCommandHandler().undo();
+        window.getCurrentDiagram().getCommandHandler().undo();
     }
     
 }
