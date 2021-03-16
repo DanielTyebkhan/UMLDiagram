@@ -5,19 +5,20 @@ import java.awt.event.MouseEvent;
 import Filemanagement.Filechoose;
 import View.DiagramMember;
 import View.DiagramPanel;
+import View.WindowClass;
 
 
 /**
  * Opens a file when the button is clicked
  * @author Sai Lyon Ho
  */
-public class OpenFileListener extends DiagramMember implements MouseListener {
-	public OpenFileListener(DiagramPanel panel) {
-		super(panel);
+public class OpenFileListener implements MouseListener {
+	WindowClass window; 
+
+	public OpenFileListener(WindowClass window) {
+		this.window = window;		
 	}
 
-	private Filechoose fchoose = new Filechoose(getDiagramPanel());
-	
 	/**
 	 * Handles Mouse event: clicked
 	 * @param MouseEvent e
@@ -25,7 +26,7 @@ public class OpenFileListener extends DiagramMember implements MouseListener {
 	public void mouseClicked(MouseEvent e) 
 	{
 		if (e.getButton() == MouseEvent.BUTTON1){
-			fchoose.LoadFile();
+			new Filechoose(window.getCurrentDiagram()).LoadFile();
 		}
 	}
 

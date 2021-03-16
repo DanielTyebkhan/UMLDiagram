@@ -51,7 +51,7 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Open");
         menuBar.add(m);
-        m.addMouseListener(new OpenFileListener(window.getCurrentDiagram()));
+        m.addMouseListener(new OpenFileListener(window));
     } 
 
     public void undo() {
