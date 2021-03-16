@@ -24,6 +24,7 @@ public class ThemeManager implements Subject {
         observers = new ArrayList<Observer>();
         themes = new ArrayList<ThemeObject>(); 
         themes.add(new DarkTheme());
+        themes.add(new LightTheme());
         currentTheme = themes.get(0);
     }
 
