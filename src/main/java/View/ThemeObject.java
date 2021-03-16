@@ -7,11 +7,11 @@ import java.awt.Color;
  * @author Sai Lyon Ho
  */
 public abstract class ThemeObject implements Cloneable{
-    private ThemeType type;
-    private Color classColor;
-    private Color borderColor;
-    private Color diagramColor;
-    private Color arrowColor;
+    protected ThemeType type;
+    protected Color classColor;
+    protected Color borderColor;
+    protected Color diagramColor;
+    protected Color arrowColor;
 
     public Object clone() {
         return null;
