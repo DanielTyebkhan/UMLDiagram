@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,8 +18,10 @@ import javax.swing.JColorChooser;
 public class ColorChooserButton extends JButton {
     
     private Color current;
+    private Consumer<Color> setter;
 
-    public ColorChooserButton(Color c, String label) {
+    public ColorChooserButton(Color c, String label, Consumer<Color> setter) {
+        this.setter = setter;
         setSelectedColor(c); 
         setText(label);
         setSize(new Dimension(200, 200));
@@ -54,6 +57,7 @@ public class ColorChooserButton extends JButton {
                 l.colorChanged(newColor);
             }
         }
+        setter.accept(current);
     }
 
     public static interface ColorChangedListener {

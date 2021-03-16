@@ -49,20 +49,24 @@ public class ThemeManager implements Subject {
     public void setClassColor(Color color) {
         currentTheme = cloneCurrent();
         currentTheme.setClassColor(color);
+        notifyObservers();
     }
 
     public void setBorderColor(Color color) {
         currentTheme = cloneCurrent();
         currentTheme.setBorderColor(color);
+        notifyObservers();
     }
     
     public void setArrowColor(Color color) {
         currentTheme = cloneCurrent();
         currentTheme.setArrowColor(color);
+        notifyObservers();
     }
     public void setDiagramColor(Color color) {
         currentTheme = cloneCurrent();
         currentTheme.setDiagramColor(color);
+        notifyObservers();
     }
 
     public ThemeObject getTheme() {

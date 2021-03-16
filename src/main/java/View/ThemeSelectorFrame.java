@@ -29,6 +29,9 @@ public class ThemeSelectorFrame extends JFrame
         super(FRAME_NAME);
         panel = new JPanel();
 
+        ColorChooserButton diagramColor = new ColorChooserButton(ThemeManager.instance.getDiagramColor(), "Diagram Color", ThemeManager.instance::setDiagramColor);
+
+        panel.add(diagramColor);
         close = new JButton("Close");
         // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
         panel.add(close);
