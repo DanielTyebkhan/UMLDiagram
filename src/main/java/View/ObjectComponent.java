@@ -50,8 +50,6 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
-		panel.setBackground(ThemeManager.instance.getClassColor());
-		panel.setBorder(BorderFactory.createLineBorder(ThemeManager.instance.getBorderColor()));
 		panel.addMouseListener(this);
 		panel.addMouseMotionListener(this);
 
@@ -168,6 +166,8 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 	 * @param arrows arrows to associate with parts of the component
 	 */
 	public void drawShape(JPanel reference, List<ArrowDrawer> arrows) {
+		panel.setBackground(ThemeManager.instance.getClassColor());
+		panel.setBorder(BorderFactory.createLineBorder(ThemeManager.instance.getBorderColor()));
 		currHeight = 0;
 		panel.removeAll();
 		Point clicked = obj.getPosition();
