@@ -75,7 +75,6 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.setBackground(ThemeObject.theme.getDiagramColor());
-        //requestFocus();
         addComponents();
         removeClasses();
         removeAll();
