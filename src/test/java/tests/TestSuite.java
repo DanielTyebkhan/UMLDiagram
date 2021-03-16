@@ -10,6 +10,7 @@ import org.junit.runners.Suite;
     ArrowTest.class,
     NotableTest.class,
     StorageTest.class,
+    DiagramPanelTests.class
 })
 
 public class TestSuite {
