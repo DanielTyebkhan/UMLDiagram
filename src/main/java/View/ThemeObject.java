@@ -16,7 +16,7 @@ import java.awt.*;
  *  
  * @author Sai Lyon Ho
  */
-public abstract class ThemeObject{
+public abstract class ThemeObject implements Cloneable{
     private Color classColor;
     private Color borderColor;
     private Color diagramColor;
