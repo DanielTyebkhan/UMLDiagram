@@ -79,7 +79,7 @@ public class MenuPanel extends JComponent {
     {
         JMenu m = new JMenu("Save As");
         menuBar.add(m);
-        m.addMouseListener(new SaveFileListener(window.getCurrentDiagram()));
+        m.addMouseListener(new SaveFileListener(window));
     }
 
     public void changeTheme()
