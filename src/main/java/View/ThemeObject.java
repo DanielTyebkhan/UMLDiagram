@@ -22,10 +22,6 @@ public abstract class ThemeObject{
     private Color diagramColor;
     private Color arrowColor;
 
-    public ThemeObject() {
-        
-    }
-
     public Color getClassColor(){
         return classColor;
     }
