@@ -57,6 +57,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         this.setLayout(null);
         components = new ArrayList<ObjectComponent>();
         arrowDrawers = new ArrayList<ArrowDrawer>();
+        requestFocus();
     }
 
     public CommandHandler getCommandHandler() {
@@ -74,7 +75,7 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.setBackground(ThemeObject.theme.getDiagramColor());
-        requestFocus();
+        //requestFocus();
         addComponents();
         removeClasses();
         removeAll();
