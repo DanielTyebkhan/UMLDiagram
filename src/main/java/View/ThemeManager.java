@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import General.Observer;
 import General.Subject;
@@ -22,6 +23,10 @@ public class ThemeManager implements Subject {
             add(new DarkTheme());
         }};
         currentTheme = themes.get(0);
+    }
+
+    public List<ThemeObject> getThemes() {
+        return new ArrayList<ThemeObject>(themes);
     }
 
     public void setTheme(ThemeType type) {
