@@ -48,5 +48,6 @@ public class WindowClass extends JPanel{
 
 	public void addDiagram(String name, DiagramPanel dPanel) {
 		tabPane.addTab(name, dPanel);
+		tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
 	}
 }
