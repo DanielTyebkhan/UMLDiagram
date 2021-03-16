@@ -1,8 +1,14 @@
 package View;
 
+import java.util.ArrayList;
+
 import General.Observer;
 import General.Subject;
 
+/**
+ * Manages the program's global theme settings
+ * @author Daniel Tyebkhan
+ */
 public class ThemeManager implements Cloneable, Subject {
     public static ThemeManager instance = new ThemeManager();
     private ArrayList<Observer> observers;
