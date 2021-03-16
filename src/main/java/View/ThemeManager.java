@@ -19,15 +19,15 @@ public class ThemeManager implements Subject {
     private ThemeManager() {
         observers = new ArrayList<Observer>();
         themes = new ArrayList<ThemeObject>();
-        // Construct and add default themes
-        // currentTheme = themes.get(0);
+        Construct and add default themes
+        currentTheme = themes.get(0);
     }
 
     public void setTheme(ThemeType type) {
-        // for (ThemeObject theme : themes) {
-        //     if (theme.isType(type))
-        //         currentTheme = theme;
-        // }
+        for (ThemeObject theme : themes) {
+            if (theme.isType(type))
+                currentTheme = theme;
+        }
     }
 
     private ThemeObject cloneCurrent() {
