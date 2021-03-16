@@ -11,6 +11,11 @@ public class DarkTheme extends ThemeObject {
         borderColor = Color.decode("#BDBDBD");
     }
 
+    @Override
+    public String toString() {
+        return "Dark";
+    }
+
     @Override 
     public Object clone() {
         DarkTheme clone = new DarkTheme();
