@@ -17,6 +17,9 @@ public class ThemeManager implements Subject {
     private ThemeObject currentTheme;
     private ArrayList<ThemeObject> themes;
 
+    /**
+     * Constructs a theme manager
+     */
     private ThemeManager() {
         observers = new ArrayList<Observer>();
         themes = new ArrayList<ThemeObject>() {{
@@ -25,13 +28,17 @@ public class ThemeManager implements Subject {
         currentTheme = themes.get(0);
     }
 
+    /**
+     * Gets available themes
+     * @return a list of available themes
+     */
     public List<ThemeObject> getThemes() {
         return new ArrayList<ThemeObject>(themes);
     }
 
-    public void setTheme(ThemeType type) {
+    public void setTheme(ThemeObject toSet) {
         for (ThemeObject theme : themes) {
-            if (theme.isType(type))
+            if (theme.isType(toSet.getType()))
                 currentTheme = theme;
         }
     }

@@ -20,6 +20,10 @@ public abstract class ThemeObject implements Cloneable{
     public boolean isType(ThemeType type) {
         return this.type.equals(type);
     }
+
+    public ThemeType getType() {
+        return type;
+    }
     public Color getClassColor(){
         return classColor;
     }
