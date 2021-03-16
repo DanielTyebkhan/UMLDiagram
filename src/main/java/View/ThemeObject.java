@@ -2,16 +2,6 @@ package View;
 
 import java.awt.Color;
 
-import javax.swing.*;
-import java.util.List;
-import java.util.ArrayList;
-
-import Document.ObjectClass;
-import Document.Storage;
-import View.DiagramPanel;
-
-import java.awt.*;
-
 /**
  *  
  * @author Sai Lyon Ho
