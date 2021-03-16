@@ -1,6 +1,6 @@
 package View;
 
-public enum ThemeTypes {
+public enum ThemeType {
     DARK,
     LIGHT
 }
