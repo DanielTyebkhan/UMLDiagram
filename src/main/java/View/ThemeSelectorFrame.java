@@ -29,18 +29,23 @@ public class ThemeSelectorFrame extends JFrame
         super(FRAME_NAME);
         panel = new JPanel();
 
-        ColorChooserButton diagramColor = new ColorChooserButton(ThemeManager.instance.getDiagramColor(), "Diagram Color", ThemeManager.instance::setDiagramColor);
-        ColorChooserButton classColor   = new ColorChooserButton(ThemeManager.instance.getClassColor(), "Class Color", ThemeManager.instance::setClassColor);
-        ColorChooserButton borderColor  = new ColorChooserButton(ThemeManager.instance.getBorderColor(), "Border Color", ThemeManager.instance::setBorderColor);
-        ColorChooserButton arrowColor   = new ColorChooserButton(ThemeManager.instance.getArrowColor(), "Arrow Color", ThemeManager.instance::setArrowColor);
+        ArrayList<ColorChooserButton> colorChoosers = new ArrayList<ColorChooserButton>(4);
+        ColorChooserButton diagramColor = new ColorChooserButton(ThemeManager.instance.getDiagramColor(), "Diagram Color", ThemeManager.instance::setDiagramColor, ThemeManager.instance::getDiagramColor);
+        ColorChooserButton classColor   = new ColorChooserButton(ThemeManager.instance.getClassColor(), "Class Color", ThemeManager.instance::setClassColor, ThemeManager.instance::getClassColor);
+        ColorChooserButton borderColor  = new ColorChooserButton(ThemeManager.instance.getBorderColor(), "Border Color", ThemeManager.instance::setBorderColor, ThemeManager.instance::getBorderColor);
+        ColorChooserButton arrowColor   = new ColorChooserButton(ThemeManager.instance.getArrowColor(), "Arrow Color", ThemeManager.instance::setArrowColor, ThemeManager.instance::getArrowColor);
+        colorChoosers.add(diagramColor);
+        colorChoosers.add(classColor);
+        colorChoosers.add(borderColor);
+        colorChoosers.add(arrowColor);
         JComboBox<ThemeObject> themesCombo = new JComboBox<ThemeObject>(ThemeManager.instance.getThemes());
         themesCombo.addItemListener(new ThemeItemChangeListener());
 
         panel.add(themesCombo);
-        panel.add(diagramColor);
-        panel.add(classColor);
-        panel.add(borderColor);
-        panel.add(arrowColor);
+        for (ColorChooserButton button : colorChoosers) {
+            ThemeManager.instance.attachObserver(button);
+            panel.add(button);
+        }
         close = new JButton("Close");
         // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
         panel.add(close);

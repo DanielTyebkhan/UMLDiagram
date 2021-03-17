@@ -9,19 +9,24 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
+import General.Observer;
 
-public class ColorChooserButton extends JButton {
+
+public class ColorChooserButton extends JButton implements Observer {
     
     private Color current;
     private Consumer<Color> setter;
+    private Supplier<Color> getter;
 
-    public ColorChooserButton(Color c, String label, Consumer<Color> setter) {
+    public ColorChooserButton(Color c, String label, Consumer<Color> setter, Supplier<Color> getter) {
         this.setter = setter;
+        this.getter = getter;
         setSelectedColor(c); 
         setText(label);
         setSize(new Dimension(200, 200));
@@ -43,14 +48,17 @@ public class ColorChooserButton extends JButton {
         setSelectedColor(newColor, true);
     }
 
+    private void setColorNoNotify(Color newColor) {
+        current = newColor;
+        setIcon(createIcon(current, 30, 30));
+        repaint();
+    }
+
     public void setSelectedColor(Color newColor, boolean notify) {
 
         if (newColor == null) return;
 
-        current = newColor;
-        setIcon(createIcon(current, 30, 30));
-        repaint();
-
+        setColorNoNotify(newColor);
         if (notify) {
             // Notify everybody that may be interested.
             for (ColorChangedListener l : listeners) {
@@ -80,5 +88,11 @@ public class ColorChooserButton extends JButton {
         image.flush();
         ImageIcon icon = new ImageIcon(image);
         return icon;
+    }
+
+    @Override
+    public void update() {
+        setColorNoNotify(getter.get());
+        repaint();
     }
 }
