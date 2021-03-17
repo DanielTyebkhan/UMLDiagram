@@ -49,7 +49,15 @@ public class ThemeManager implements Subject {
     }
 
     private ThemeObject cloneCurrent() {
-        return (ThemeObject) currentTheme.clone();
+        ThemeObject clone;
+        try {
+            clone = (ThemeObject) currentTheme.clone();
+            return  clone;
+        }
+        catch (CloneNotSupportedException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public void setClassColor(Color color) {

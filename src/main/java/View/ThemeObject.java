@@ -13,8 +13,8 @@ public abstract class ThemeObject implements Cloneable{
     protected Color diagramColor;
     protected Color arrowColor;
 
-    public Object clone() {
-        return null;
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public boolean isType(ThemeType type) {
@@ -49,4 +49,5 @@ public abstract class ThemeObject implements Cloneable{
     public void setArrowColor(Color color) {
         arrowColor = color;
     }
+
 }
