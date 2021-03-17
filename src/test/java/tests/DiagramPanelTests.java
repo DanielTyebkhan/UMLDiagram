@@ -16,11 +16,15 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
+
 import java.awt.Point;
+import javax.swing.JPanel;
 import Document.ObjectClass;
 import Document.Notable;
 import View.DiagramPanel;
 import View.ObjectComponent;
+import View.Arrows.ArrowDrawer;
 
 
 /**
@@ -48,7 +52,9 @@ public class DiagramPanelTests {
 
     @Test
     public void tryTests() {
-        // verify(mockObject, times(1). da)
+        JPanel panel = new JPanel();
+        List<ArrowDrawer> list= new List<>(); 
+        verify(mockObject, times(1).drawShape(panel, list));
     }
 
 }
