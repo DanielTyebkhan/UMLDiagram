@@ -8,36 +8,47 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 
+import java.awt.Point;
 import Document.ObjectClass;
 import Document.Notable;
+import View.DiagramPanel;
+import View.ObjectComponent;
 
 
 /**
  * Tests for the Diagram Panel class
  * @author Anhad Gande
  */
-@RunWith(MockitoJUnitRunner.class)
+
 public class DiagramPanelTests {
 
+    private DiagramPanel diagram;
     private ObjectClass testObj;
     private ObjectClass testObj2;
     private Notable testNble;
 
-    // @Mock
-    // private ObjectClass mockObject;
+    @Mock
+    private ObjectComponent mockObject;
 
-    // @Before
-    // public void setUp() {
-    //     MockitoAnnotations.initMocks(this);
-    // }
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        diagram = new DiagramPanel();
+        testObj = new ObjectClass("test", new Point(0,0));
+        mockObject = new ObjectComponent(diagram, testObj);
+    }
+
     @Test
     public void tryTests() {
-
+        // verify(mockObject, times(1). da)
     }
 
 }
