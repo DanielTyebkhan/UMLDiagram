@@ -61,10 +61,18 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         requestFocus();
     }
 
+    /**
+     * Gets the associated command handler
+     * @return the command handler
+     */
     public CommandHandler getCommandHandler() {
         return commandHandler;
     }
 
+    /**
+     * Gets the associated storage
+     * @return the storage
+     */
     public Storage getStorage() {
         return storage;
     }
@@ -190,6 +198,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      	
     }
 
+    /**
+     * Handles key presses
+     * @param e the trigger
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -209,6 +221,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         }
     }
 
+    /**
+     * Handles key releases
+     * @param e the trigger
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -220,6 +236,10 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
         }
     }
 
+    /**
+     * Handles key typing
+     * @param e the trigger
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         
