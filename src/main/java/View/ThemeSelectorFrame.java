@@ -12,17 +12,20 @@ import Document.Storage;
 import java.awt.*;
 
 /**
- *  
+ * Creates the frame for changing the themes
  * @author Sai Lyon Ho
+ * @author Daniel Tyebkhan
+ */
  */
 public class ThemeSelectorFrame extends JFrame 
 {
     private final static String FRAME_NAME = "Theme Selector";
-    
-    private JButton close;
-
     private JPanel panel; 
 
+    /**
+     * Constructs the frame and its buttons using the 
+     * global singleton instancc of ThemeManager 
+     */
     public ThemeSelectorFrame()
     {
 
@@ -46,10 +49,7 @@ public class ThemeSelectorFrame extends JFrame
             ThemeManager.instance.attachObserver(button);
             panel.add(button);
         }
-        close = new JButton("Close");
-        // save.addActionListener(SaveThemeActionListener(setBorderColor(), getDiagramPanel());
-        panel.add(close);
-
+        
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         this.add(panel);
 		this.setSize(400, 500);
