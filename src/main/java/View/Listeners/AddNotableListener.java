@@ -22,7 +22,7 @@ public class AddNotableListener extends DiagramMember implements ActionListener 
 	private JPanel parent;
 
 	/**
-	 * AddNotableHandler Constructor
+	 * Constructor
 	 * @param String Prompt
 	 * @param Consumer<Notable> action
 	 * @param JPanel panel
