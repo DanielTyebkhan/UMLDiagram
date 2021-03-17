@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Point;
 
-import General.Subject;
 import General.Observer;
-
-import java.io.Serializable; 
 
 /**
  * Represents an object in a class diagram
  * @author Daniel Tyebkhan
  */
-public class ObjectClass extends Notable implements Subject, Serializable {
+public class ObjectClass extends Notable implements Observer {
 	private ArrayList<Notable> instanceVariables;
 	private ArrayList<Notable> stereotypes;
 	private ArrayList<Method> methods;
@@ -45,13 +42,18 @@ public class ObjectClass extends Notable implements Subject, Serializable {
         notifyObservers();
 	}
 
+    private void attachAndNotify(Notable notable) {
+        notable.attachObserver(this);
+        notifyObservers();
+    }
+
     /**
      * Adds an instance variable
      * @param variable the name of variable to add
      */
 	public void addInstanceVariable(Notable variable) {
         instanceVariables.add(variable);
-        notifyObservers();
+        attachAndNotify(variable);
     }
 
     /**
@@ -77,7 +79,7 @@ public class ObjectClass extends Notable implements Subject, Serializable {
      */
 	public void addStereotype(Notable stereotype) {
         stereotypes.add(stereotype);
-        notifyObservers();
+        attachAndNotify(stereotype);
 	}
 
     /**
@@ -103,7 +105,7 @@ public class ObjectClass extends Notable implements Subject, Serializable {
      */
 	public void addMethod(Method method) {
         methods.add(method);
-        notifyObservers();
+        attachAndNotify(method);
 	}
 
     /**
@@ -215,5 +217,10 @@ public class ObjectClass extends Notable implements Subject, Serializable {
     */
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public void update() {
+        notifyObservers();
     }
 }

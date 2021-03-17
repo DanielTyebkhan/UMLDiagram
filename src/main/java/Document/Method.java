@@ -21,6 +21,7 @@ public class Method extends Notable {
 
 	public void addParameter(Notable param) {
 		parameters.add(param);
+		notifyObservers();
 	}
 
 	public void removeParameter(Notable param) {
