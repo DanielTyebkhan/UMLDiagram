@@ -2,6 +2,11 @@ package View;
 
 import java.awt.Color;
 
+/**
+ * Sets theme properties from ThemeObject 
+ * by default to its light version
+ * @author Daniel Tyebkhan
+ */
 public class LightTheme extends ThemeObject {
     public LightTheme() {
         type = ThemeType.LIGHT;

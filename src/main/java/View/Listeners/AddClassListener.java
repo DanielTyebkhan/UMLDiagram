@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 import Document.ObjectClass;
-import Document.Storage;
 import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;

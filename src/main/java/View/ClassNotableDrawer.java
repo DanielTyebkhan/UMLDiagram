@@ -6,10 +6,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Commands.NotableCommand;
+import View.Listeners.AddMethodListener;
 import View.Listeners.AddNotableListener;
 import View.Theme.ThemeSelectorListener;
-import Document.Method;
-import Document.Notable;
 import Document.ObjectClass;
 
 /**
@@ -20,7 +19,6 @@ public class ClassNotableDrawer extends NotableDrawer {
     private static final String NEW_METHOD = "Add Method";
     private static final String NEW_VARIABLE = "Add Variable";
     private static final String NEW_STEREOTYPE = "Add Stereotype";
-    private static final String ENT_METHOD_NAME = "Enter Method Name";
     private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
     private static final String CHANGE_THEME = "Change Theme";
@@ -42,9 +40,9 @@ public class ClassNotableDrawer extends NotableDrawer {
         JMenuItem newStereotype = new JMenuItem(NEW_STEREOTYPE);
         JMenuItem newTheme = new JMenuItem(CHANGE_THEME);
 
-        newMethod.addActionListener(new AddNotableListener<Method>(ENT_METHOD_NAME, object::addMethod, object::removeMethod, parent, diagramPanel));
-        newVariable.addActionListener(new AddNotableListener<Notable>(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
-        newStereotype.addActionListener(new AddNotableListener<Notable>(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
+        newMethod.addActionListener(new AddMethodListener(object, diagramPanel));
+        newVariable.addActionListener(new AddNotableListener(ENT_VARIABLE_NAME, object::addInstanceVariable, object::removeInstanceVariable, parent, diagramPanel));
+        newStereotype.addActionListener(new AddNotableListener(ENT_STEREOTYPE_NAME, object::addStereotype, object::removeStereotype, parent, diagramPanel));
         newTheme.addActionListener(new ThemeSelectorListener());
 
         menu.add(newMethod);

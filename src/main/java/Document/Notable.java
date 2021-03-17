@@ -1,13 +1,19 @@
 package Document;
-import java.io.Serializable; 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import General.Observer;
+import General.Subject; 
 
 /**
  * Represents an object with a name and an attachable note
  * @author Daniel Tyebkhan
  */
-public class Notable implements Serializable{
+public class Notable implements Serializable, Subject {
     String name,
            note;
+
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     /**
      * Constructs a notable with a name and note
@@ -81,5 +87,21 @@ public class Notable implements Serializable{
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public void attachObserver(Observer obs) {
+        observers.add(obs);
+    }
+
+    @Override
+    public void detachObserver(Observer obs) {
+        observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer obs : observers) 
+            obs.update();
     }
 }

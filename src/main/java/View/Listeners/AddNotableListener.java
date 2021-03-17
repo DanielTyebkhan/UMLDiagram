@@ -15,19 +15,19 @@ import View.Commands.NotableCommand;
  * Invokes a method on a class with user input 
  * @author Daniel Tyebkhan 
  */
-public class AddNotableListener<T extends Notable> extends DiagramMember implements ActionListener {
+public class AddNotableListener extends DiagramMember implements ActionListener {
 	private String prompt;
-	private Consumer<T> action;
-	private Consumer<T> unaction;
+	private Consumer<Notable> action;
+	private Consumer<Notable> unaction;
 	private JPanel parent;
 
 	/**
-	 * AddNotableHandler Constructor
+	 * Constructor
 	 * @param String Prompt
-	 * @param Consumer<T> action
+	 * @param Consumer<Notable> action
 	 * @param JPanel panel
 	 */
-	public AddNotableListener(String prompt, Consumer<T> action, Consumer<T> unaction, JPanel parent, DiagramPanel diagramPanel) {
+	public AddNotableListener(String prompt, Consumer<Notable> action, Consumer<Notable> unaction, JPanel parent, DiagramPanel diagramPanel) {
 		super(diagramPanel);
 		this.prompt = prompt;
 		this.action = action;
@@ -42,6 +42,6 @@ public class AddNotableListener<T extends Notable> extends DiagramMember impleme
 	public void actionPerformed(ActionEvent e) {
 		String name = JOptionPane.showInputDialog(parent, prompt);
 		if (name != null && !name.equals(""))
-			getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<T>((T) new Notable(name), action, unaction));
+			getDiagramPanel().getCommandHandler().executeCommand(new NotableCommand<Notable>(new Notable(name), action, unaction));
 	}
 }

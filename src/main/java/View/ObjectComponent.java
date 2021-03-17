@@ -85,7 +85,7 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 		}
 		for (Method method : obj.getMethods()) {
 			if (!hasLabel(methodLabels, method)) 
-				methodLabels.add(new NotableDrawer(method, new NotableCommand<Method>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getDiagramPanel()));
+				methodLabels.add(new MethodDrawer(method, obj, panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
 		removeNotPresent(variableLabels, obj.getInstanceVariables());
 		removeNotPresent(stereotypeLabels, obj.getStereotypes());
