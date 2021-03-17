@@ -88,7 +88,7 @@ public class ObjectClassTests {
 
     @Test
     public void addMethod() {
-        Method Method = new Method("method", new ArrayList<String>());
+        Method Method = new Method("method", new ArrayList<Notable>());
         testObj.addMethod(Method);
         ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
         objClass.addMethod(Method);
@@ -98,7 +98,7 @@ public class ObjectClassTests {
 
     @Test
     public void removeMethod() {
-        Method Method = new Method("variable", new ArrayList<String>());
+        Method Method = new Method("variable", new ArrayList<Notable>());
         testObj.addMethod(Method);
         testObj.removeMethod(Method);        
         assertTrue("Should remove method returning empty list", 
@@ -107,7 +107,7 @@ public class ObjectClassTests {
 
     @Test
     public void equals() {
-        Method Method = new Method("method", new ArrayList<String>());
+        Method Method = new Method("method", new ArrayList<Notable>());
         testObj.addMethod(Method);
         ObjectClass objClass = new ObjectClass("test", new Point(0,0));
         objClass.addMethod(Method);
