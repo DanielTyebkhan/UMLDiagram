@@ -65,6 +65,10 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 		parent.add(label);
 	}
 
+	/**
+	 * Gets the label text
+	 * @return the text for label
+	 */
 	protected String getLabelText() {
 		return notable.getName();
 	}
