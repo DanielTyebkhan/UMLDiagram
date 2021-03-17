@@ -25,4 +25,13 @@ public class Method extends Notable {
 	public void renameParameter(String newName, int index) {
 		parameters.set(index, newName);
 	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Method) {
+			Method otherM = (Method) other;
+			return otherM.getName().equals(getName()) && otherM.getParameters().equals(getParameters());
+		}
+		return false;
+	}
 }
