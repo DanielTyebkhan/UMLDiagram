@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Method extends Notable {
 	private ArrayList<String> parameters;
 
+	public Method(String name) {
+		super(name);
+		parameters = new ArrayList<>();
+	}
+
 	public Method(String name, ArrayList<String> parameters) {
 		super(name);
 		this.parameters = new ArrayList<String>(parameters);
