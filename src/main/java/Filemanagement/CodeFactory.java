@@ -35,7 +35,7 @@ public class CodeFactory{
 		case python:
 			return Python();
 		}
-		
+		return Python();
 	}
 
 	/**

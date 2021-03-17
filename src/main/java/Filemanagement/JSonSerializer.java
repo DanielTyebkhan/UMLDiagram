@@ -59,14 +59,15 @@ public class JSonSerializer implements DataSerializer{
 				
 				strToBytes.add((byte) b);
 			}
-			toSerialize=gson.fromJson(new String(strToBytes.toArray()), Storage.class);
+			//toSerialize=gson.fromJson(new String(strToBytes.toArray()), Storage.class);
 			f.close();
+			return null;
 		} catch (IOException i){
 			System.out.println(i);
 			return null;
-		} catch (ClassNotFoundException c){
+		}/* catch (ClassNotFoundException c){
 			System.out.println(c);
 			return null;
-		}
+		}*/
 	}
 }

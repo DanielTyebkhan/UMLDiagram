@@ -30,7 +30,7 @@ public class PythonSerializer implements CodeMaker{
 	* @param File
 	*/
 	public void ExportCode(String Fname) {
-		try {
+		//try {
 			
 			for(ObjectClass obj: storage.getObjects()){
 				String outstr="";
@@ -45,9 +45,9 @@ public class PythonSerializer implements CodeMaker{
 					outstr+="	";
 				}
 			}
-		} catch(IOException i){
+		/*} catch(IOException i){
             		System.out.println(i);
-		}
+		}*/
 	}
 	
 	/**
@@ -55,13 +55,14 @@ public class PythonSerializer implements CodeMaker{
 	* @return FileInputStream filestream to input
 	*/
 	public Storage ImportCode(String Fname) {
-		try{ 
+		/*try{ 
 			
 		} catch (IOException i){
 			
 		} catch (ClassNotFoundException c){
 			
-		}
+		}*/
+		return null;
 	}
 	private String argumentsToString(ArrayList<Notable> Notes){
 		String ret="";
