@@ -7,7 +7,6 @@ import java.awt.Point;
 import General.Subject;
 import General.Observer;
 
-import Document.Notable;
 import java.io.Serializable; 
 
 /**
@@ -17,7 +16,7 @@ import java.io.Serializable;
 public class ObjectClass extends Notable implements Subject, Serializable {
 	private ArrayList<Notable> instanceVariables;
 	private ArrayList<Notable> stereotypes;
-	private ArrayList<Notable> methods;
+	private ArrayList<Method> methods;
 	private Point pdata;
 	private ArrayList<ObjectClass> children;
     private ArrayList<Observer> observers;
@@ -31,7 +30,7 @@ public class ObjectClass extends Notable implements Subject, Serializable {
         super(nm);
         instanceVariables = new ArrayList<Notable>();
         stereotypes = new ArrayList<Notable>();
-        methods = new ArrayList<Notable>();
+        methods = new ArrayList<Method>();
         children = new ArrayList<ObjectClass>();
         pdata = position;
         observers = new ArrayList<Observer>();
@@ -102,7 +101,7 @@ public class ObjectClass extends Notable implements Subject, Serializable {
      * Adds aa method
      * @param method the method to add
      */
-	public void addMethod(Notable method) {
+	public void addMethod(Method method) {
         methods.add(method);
         notifyObservers();
 	}
@@ -111,15 +110,15 @@ public class ObjectClass extends Notable implements Subject, Serializable {
      * Gets all methods
      * @return all methods
      */
-	public List<Notable> getMethods() {
-        return new ArrayList<Notable>(methods);
+	public List<Method> getMethods() {
+        return new ArrayList<Method>(methods);
 	}
     
     /**
      * Removes a method
      * @param method the method to return
      */
-    public void removeMethod(Notable method) {
+    public void removeMethod(Method method) {
         methods.remove(method);
         notifyObservers();
     }

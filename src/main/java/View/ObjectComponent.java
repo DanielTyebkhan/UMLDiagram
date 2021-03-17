@@ -12,6 +12,7 @@ import Document.Storage;
 import View.Arrows.ArrowDrawer;
 import View.Commands.DragCommand;
 import View.Commands.NotableCommand;
+import Document.Method;
 import Document.Notable;
 
 
@@ -82,15 +83,25 @@ public class ObjectComponent extends DiagramMember implements MouseListener, Mou
 			if (!hasLabel(stereotypeLabels, stereotype)) 
 				stereotypeLabels.add(new NotableDrawer(stereotype, new NotableCommand<Notable>(stereotype, obj::removeStereotype, obj::addStereotype), panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
-		for (Notable method : obj.getMethods()) {
+		for (Method method : obj.getMethods()) {
 			if (!hasLabel(methodLabels, method)) 
-				methodLabels.add(new NotableDrawer(method, new NotableCommand<Notable>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getDiagramPanel()));
+				methodLabels.add(new NotableDrawer(method, new NotableCommand<Method>(method, obj::removeMethod, obj::addMethod), panel, WIDTH, HEIGHT, getDiagramPanel()));
 		}
 		removeNotPresent(variableLabels, obj.getInstanceVariables());
 		removeNotPresent(stereotypeLabels, obj.getStereotypes());
-		removeNotPresent(methodLabels, obj.getMethods());
+		removeNotPresentMethods(methodLabels, obj.getMethods());
 	}
 
+	private void removeNotPresentMethods(List<NotableDrawer> drawers, List<Method> present) {
+		ArrayList<NotableDrawer> toRemove = new ArrayList<>();
+		for (NotableDrawer d : drawers) {
+			if (!present.contains(d.getNotable()))
+				toRemove.add(d);
+		}
+		for (NotableDrawer d : toRemove) {
+			drawers.remove(d);
+		}
+	}
 	/**
 	 * Removes components which are no longer needed
 	 */

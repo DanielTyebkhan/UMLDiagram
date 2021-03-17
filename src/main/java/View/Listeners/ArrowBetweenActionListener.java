@@ -39,8 +39,8 @@ public class ArrowBetweenActionListener extends DiagramMember implements ActionL
 		if (betweenMethodsOrVar.isSelected()) {
 			toNonObjects.removeAllItems();
 			ObjectClass item = (ObjectClass) to.getSelectedItem();
-			List<Notable> methodsAndVars = item.getMethods();
-			methodsAndVars.addAll(item.getInstanceVariables());
+			List<Notable> methodsAndVars = item.getInstanceVariables();
+			methodsAndVars.addAll(item.getMethods());
 			for (Notable entry: methodsAndVars) {
 				toNonObjects.addItem(entry);
 			}
