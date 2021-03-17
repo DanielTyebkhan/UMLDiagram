@@ -9,6 +9,10 @@ import java.awt.Color;
  * @author Daniel Tyebkhan
  */
 public class DarkTheme extends ThemeObject {
+
+    /**
+     * Constructs a dark theme
+     */
     public DarkTheme() {
         type = ThemeType.DARK;
         classColor = Color.decode("#BDBDBD");
@@ -17,6 +21,10 @@ public class DarkTheme extends ThemeObject {
         borderColor = Color.decode("#BDBDBD");
     }
 
+    /**
+     * Converts the theme to a string
+     * @return the string form
+     */
     @Override
     public String toString() {
         return "Dark";
