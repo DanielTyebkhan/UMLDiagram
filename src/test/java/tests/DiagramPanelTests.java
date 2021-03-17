@@ -79,7 +79,7 @@ public class DiagramPanelTests {
         // System.out.println(storage == null);
         storage.addObject(testObj);
         spyDig.update();
-        verify(spyDig, verify(1)).repaint();
+        verify(spyDig, times(1)).repaint();
     }
 
 }
