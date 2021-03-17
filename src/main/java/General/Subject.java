@@ -1,8 +1,5 @@
 package General;
 
-import General.Observer;
-import java.util.List;
-
 /**
  * Subject interface for the observer pattern
  * @author Daniel Tyebkhan

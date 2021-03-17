@@ -36,7 +36,7 @@ public class AddNotableListener extends DiagramMember implements ActionListener 
 	}
 	
 	/**
-	 * actionPerformed
+	 * Adds a notable based on user input
 	 * @param ActionEvent e
 	 */
 	public void actionPerformed(ActionEvent e) {

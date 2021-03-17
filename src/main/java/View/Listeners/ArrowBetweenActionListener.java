@@ -23,8 +23,13 @@ public class ArrowBetweenActionListener extends DiagramMember implements ActionL
 	JComboBox<Notable> toNonObjects;
 
 	/**
-     * Constructs the listener
-     */
+	 * Constructor 
+	 * @param betweenMethodsOrVar 
+	 * @param betweenNames 
+	 * @param to
+	 * @param toNonObjects
+	 * @param diagramPanel
+	 */
 	public ArrowBetweenActionListener(JRadioButton betweenMethodsOrVar, JRadioButton betweenNames, JComboBox<Notable> to, JComboBox<Notable> toNonObjects, DiagramPanel diagramPanel) {
 		super(diagramPanel);
 		this.betweenMethodsOrVar = betweenMethodsOrVar;
@@ -33,8 +38,9 @@ public class ArrowBetweenActionListener extends DiagramMember implements ActionL
 		this.toNonObjects = toNonObjects;
 	}
 	/**
-	* Updates the combo boxes based on what type of entities the arrow should be drawn.
-	*/
+	 * Updates the combo boxes based on what type of entities the arrow should be drawn.
+	 * @param a the trigger
+	 */
 	public void actionPerformed(ActionEvent a) {
 		if (betweenMethodsOrVar.isSelected()) {
 			toNonObjects.removeAllItems();

@@ -66,6 +66,7 @@ public class Storage implements Subject, Observer, Serializable {
 
     /**
      * Attaches an observer
+     * @param obs the observer to attach
      */
     public void attachObserver(Observer obs) {
         observers.add(obs);
