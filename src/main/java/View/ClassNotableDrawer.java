@@ -9,8 +9,6 @@ import View.Commands.NotableCommand;
 import View.Listeners.AddMethodListener;
 import View.Listeners.AddNotableListener;
 import View.Theme.ThemeSelectorListener;
-import Document.Method;
-import Document.Notable;
 import Document.ObjectClass;
 
 /**
@@ -21,7 +19,6 @@ public class ClassNotableDrawer extends NotableDrawer {
     private static final String NEW_METHOD = "Add Method";
     private static final String NEW_VARIABLE = "Add Variable";
     private static final String NEW_STEREOTYPE = "Add Stereotype";
-    private static final String ENT_METHOD_NAME = "Enter Method Name";
     private static final String ENT_VARIABLE_NAME = "Enter Variable Name";
     private static final String ENT_STEREOTYPE_NAME = "Enter Stereotype Name";
     private static final String CHANGE_THEME = "Change Theme";
