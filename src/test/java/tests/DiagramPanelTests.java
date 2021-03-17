@@ -46,10 +46,10 @@ public class DiagramPanelTests {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        //MockitoAnnotations.initMocks(this);
         diagram = new DiagramPanel();
         testObj = new ObjectClass("test", new Point(0,0));
-        mockObject = mock(ObjectComponent.class);
+        //mockObject = mock(ObjectComponent.class);
     }
 
     @Test

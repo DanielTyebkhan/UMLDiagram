@@ -30,7 +30,7 @@ public class StorageTest {
     private Notable testNble;
 
     private void addAll() {
-        testObj.addMethod(testNble);
+//        testObj.addMethod(testNble);
         storage.addObject(testObj);
         storage.addObject(testObj2);
         storage.addArrow(testArr);

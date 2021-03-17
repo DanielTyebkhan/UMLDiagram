@@ -9,7 +9,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.awt.Point;
+import java.util.ArrayList;
+
 import Document.ObjectClass;
+import Document.Method;
 import Document.Notable;
 import General.Observer;
 
@@ -85,29 +88,29 @@ public class ObjectClassTests {
 
     @Test
     public void addMethod() {
-        Notable notable = new Notable("method", "new");
-        testObj.addMethod(notable);
+        Method Method = new Method("method", new ArrayList<String>());
+        testObj.addMethod(Method);
         ObjectClass objClass = new ObjectClass("TestName", new Point(0,0));
-        objClass.addMethod(notable);
-        assertEquals("Should add method as notable", 
+        objClass.addMethod(Method);
+        assertEquals("Should add method as Method", 
             testObj.getMethods(), objClass.getMethods());
     }
 
     @Test
     public void removeMethod() {
-        Notable notable = new Notable("variable", "new");
-        testObj.addMethod(notable);
-        testObj.removeMethod(notable);        
+        Method Method = new Method("variable", new ArrayList<String>());
+        testObj.addMethod(Method);
+        testObj.removeMethod(Method);        
         assertTrue("Should remove method returning empty list", 
             testObj.getMethods().isEmpty());
     }
 
     @Test
     public void equals() {
-        Notable notable = new Notable("method", "new");
-        testObj.addMethod(notable);
+        Method Method = new Method("method", new ArrayList<String>());
+        testObj.addMethod(Method);
         ObjectClass objClass = new ObjectClass("test", new Point(0,0));
-        objClass.addMethod(notable);
+        objClass.addMethod(Method);
         assertTrue("Both objects should be the same", 
             testObj.equals(objClass));
     }
