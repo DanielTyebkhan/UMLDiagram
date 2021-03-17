@@ -16,14 +16,4 @@ public class LightTheme extends ThemeObject {
         return "Light";
     }
 
-    @Override 
-    public Object clone() {
-        LightTheme clone = new LightTheme();
-        clone.setArrowColor(arrowColor);
-        clone.setDiagramColor(diagramColor);
-        clone.setBorderColor(borderColor);
-        clone.setClassColor(classColor);
-        return clone;
-    }
-    
 }

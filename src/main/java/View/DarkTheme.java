@@ -15,17 +15,4 @@ public class DarkTheme extends ThemeObject {
     public String toString() {
         return "Dark";
     }
-
-    @Override 
-    public Object clone() throws CloneNotSupportedException {
-        ThemeObject clone = (ThemeObject)super.clone();
-        return clone;
-        // DarkTheme clone = new DarkTheme();
-        // clone.setArrowColor(arrowColor);
-        // clone.setDiagramColor(diagramColor);
-        // clone.setBorderColor(borderColor);
-        // clone.setClassColor(classColor);
-        // return clone;
-    }
-    
 }
