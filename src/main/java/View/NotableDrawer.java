@@ -61,8 +61,12 @@ public class NotableDrawer implements MouseListener, MouseMotionListener {
 	 * Draws the object
 	 */
 	public void draw() {
-		label.setText(notable.getName());
+		label.setText(getLabelText());
 		parent.add(label);
+	}
+
+	protected String getLabelText() {
+		return notable.getName();
 	}
 
 	/**
