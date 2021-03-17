@@ -22,12 +22,9 @@ public class MethodDrawer extends NotableDrawer {
      */
     public MethodDrawer(Method method, ObjectClass object, JPanel parent, int width, int height, DiagramPanel diagramPanel) {
         super(method, new NotableCommand<Method>(method, object::removeMethod, object::addMethod), parent, width, height, diagramPanel);
-        label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         
         JMenuItem newParameter = new JMenuItem(ADD_PARAMETER);
-
         newParameter.addActionListener(new AddNotableListener(PARAM_NAME, method::addParameter, method::removeParameter, diagramPanel, diagramPanel));
-
         menu.add(newParameter);
     }
 }
