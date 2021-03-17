@@ -10,6 +10,10 @@ import View.ThemeSelectorFrame;
  */
 public class ThemeSelectorMouseListener implements MouseListener {
 
+    /**
+     * Opens theme selector
+     * @param e the trigger
+     */
     public void mouseClicked(MouseEvent e) 
     {
         if (e.getButton() == MouseEvent.BUTTON1){
@@ -17,19 +21,35 @@ public class ThemeSelectorMouseListener implements MouseListener {
             new ThemeSelectorFrame();
         }
     }
+    /**
+     * Handles mouse entrance
+     * @param e the trigger
+     */
     public void mouseEntered(MouseEvent e)
     {
 
     }
 
+    /**
+     * Handles mouse exit
+     * @param e the trigger
+     */
     public void mouseExited(MouseEvent e) {
 
     }
 
+    /**
+     * Handles mouse press
+     * @param e the trigger
+     */
     public void mousePressed(MouseEvent e) {
         
     }
 
+    /**
+     * Handles mouse release
+     * @param e the trigger
+     */
     public void mouseReleased(MouseEvent e) {
     }
 }
