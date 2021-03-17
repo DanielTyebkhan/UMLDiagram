@@ -6,9 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Commands.NotableCommand;
-import View.Listeners.AddMethodListener;
-import View.Listeners.AddNotableListener;
-import View.Theme.ThemeSelectorListener;
+import View.Listeners.AddParameterListener;
 import Document.Method;
 import Document.ObjectClass;
 
@@ -17,6 +15,7 @@ import Document.ObjectClass;
  * @author Daniel Tyebkhan
  */
 public class MethodDrawer extends NotableDrawer {
+    private static final String ADD_PARAMETER = "Add Parameter";
     /**
      * Constructs an object to draw a class name
      */
@@ -26,7 +25,7 @@ public class MethodDrawer extends NotableDrawer {
         
         JMenuItem newParameter = new JMenuItem(ADD_PARAMETER);
 
-        newParameter.addActionListener(new AddParameterListener(method, parent, diagramPanel));
+        newParameter.addActionListener(new AddParameterListener(method, diagramPanel));
 
         menu.add(newParameter);
     }
