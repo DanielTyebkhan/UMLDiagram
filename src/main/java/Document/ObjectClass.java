@@ -219,6 +219,9 @@ public class ObjectClass extends Notable implements Observer {
         return getName();
     }
 
+    /**
+     * Updates observers when a property changes
+     */
     @Override
     public void update() {
         notifyObservers();

@@ -6,7 +6,6 @@ import java.awt.Graphics;
 
 import Document.Arrow;
 import View.ThemeManager;
-import View.ThemeObject;
 
 /**
  * A class which draws arrows

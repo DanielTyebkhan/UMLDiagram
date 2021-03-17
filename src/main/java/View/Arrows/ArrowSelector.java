@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.util.List;
 
 import Document.ObjectClass;
-import Document.Storage;
 import Document.Notable;
 import View.DiagramPanel;
 import View.Listeners.ArrowBetweenActionListener;
@@ -14,7 +13,6 @@ import View.Listeners.MakeArrowActionListener;
 * Displays a pop box where the user can decide to choose to draw arrows.
 * @author Anhad Gande
 */
-
 public class ArrowSelector extends JFrame { 
 	private final static String FRAME_NAME = "Arrow Selector";
 	private final static String MAKE_ARROW = "Make Arrow";

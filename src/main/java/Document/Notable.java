@@ -83,22 +83,35 @@ public class Notable implements Serializable, Subject {
     }
     /**
     * Defines String representation for Notable object
+    * @return the string representation
     */
     @Override
     public String toString() {
         return getName();
     }
 
+
+    /**
+     * Attaches an observer     
+     * @param obs the observer to attach
+     */
     @Override
     public void attachObserver(Observer obs) {
         observers.add(obs);
     }
 
+    /**
+     * Detaches an observer
+     * @param obs the observer to detach
+     */
     @Override
     public void detachObserver(Observer obs) {
         observers.remove(obs);
     }
 
+    /**
+     * Notifies observers of a change
+     */
     @Override
     public void notifyObservers() {
         for (Observer obs : observers) 

@@ -1,7 +1,5 @@
 package View.Arrows;
 
-import java.awt.Graphics;
-
 import Document.Arrow;
 
 /**
