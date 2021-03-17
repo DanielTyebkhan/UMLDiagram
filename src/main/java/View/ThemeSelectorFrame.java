@@ -16,7 +16,6 @@ import java.awt.*;
  * @author Sai Lyon Ho
  * @author Daniel Tyebkhan
  */
- */
 public class ThemeSelectorFrame extends JFrame 
 {
     private final static String FRAME_NAME = "Theme Selector";
