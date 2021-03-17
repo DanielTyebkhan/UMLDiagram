@@ -26,6 +26,7 @@ public class Method extends Notable {
 
 	public void removeParameter(Notable param) {
 		parameters.remove(param);
+		notifyObservers();
 	}
 
 	@Override
