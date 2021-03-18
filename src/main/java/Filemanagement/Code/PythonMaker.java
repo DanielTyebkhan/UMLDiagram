@@ -28,13 +28,14 @@ public class PythonMaker implements CodeMaker{
 	* @param File
 	*/
 	public void ExportCode(String Fpath) {
-		try {
+
 			
-			for(ObjectClass obj: storage.getObjects()){
-				FileWriter f = new FileWriter(Fpath+obj.getName()+".python");
+		for(ObjectClass obj: storage.getObjects()){
+			try {
+				System.out.println(Fpath.substring(0, Fpath.lastIndexOf("/")+1));
+				FileWriter f = new FileWriter(Fpath.substring(0, Fpath.lastIndexOf("/")+1)+obj.getName()+".py");
 				String outstr="";
-				outstr+="def "+obj.getName()+":\n";
-				outstr+="def"+ "	"+obj.getName()+":\n";
+				outstr+="def "+obj.getName()+"():\n";
 				for(Notable instancevar: obj.getInstanceVariables()){
 					outstr+="	"+instancevar.toString();
 				}
@@ -43,11 +44,16 @@ public class PythonMaker implements CodeMaker{
 						argumentsToString(method.getParameters())+")" + ":\n";
 					outstr+="	";
 				}
+				System.out.println("OutStr");
+				System.out.println(outstr);
 				f.write(outstr);
+				f.flush();
+				f.close();
+			} catch(IOException i){
+            			System.out.println(i);
 			}
-		} catch(IOException i){
-            		System.out.println(i);
 		}
+		
 	}
 	
 	/**
