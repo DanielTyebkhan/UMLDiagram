@@ -17,21 +17,25 @@ public class RemoveObjectCommand implements Command {
         this.storage = storage;
         this.object = object;
         arrows = new ArrayList<Arrow>();
-        for (Arrow arrow : storage.getArrows()) {
-            if (arrow.getFrom().equals(object) || arrow.getTo().equals(object)) 
-                arrows.add(arrow);
-        }
     }
 
     @Override
     public void execute() {
+        for (Arrow arrow : storage.getArrows()) {
+            System.out.println(arrow);
+            if (arrow.getFrom().equals(object) || arrow.getTo().equals(object)) 
+                arrows.add(arrow);
+        }
         storage.removeObject(object);
     }
 
     @Override
     public void unexecute() {
+        System.out.println("testing");
         storage.addObject(object);
-        for (Arrow arrow : arrows) 
-            storage.addArrow(arrow);
+        for (Arrow arrow : arrows) {
+            if (!storage.getArrows().contains(arrow))
+                storage.addArrow(arrow);
+        }
     }
 }
