@@ -12,7 +12,7 @@ import javax.swing.*;
 * @author  Sai Lyon Ho
 */
 public class WindowClass extends JPanel{
-	private static final int SIZE = 500;
+	private static final int SIZE = 600;
 	private JTabbedPane tabPane;
 
 	/**
