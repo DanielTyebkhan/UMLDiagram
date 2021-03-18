@@ -22,7 +22,6 @@ public class RemoveObjectCommand implements Command {
     @Override
     public void execute() {
         for (Arrow arrow : storage.getArrows()) {
-            System.out.println(arrow);
             if (arrow.getFrom().equals(object) || arrow.getTo().equals(object)) 
                 arrows.add(arrow);
         }
@@ -31,7 +30,6 @@ public class RemoveObjectCommand implements Command {
 
     @Override
     public void unexecute() {
-        System.out.println("testing");
         storage.addObject(object);
         for (Arrow arrow : arrows) {
             if (!storage.getArrows().contains(arrow))

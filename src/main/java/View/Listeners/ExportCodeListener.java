@@ -29,7 +29,6 @@ public class ExportCodeListener implements MouseListener {
     {
         if (e.getButton() == MouseEvent.BUTTON1){
             new Filechoose(window.getCurrentDiagram()).exportCode();
-            System.out.println("Clicked Open!");
         }
     }
 
