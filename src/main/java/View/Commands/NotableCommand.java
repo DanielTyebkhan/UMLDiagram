@@ -41,6 +41,4 @@ public class NotableCommand<T extends Notable> implements Command {
     public void unexecute() {
         toUnexecute.accept(notable);
     }
-
-
 }

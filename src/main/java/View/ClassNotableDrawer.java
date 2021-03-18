@@ -6,6 +6,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import View.Commands.NotableCommand;
+import View.Commands.RemoveObjectCommand;
 import View.Listeners.AddMethodListener;
 import View.Listeners.AddNotableListener;
 import View.Theme.ThemeSelectorListener;
@@ -32,7 +33,7 @@ public class ClassNotableDrawer extends NotableDrawer {
      * @param height the height of the object
      */
     public ClassNotableDrawer(ObjectClass object, JPanel parent, int width, int height, DiagramPanel diagramPanel) {
-        super(object, new NotableCommand<ObjectClass>(object, diagramPanel.getStorage()::removeObject, diagramPanel.getStorage()::addObject), parent, width, height, diagramPanel);
+        super(object, new RemoveObjectCommand(diagramPanel.getStorage(), object), parent, width, height, diagramPanel);
         label.setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
         
         JMenuItem newMethod = new JMenuItem(NEW_METHOD);
