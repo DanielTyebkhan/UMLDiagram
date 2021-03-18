@@ -102,6 +102,8 @@ public class FileManager {
 		String a = Fname.substring(Fname.indexOf("."));
 		if(a==".cg"){
 			return dtype.cg;
+		}else if(a==".json"){
+			return dtype.json;
 		}
 		return dtype.cg;
 	}

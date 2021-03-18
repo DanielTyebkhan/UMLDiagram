@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
@@ -31,13 +32,19 @@ public class PythonMaker implements CodeMaker{
 	*/
 	public void ExportCode(String Fpath) {
 
-			
+		List<Arrow> arrows = storage.getArrows();
 		for(ObjectClass obj: storage.getObjects()){
 			try {
 				System.out.println(Fpath.substring(0, Fpath.lastIndexOf("/")+1));
 				FileWriter f = new FileWriter(Fpath.substring(0, Fpath.lastIndexOf("/")+1)+obj.getName()+".py");
 				String outstr="";
-				outstr+="class "+obj.getName()+"():\n";
+				String parent="";
+				for(Arrow arrow: arrows){
+					if(arrow.getTo().getName()==obj.getName()){
+						parent=arrow.getFrom().getName();
+					}
+				}
+				outstr+="class "+obj.getName()+"(" + parent+ "):\n";
 				for(Notable instancevar: obj.getInstanceVariables()){
 					outstr+="	"+instancevar.toString();
 				}
