@@ -4,8 +4,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 import Filemanagement.Filechoose;
-import View.DiagramMember;
-import View.DiagramPanel;
 import View.WindowClass;
 
 /**
@@ -34,19 +32,36 @@ public class ExportFileListener implements MouseListener {
             System.out.println("Clicked Open!");
         }
     }
+
+    /**
+     * Handles mouse entrance
+     * @param e the trigger
+     */
     public void mouseEntered(MouseEvent e)
     {
 
     }
 
+    /**
+     * Handles mouse exit
+     * @param e the trigger
+     */
     public void mouseExited(MouseEvent e) {
 
     }
 
+    /**
+     * Handles mouse press
+     * @param e the trigger
+     */
     public void mousePressed(MouseEvent e) {
         
     }
 
+    /**
+     * Handles mouse release
+     * @param e the trigger
+     */
     public void mouseReleased(MouseEvent e) {
     }
 }

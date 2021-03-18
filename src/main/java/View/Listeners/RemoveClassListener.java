@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import Document.ObjectClass;
-import Document.Storage;
 import View.DiagramMember;
 import View.DiagramPanel;
 import View.Commands.NotableCommand;
@@ -16,6 +15,11 @@ import View.Commands.NotableCommand;
 public class RemoveClassListener extends DiagramMember implements ActionListener {
     private ObjectClass object;
 
+    /**
+     * Constructs a listener to remove classes
+     * @param panel the panel to remove from
+     * @param object the class to remove
+     */
     public RemoveClassListener(DiagramPanel panel, ObjectClass object) {
         super(panel);
         this.object = object;

@@ -1,8 +1,8 @@
 package Document;
 
 /**
- * @author Daniel Tyebkhan
  * Enumerates the possible types of arrows
+ * @author Daniel Tyebkhan
  */
 public enum ArrowType {
     SUBTYPE,

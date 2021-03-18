@@ -33,7 +33,6 @@ public class MenuPanel extends JComponent {
         export();
         changeTheme();
         addPanel();
-        //undo(diagramPanel);
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
 
@@ -53,12 +52,6 @@ public class MenuPanel extends JComponent {
         menuBar.add(m);
         m.addMouseListener(new OpenFileListener(window));
     } 
-
-    public void undo() {
-        JMenu m = new JMenu("Undo");
-        menuBar.add(m);
-        m.addActionListener(new UndoListener(window));
-    }
 
     /**
      * Constructs export button that allows user to export and convert
@@ -82,6 +75,9 @@ public class MenuPanel extends JComponent {
         m.addMouseListener(new SaveFileListener(window));
     }
 
+    /**
+     * Constructs and adds the button to change theme
+     */
     public void changeTheme()
     {
         JMenu m = new JMenu("Change Theme");

@@ -34,6 +34,9 @@ public class MethodDrawer extends NotableDrawer {
         menu.add(newParameter);
     }
 
+    /**
+     * Formats the method to be drawn
+     */
     @Override
     protected String getLabelText() {
         Method method = (Method) getNotable();
