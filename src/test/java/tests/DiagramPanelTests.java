@@ -41,27 +41,37 @@ import Document.Storage;
 
 public class DiagramPanelTests {
 
-    private DiagramPanel diagram;
     private ObjectClass testObj;
     private Notable testNble;
     private Storage storage;
 
-    @Mock
-    private ObjectComponent mockObject;
+    // @Mock
+    // private ObjectComponent mockObject;
 
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        diagram = new DiagramPanel();
         testObj = new ObjectClass("test", new Point(0,0));
         
-        mockObject = mock(ObjectComponent.class);
+        // mockObject = mock(ObjectComponent.class);
     }
 
     @Test
     public void testDiagramUpdate() {
+        DiagramPanel spyDig = spy(new DiagramPanel());
+        spyDig.update();
+        verify(spyDig, times(1)).repaint();
+    }
 
+    @Test
+    public void testDiagramNoUpdate() {
+        DiagramPanel spyDig = spy(new DiagramPanel());
+        verify(spyDig, times(0)).repaint();
+    }
+
+    @Test
+    public void testDiagramAddObject() {
         // ObjectComponent objComp = new ObjectComponent(mockDig, testObj);
         // storage = objComp.getDiagramPanel().getStorage();
         // assertEquals(storage, diagram.getStorage());
@@ -70,16 +80,33 @@ public class DiagramPanelTests {
         DiagramPanel spyDig = spy(new DiagramPanel());
         // when(mockDig.getStorage()).thenReturn(storage);
 
-        Storage storage = spyDig.getStorage();
         // assertEquals(storage, obtainedStorage);
 
         // mockDig.getStorage().addObject(testObj);
         // when(mockDig.getStorage()).thenCallRealMethod();
         // storage = mockDig.getStorage();
         // System.out.println(storage == null);
+        // when(spyDig.getStorage()).thenCallRealMethod();
+        Storage storage = spy(spyDig.getStorage());
         storage.addObject(testObj);
-        spyDig.update();
-        verify(spyDig, times(1)).repaint();
+        
+        verify(storage, times(1)).notifyObservers();
+
+        //NOTE: I have tried veryfing if update is called
+        //when I do spyDig.getStorage().addObject(testObj)
+        //hower the spy stops tracking it then.
+        //Update indeed gets called yet the spy doens't track it.
+        //Hence, I spy on storage and verify if it notifies observers
+        //which in turn updates DiagramPanel.
+    }
+
+    @Test
+    public void testUpdateWithObjectComponent() {
+        DiagramPanel spyDig = spy(new DiagramPanel());
+
+        ObjectComponent objComp = new ObjectComponent(spyDig, testObj);
+        // Creating an ObjectComponent does not repaint DiagramPanel
+        verify(spyDig, times(0)).repaint();
     }
 
 }
