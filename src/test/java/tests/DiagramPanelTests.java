@@ -55,7 +55,6 @@ public class DiagramPanelTests {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         testObj = new ObjectClass("test", new Point(0,0));
-        spyDig = spy(new DiagramPanel());
         
         // mockObject = mock(ObjectComponent.class);
     }
@@ -75,21 +74,7 @@ public class DiagramPanelTests {
 
     @Test
     public void testDiagramAddObject() {
-        // ObjectComponent objComp = new ObjectComponent(mockDig, testObj);
-        // storage = objComp.getDiagramPanel().getStorage();
-        // assertEquals(storage, diagram.getStorage());
-
-        // List<Arrow> list= storage.getArrows();
         DiagramPanel spyDig = spy(new DiagramPanel());
-        // when(mockDig.getStorage()).thenReturn(storage);
-
-        // assertEquals(storage, obtainedStorage);
-
-        // mockDig.getStorage().addObject(testObj);
-        // when(mockDig.getStorage()).thenCallRealMethod();
-        // storage = mockDig.getStorage();
-        // System.out.println(storage == null);
-        // when(spyDig.getStorage()).thenCallRealMethod();
         Storage storage = spy(spyDig.getStorage());
         storage.addObject(testObj);
         
@@ -106,7 +91,7 @@ public class DiagramPanelTests {
 
     @Test
     public void testUpdateWithObjectComponent() {
-
+        DiagramPanel spyDig = spy(new DiagramPanel());
         ObjectComponent objComp = new ObjectComponent(spyDig, testObj);
         // Creating an ObjectComponent does not repaint DiagramPanel
         verify(spyDig, times(0)).repaint();
