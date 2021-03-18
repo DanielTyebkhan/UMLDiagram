@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 /**
- * A class that creates a Jpeg from a bufferedImage
+ * A class that creates a GIF from a bufferedImage
  * @author Lawson Wheatley
  */
 public class GifMaker implements ImageMaker{

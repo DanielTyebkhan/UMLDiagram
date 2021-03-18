@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 /**
- * A class that creates a Jpeg from a bufferedImage
+ * A class that creates a WebMP from a bufferedImage
  * @author Lawson Wheatley
  */
 public class WebMPMaker implements ImageMaker{
@@ -18,8 +18,8 @@ public class WebMPMaker implements ImageMaker{
 	public WebMPMaker() {
 	}
 	/* 
-	* Exports an image to a Jpeg file
-	* @param BufferedImage image to write to Jpeg
+	* Exports an image to a WebMP file
+	* @param BufferedImage image to write to WebMP
 	* @param String Filename
 	*/
 	public void exportImage(BufferedImage I, String Fname){

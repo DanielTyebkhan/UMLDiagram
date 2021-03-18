@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 /**
- * A class that creates a Jpeg from a bufferedImage
+ * A class that creates a BMP from a bufferedImage
  * @author Lawson Wheatley
  */
 public class BmpMaker implements ImageMaker{
@@ -19,7 +19,7 @@ public class BmpMaker implements ImageMaker{
 	}
 	/* 
 	* Exports an image to a bmp file
-	* @param BufferedImage image to write to gif
+	* @param BufferedImage image to write to bmp
 	* @param String Filename
 	*/
 	public void exportImage(BufferedImage I, String Fname){
