@@ -11,12 +11,12 @@ import static org.mockito.Mockito.spy;
 
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
@@ -39,6 +39,7 @@ import Document.Storage;
  * @author Anhad Gande
  */
 
+@RunWith(JUnit4.class)
 public class DiagramPanelTests {
 
     private ObjectClass testObj;
@@ -109,6 +110,11 @@ public class DiagramPanelTests {
         ObjectComponent objComp = new ObjectComponent(spyDig, testObj);
         // Creating an ObjectComponent does not repaint DiagramPanel
         verify(spyDig, times(0)).repaint();
+    }
+    @After
+    public void tearDown() {
+        spyDig = null;
+        testObj = null;
     }
 
 }
