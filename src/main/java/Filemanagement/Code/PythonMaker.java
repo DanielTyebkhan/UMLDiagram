@@ -37,7 +37,7 @@ public class PythonMaker implements CodeMaker{
 				System.out.println(Fpath.substring(0, Fpath.lastIndexOf("/")+1));
 				FileWriter f = new FileWriter(Fpath.substring(0, Fpath.lastIndexOf("/")+1)+obj.getName()+".py");
 				String outstr="";
-				outstr+="def "+obj.getName()+"():\n";
+				outstr+="class "+obj.getName()+"():\n";
 				for(Notable instancevar: obj.getInstanceVariables()){
 					outstr+="	"+instancevar.toString();
 				}
