@@ -8,7 +8,7 @@ import View.WindowClass;
 
 /**
  * Listener Class for Export File button
- * @author Sai Lyon Ho
+ * @author Lawson Wheatley
  */
 public class ExportCodeListener implements MouseListener {
     private WindowClass window;
