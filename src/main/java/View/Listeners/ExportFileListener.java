@@ -29,7 +29,6 @@ public class ExportFileListener implements MouseListener {
     {
         if (e.getButton() == MouseEvent.BUTTON1){
             new Filechoose(window.getCurrentDiagram()).ExportImg(window.getCurrentDiagram());
-            System.out.println("Clicked Open!");
         }
     }
 

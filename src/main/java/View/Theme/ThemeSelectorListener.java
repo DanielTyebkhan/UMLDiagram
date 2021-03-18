@@ -16,7 +16,6 @@ public class ThemeSelectorListener implements ActionListener {
 	 * @param ActionEvent e
 	 */
 	public void actionPerformed(ActionEvent e) {
-        System.out.println("Clicked Open Theme!");
 		new ThemeSelectorFrame();
 	}
 }

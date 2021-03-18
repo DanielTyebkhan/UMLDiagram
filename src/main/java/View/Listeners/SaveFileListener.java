@@ -30,7 +30,6 @@ public class SaveFileListener implements MouseListener {
     {
         if (e.getButton() == MouseEvent.BUTTON1){
             new Filechoose(window.getCurrentDiagram()).SaveFile();
-        	System.out.println("Clicked Save!");
         }
     }
 

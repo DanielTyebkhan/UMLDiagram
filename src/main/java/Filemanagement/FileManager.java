@@ -98,7 +98,6 @@ public class FileManager {
 	* @return dtype Datatype
 	*/
 	private dtype dt(String Fname){
-		System.out.println("Fname" + Fname);
 		String a = Fname.substring(Fname.indexOf("."));
 		System.out.println(a);
 		if(a==".cg"){

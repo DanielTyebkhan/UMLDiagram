@@ -117,6 +117,5 @@ public class ArrowSelector extends JFrame {
 		this.add(panel);
 		this.setSize(400, 500);
 		this.setVisible(true);
-		System.out.println("ArrowSelector");
 	}
 }
