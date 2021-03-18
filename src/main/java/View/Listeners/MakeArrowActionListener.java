@@ -61,6 +61,10 @@ public class MakeArrowActionListener extends DiagramMember implements ActionList
 			typeArrow = ArrowType.CONTAINMENT;
 
 		}
+		else {
+			typeArrow = ArrowType.SUBTYPE;
+			subtype.setSelected(true);
+		}
 		Notable toNotable = null;
 		if (betweenMethodsOrVar.isSelected()) {
 			toNotable = (Notable) toNonObjects.getSelectedItem();
