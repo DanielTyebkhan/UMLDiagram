@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Code;
 
 /**
  * @author Lawson Wheatley

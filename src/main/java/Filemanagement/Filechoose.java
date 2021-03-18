@@ -73,7 +73,7 @@ public class Filechoose{
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to open");  
-		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Class Graph Files (*.cg)", "*.cg");
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Class Graph Files (*.cg), JSon Files (*.json)", "*.cg","*.json");
 		fileChooser.setFileFilter(extFilter);
 		int userSelection = fileChooser.showOpenDialog(frame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {

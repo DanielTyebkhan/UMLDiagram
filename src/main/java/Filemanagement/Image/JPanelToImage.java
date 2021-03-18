@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Image;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
