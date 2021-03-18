@@ -13,6 +13,11 @@ import Document.Storage;
 import General.Observer;
 import View.DiagramPanel;
 
+import Filemanagement.Image.*;
+import Filemanagement.Code.*;
+import Filemanagement.Serialize.*;
+
+
 /**
 * Class that manages files for the program
 * @author Lawson Wheatley

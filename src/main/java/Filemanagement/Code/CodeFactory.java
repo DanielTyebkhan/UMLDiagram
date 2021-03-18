@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Code;
 
 import Document.Storage;
 
@@ -42,7 +42,7 @@ public class CodeFactory{
 	* Creates a CGSerializer
 	* @return CGSerializer for factory
 	*/
-	private PythonSerializer Python(){
-		return new PythonSerializer(storage);
+	private PythonMaker Python(){
+		return new PythonMaker(storage);
 	}
 }

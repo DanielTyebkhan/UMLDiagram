@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Code;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

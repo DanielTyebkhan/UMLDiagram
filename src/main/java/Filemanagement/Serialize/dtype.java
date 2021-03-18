@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Serialize;
 /**
  * @author Lawson Wheatley
  */

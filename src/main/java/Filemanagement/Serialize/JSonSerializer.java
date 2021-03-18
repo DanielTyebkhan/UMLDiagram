@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Serialize;
 
 
 import java.io.InputStream;
@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;  
 
 /**
- * Serializes data to the custom CG style file
+ * Serializes data to the custom JSon style file
  * @author Lawson Wheatley
  */
 public class JSonSerializer implements DataSerializer{	
@@ -32,7 +32,7 @@ public class JSonSerializer implements DataSerializer{
 	}
 	
 	/**
-	* Serializes an Object as a .cg file
+	* Serializes an Object as a .JSon file
 	* @param File
 	*/
 	public void SerializeObject(FileOutputStream f) {
@@ -47,7 +47,7 @@ public class JSonSerializer implements DataSerializer{
 	}
 
 	/**
-	* Serialize Object
+	* Deserializes Json object
 	* @return FileInputStream filestream to input
 	*/
 	public Storage DeserializeObject(FileInputStream f) {
@@ -64,9 +64,9 @@ public class JSonSerializer implements DataSerializer{
 				}
 				in.close();
 			}
-			toSerialize=gson.fromJson(sbuild.toString(), Storage.class);
+			Storage stor=gson.fromJson(sbuild.toString(), Storage.class);
 			f.close();
-			return null;
+			return stor;
 		} catch (IOException i){
 			System.out.println(i);
 			return null;

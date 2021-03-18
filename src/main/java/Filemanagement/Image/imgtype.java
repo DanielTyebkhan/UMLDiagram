@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Image;
 
 /**
  * @author Lawson Wheatley

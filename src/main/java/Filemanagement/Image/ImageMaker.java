@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Image;
 
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;

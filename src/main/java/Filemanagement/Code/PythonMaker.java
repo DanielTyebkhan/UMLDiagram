@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Code;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -14,12 +14,12 @@ import Document.*;
  * Exports to Python File
  * @author Lawson Wheatley
  */
-public class PythonSerializer implements CodeMaker{
+public class PythonMaker implements CodeMaker{
 	Storage storage;
 	/**
 	* Initializes PythonSerializer()
 	*/
-	public PythonSerializer(Storage stor) {
+	public PythonMaker(Storage stor) {
 		storage=stor;
 	}
 	

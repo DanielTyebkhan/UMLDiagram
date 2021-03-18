@@ -1,4 +1,4 @@
-package Filemanagement;
+package Filemanagement.Image;
 
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
@@ -25,12 +25,15 @@ public class ImageFactory{
 	*/
 	public void createImage(imgtype img, JPanel panel, String Fname){
 		JPanelToImage j = new JPanelToImage();
+		ImageMaker image = new PNGMaker();
 		switch(img){
 			case png:
-				new PNGMaker(j.getImage(panel), Fname);
+				new PNGMaker();
 			case jpeg:
-				new JPegMaker(j.getImage(panel), Fname);
+				new JPegMaker();
 		}
+		image.exportImage(j.getImage(panel), Fname);
+		
 	}
 	
 }
