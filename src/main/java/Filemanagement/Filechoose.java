@@ -40,7 +40,7 @@ public class Filechoose{
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to save");  
-		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Class Graph files (*.cg)", "*.cg");
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Class Graph Files (*.cg), JSon Files (*.json)", "*.cg","*.json");
 		fileChooser.setFileFilter(extFilter);
 		int userSelection = fileChooser.showSaveDialog(frame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
