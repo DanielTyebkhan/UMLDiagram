@@ -39,7 +39,6 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
     private ArrayList<ArrowDrawer> arrowDrawers;
     private CommandHandler commandHandler;
     private boolean controlMod;
-    private int cnt = 0;
 
     /**
      * Constructs a diagram panel
@@ -128,8 +127,6 @@ public class DiagramPanel extends JPanel implements MouseListener, Observer, Key
      * (See observer interface)
      */
     public void update() {
-        cnt++;
-        System.out.println("I'm getting repainted " + cnt);
         repaint();
     }
 

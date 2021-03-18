@@ -44,6 +44,7 @@ public class DiagramPanelTests {
     private ObjectClass testObj;
     private Notable testNble;
     private Storage storage;
+    private DiagramPanel spyDig;
 
     // @Mock
     // private ObjectComponent mockObject;
@@ -53,6 +54,7 @@ public class DiagramPanelTests {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         testObj = new ObjectClass("test", new Point(0,0));
+        spyDig = spy(new DiagramPanel());
         
         // mockObject = mock(ObjectComponent.class);
     }
@@ -94,15 +96,15 @@ public class DiagramPanelTests {
 
         //NOTE: I have tried veryfing if update is called
         //when I do spyDig.getStorage().addObject(testObj)
-        //hower the spy stops tracking it then.
+        //however, the spy stops tracking it then.
         //Update indeed gets called yet the spy doens't track it.
-        //Hence, I spy on storage and verify if it notifies observers
-        //which in turn updates DiagramPanel.
+        //This is possibly because spyDig.getStorage() returns a new object.
+        //Hence, I also spy on the storage object and verify if it notifies
+        //observers which in turn updates DiagramPanel.
     }
 
     @Test
     public void testUpdateWithObjectComponent() {
-        DiagramPanel spyDig = spy(new DiagramPanel());
 
         ObjectComponent objComp = new ObjectComponent(spyDig, testObj);
         // Creating an ObjectComponent does not repaint DiagramPanel
