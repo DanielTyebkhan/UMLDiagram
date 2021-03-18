@@ -10,5 +10,8 @@ package Filemanagement.Image;
 */
 public enum imgtype{
 	png,
-	jpeg
+	jpeg,
+	webmp,
+	bmp,
+	gif
 }

@@ -31,6 +31,12 @@ public class ImageFactory{
 				new PNGMaker();
 			case jpeg:
 				new JPegMaker();
+			case webmp:
+				new WebMPMaker();
+			case bmp:
+				new BmpMaker();
+			case gif:
+				new GifMaker();
 		}
 		image.exportImage(j.getImage(panel), Fname);
 		

@@ -24,8 +24,6 @@ import Filemanagement.Serialize.*;
 */
 public class FileManager {
 	DiagramPanel diagramPanel;
-	DataSerializer dataserializer;
-	CodeMaker cmaker;
 	DataSerializerFactory dfactory; 
 	ImageFactory imgfactory;
 	CodeFactory cfactory;
@@ -58,7 +56,7 @@ public class FileManager {
 		try {
 			type=dt(Fname);
 			FileOutputStream f = new FileOutputStream(Fname);
-			dataserializer = dfactory.createDataSerializer(type);
+			DataSerializer dataserializer = dfactory.createDataSerializer(type);
 			dataserializer.SerializeObject(f);
 			f.close();
 		} catch(IOException i) {
@@ -75,7 +73,7 @@ public class FileManager {
 		try {
 			type=dt(Fname);
 			FileInputStream f = new FileInputStream(Fname);
-			dataserializer = dfactory.createDataSerializer(type);
+			DataSerializer dataserializer = dfactory.createDataSerializer(type);
 			Storage temp = dataserializer.DeserializeObject(f);
 			temp.setObservers(new ArrayList<Observer>());
 			diagramPanel.getStorage().setStorage(temp.getObjects(), temp.getArrows());
@@ -90,7 +88,7 @@ public class FileManager {
 	* @param String File Path
 	*/
 	public void exportCode(String Fpath) {
-		cmaker = cfactory.createCodeMaker(ctype.python);
+		CodeMaker cmaker = cfactory.createCodeMaker(ctype.python);
 		cmaker.ExportCode(Fpath);	
 	}
 
@@ -119,6 +117,12 @@ public class FileManager {
 			return imgtype.jpeg;
 		} else if (a==".png"){
 			return imgtype.png;
+		} else if (a==".webmp"){
+			return imgtype.webmp;
+		} else if (a==".bmp"){
+			return imgtype.bmp;
+		} else if (a==".gif"){
+			return imgtype.gif;
 		}
 		return imgtype.jpeg;
 	}

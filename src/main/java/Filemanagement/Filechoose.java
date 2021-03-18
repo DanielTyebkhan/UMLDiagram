@@ -57,7 +57,7 @@ public class Filechoose{
 		JFrame frame = new JFrame();
 		fileChooser=new JFileChooser();
 		fileChooser.setDialogTitle("Specify a file to save");  
-		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Image Files (*.png) (*.jpeg)", "*.png", "*.jpeg");
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Image Files (*.png), (*.jpeg), (*.webmp), (*.bmp), (*.gif)", "*.png", "*.jpeg", "*.webmp", "*.bmp", "*.gif");
 		fileChooser.setFileFilter(extFilter);
 		int userSelection = fileChooser.showSaveDialog(frame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
