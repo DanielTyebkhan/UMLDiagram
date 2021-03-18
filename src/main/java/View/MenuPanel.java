@@ -4,6 +4,7 @@ import View.Listeners.OpenFileListener;
 import View.Listeners.AddDiagramListener;
 import View.Listeners.ExportFileListener;
 import View.Listeners.SaveFileListener;
+import View.Listeners.ExportCodeListener;
 import View.Theme.ThemeSelectorMouseListener;
 import View.Listeners.UndoListener;
 
@@ -33,6 +34,7 @@ public class MenuPanel extends JComponent {
         export();
         changeTheme();
         addPanel();
+	exportCode();
         frame.getContentPane().add(BorderLayout.NORTH, menuBar);
     }
 
@@ -83,5 +85,12 @@ public class MenuPanel extends JComponent {
         JMenu m = new JMenu("Change Theme");
         menuBar.add(m);
         m.addMouseListener(new ThemeSelectorMouseListener());
+    }
+	
+    public void exportCode()
+    {
+        JMenu m = new JMenu("Export Code");
+        menuBar.add(m);
+        m.addMouseListener(new ExportCodeListener(window));
     }
 }

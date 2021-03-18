@@ -21,7 +21,7 @@ public class CodeFactory{
 	* @param dtype Ftype
 	* @return DataSerializer from multiple different dtypes
 	*/
-	public CodeMaker createDataSerializer(ctype Ftype) {
+	public CodeMaker createCodeMaker(ctype Ftype) {
 		return multiplexer(Ftype);
 	}
 

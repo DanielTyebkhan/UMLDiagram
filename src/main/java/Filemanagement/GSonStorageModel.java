@@ -12,8 +12,4 @@ import Document.Arrow;
  * @author Lawson Wheatley
  */
 public class GSonStorageModel{
-	ArrayList<String> arr;
-
-
-
 }
