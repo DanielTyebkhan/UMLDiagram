@@ -8,17 +8,29 @@ import Document.ObjectClass;
 
 import General.Command;
 
+/**
+ * Command to remove an object
+ * @author Daniel Tyebkhan
+ */
 public class RemoveObjectCommand implements Command {
     private ObjectClass object;
     private ArrayList<Arrow> arrows;
     private Storage storage;
 
+    /**
+     * Constructs the command
+     * @param storage the storage to remove from
+     * @param object the object to remove
+     */
     public RemoveObjectCommand(Storage storage, ObjectClass object) {
         this.storage = storage;
         this.object = object;
         arrows = new ArrayList<Arrow>();
     }
 
+    /**
+     * Removes the object and all associated arrows from storage
+     */
     @Override
     public void execute() {
         for (Arrow arrow : storage.getArrows()) {
@@ -28,6 +40,9 @@ public class RemoveObjectCommand implements Command {
         storage.removeObject(object);
     }
 
+    /**
+     * Adds the object and all associated arrows to storage
+     */
     @Override
     public void unexecute() {
         storage.addObject(object);
