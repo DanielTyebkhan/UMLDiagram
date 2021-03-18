@@ -1,10 +1,11 @@
 package Filemanagement;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ClassNotFoundException;
 
@@ -38,8 +39,7 @@ public class JSonSerializer implements DataSerializer{
 		try {
 			Gson gson = new Gson();
 			String ret = gson.toJson(toSerialize, Storage.class);
-			byte[] strToBytes = ret.getBytes();
-			f.write(strToBytes);
+			f.write(ret.getBytes());
 			f.close();
 		} catch(IOException i){
             		System.out.println(i);
@@ -53,13 +53,18 @@ public class JSonSerializer implements DataSerializer{
 	public Storage DeserializeObject(FileInputStream f) {
 		try{ 
 			Gson gson = new Gson();
-			List<Byte> strToBytes = new ArrayList<Byte>();
-			int b=0;
-			while((b=f.read())!=-1){
-				
-				strToBytes.add((byte) b);
+			InputStream in = f;
+			StringBuilder sbuild = new StringBuilder();
+			if(in!=null){
+				InputStreamReader inread = new InputStreamReader(in);
+				BufferedReader buffered = new BufferedReader(inread);
+				String sReceive ="";
+				while((sReceive=buffered.readLine())!=null){
+					sbuild.append(sReceive);
+				}
+				in.close();
 			}
-			//toSerialize=gson.fromJson(new String(strToBytes.toArray()), Storage.class);
+			toSerialize=gson.fromJson(sbuild.toString(), Storage.class);
 			f.close();
 			return null;
 		} catch (IOException i){
