@@ -100,12 +100,15 @@ public class FileManager {
 	private dtype dt(String Fname){
 		System.out.println("Fname" + Fname);
 		String a = Fname.substring(Fname.indexOf("."));
+		System.out.println(a);
 		if(a==".cg"){
+			System.out.println("cg");
 			return dtype.cg;
-		}else if(a==".json"){
+		} else if(a==".json"){
+			System.out.println("Json");
 			return dtype.json;
 		}
-		return dtype.cg;
+		return dtype.json;
 	}
 
 	/**

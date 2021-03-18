@@ -46,7 +46,7 @@ public class PythonMaker implements CodeMaker{
 				}
 				outstr+="class "+obj.getName()+"(" + parent+ "):\n";
 				for(Notable instancevar: obj.getInstanceVariables()){
-					outstr+="	"+instancevar.toString();
+					outstr+="	self."+instancevar.toString();
 				}
 				for(Method method: obj.getMethods()){
 					outstr+="	def "+method.toString()+"("+
