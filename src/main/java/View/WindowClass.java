@@ -21,6 +21,7 @@ public class WindowClass extends JPanel{
 	 */
 	public WindowClass() {
 		JFrame frame = new JFrame("Build Your Diagram!");
+
 		tabPane = new JTabbedPane();
 		tabPane.addTab("Diagram1", new DiagramPanel());
 		
