@@ -38,6 +38,24 @@ public class MethodTest {
         assertEquals("New method should have no parameters", new ArrayList<Notable>(), method.getParameters());
     }
 
+    @Test
+    public void addParameter() {
+        Notable param = new Notable("param");
+        Notable paramCompare = new Notable("param");
+        ArrayList<Notable> expected = new ArrayList<Notable>(); 
+        expected.add(paramCompare);
+        method.addParameter(param);
+        assertEquals("Adding parameter should add it", expected, method.getParameters());
+    }
+
+    @Test
+    public void removeParameter() {
+        Notable param = new Notable("param");
+        Notable paramCompare = new Notable("param");
+        method.addParameter(param);
+        method.removeParameter(paramCompare);
+        assertEquals("Adding parameter should add it", new ArrayList<Notable>(), method.getParameters());
+    }
 }
 
 
