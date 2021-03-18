@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.MockitoAnnotations;
@@ -47,16 +46,10 @@ public class DiagramPanelTests {
     private Storage storage;
     private DiagramPanel spyDig;
 
-    // @Mock
-    // private ObjectComponent mockObject;
-
-
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         testObj = new ObjectClass("test", new Point(0,0));
-        
-        // mockObject = mock(ObjectComponent.class);
     }
 
     @Test
