@@ -18,8 +18,8 @@ public interface DataSerializer {
 	public void SerializeObject(FileOutputStream f);
 
 	/**
-	* Serialize Object
-	* @return FileInputStream filestream to input
+	* Deserializes Object
+	* @param FileInputStream filestream to input
 	*/
 	public Storage DeserializeObject(FileInputStream f);
 }

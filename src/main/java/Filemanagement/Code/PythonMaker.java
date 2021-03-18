@@ -16,8 +16,10 @@ import Document.*;
  */
 public class PythonMaker implements CodeMaker{
 	Storage storage;
+
 	/**
-	* Initializes PythonSerializer()
+	* Initializes PythonMaker
+	* @param Storage storage
 	*/
 	public PythonMaker(Storage stor) {
 		storage=stor;
@@ -25,7 +27,7 @@ public class PythonMaker implements CodeMaker{
 	
 	/**
 	* Serializes each Object as a .python file
-	* @param File
+	* @param String File path
 	*/
 	public void ExportCode(String Fpath) {
 
@@ -57,10 +59,11 @@ public class PythonMaker implements CodeMaker{
 	}
 	
 	/**
-	* Deserialize Object
-	* @return FileInputStream filestream to input
+	* Deserializes all python files
+	* @param String FilePath
+	* @return Storage
 	*/
-	public Storage ImportCode(String Fname) {
+	public Storage ImportCode(String FPath) {
 		/*try{ 
 			
 		} catch (IOException i){
@@ -70,6 +73,12 @@ public class PythonMaker implements CodeMaker{
 		}*/
 		return null;
 	}
+
+	/**
+	* Converts Notables (within method arguments) to string
+	* @param ArrayList<Notable> parameters
+	* @return String arguments separated by comma
+	*/
 	private String argumentsToString(ArrayList<Notable> Notes){
 		String ret="";
 		for(Notable note: Notes){

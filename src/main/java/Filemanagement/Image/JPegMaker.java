@@ -12,16 +12,20 @@ import java.awt.image.BufferedImage;
 public class JPegMaker implements ImageMaker{
 
 	/**
-	* JPEGMaker Constructor and writer method
-	* @param BufferedImage image to write to Jpeg
-	* @param String Filename
+	* JPEGMaker Constructor
+
 	*/
 	public JPegMaker() {
 	}
+	/* 
+	* Exports an image to a Jpeg file
+	* @param BufferedImage image to write to Jpeg
+	* @param String Filename
+	*/
 	public void exportImage(BufferedImage I, String Fname){
 		try{
 		File outputfile = new File(Fname);
-		ImageIO.write(I, "png", outputfile);
+		ImageIO.write(I, "jpeg", outputfile);
 		} catch(IOException i){}
 	}
 }

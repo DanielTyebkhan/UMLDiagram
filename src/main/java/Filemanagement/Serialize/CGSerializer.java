@@ -40,7 +40,8 @@ public class CGSerializer implements DataSerializer{
 
 	/**
 	* Serialize Object
-	* @return FileInputStream filestream to input
+	* @param FileInputStream filestream to input
+	* @return Storage to export
 	*/
 	public Storage DeserializeObject(FileInputStream f) {
 		try{ 

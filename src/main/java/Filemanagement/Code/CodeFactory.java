@@ -3,7 +3,7 @@ package Filemanagement.Code;
 import Document.Storage;
 
 /**
- * Factory class for all DataSerialization
+ * Factory class for all CodeMaking
  * @author Lawson Wheatley
  */
 public class CodeFactory{
@@ -11,24 +11,25 @@ public class CodeFactory{
 
 	/**
 	* Constructor
+	* @param Storage storage file
 	*/
 	public CodeFactory(Storage storage){
 		this.storage = storage;
 	}
 	
 	/**
-	* Creates a DataSerializer
-	* @param dtype Ftype
-	* @return DataSerializer from multiple different dtypes
+	* Creates a CodeMaker
+	* @param ctype Ftype
+	* @return CodeMaker from multiple different ctypes
 	*/
 	public CodeMaker createCodeMaker(ctype Ftype) {
 		return multiplexer(Ftype);
 	}
 
 	/**
-	* Creates a DataSerializer
-	* @param dtype Ftype
-	* @return DataSerializer from multiple different dtypes
+	* Creates a CodeMaker
+	* @param ctype Ftype
+	* @return CodeMaker from multiple different ctypes
 	*/
 	private CodeMaker multiplexer(ctype Ftype){
 		switch(Ftype){

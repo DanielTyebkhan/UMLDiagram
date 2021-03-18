@@ -5,14 +5,10 @@ import java.awt.image.BufferedImage;
 import java.lang.ClassNotFoundException;
 
 /**
- * Factory method for creating an image
+ * Interface for making images
  * @author Lawson Wheatley
  */
 public interface ImageMaker{
-
-	/**
-	* Constructor Method
-	*/
 
 	
 	/**

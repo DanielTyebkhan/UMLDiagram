@@ -12,13 +12,16 @@ import java.awt.image.BufferedImage;
 public class PNGMaker implements ImageMaker{
 
 	/**
-	* PNGMaker Constructor and writer method
-	* @param BufferedImage image to write to PNG
-	* @param String Filename
+	* PNGMaker Constructor method
 	*/
 	public PNGMaker() {
 	}
 
+	/* 
+	* Exports an image to a png file
+	* @param BufferedImage image to write to png
+	* @param String Filename
+	*/
 	public void exportImage(BufferedImage I, String Fname){
 		try{
 			File outputfile = new File(Fname);

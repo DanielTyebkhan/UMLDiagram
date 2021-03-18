@@ -33,7 +33,7 @@ public class JSonSerializer implements DataSerializer{
 	
 	/**
 	* Serializes an Object as a .JSon file
-	* @param File
+	* @param FileOutputStream
 	*/
 	public void SerializeObject(FileOutputStream f) {
 		try {
@@ -48,7 +48,8 @@ public class JSonSerializer implements DataSerializer{
 
 	/**
 	* Deserializes Json object
-	* @return FileInputStream filestream to input
+	* @param FileInputStream filestream to input
+	* @return Storage 
 	*/
 	public Storage DeserializeObject(FileInputStream f) {
 		try{ 

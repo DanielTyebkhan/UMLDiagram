@@ -6,20 +6,20 @@ import java.io.FileOutputStream;
 import Document.Storage;
 
 /**
-* Interface for DataSerialization
+* Interface for all code files
 * @author Lawson Wheatley
 */
 public interface CodeMaker {
 
 	/**
-	* Serialize Object
-	* @param FileOutputStream filestream to ouput
+	* Exports Code
+	* @param String FilePath
 	*/
-	public void ExportCode(String Fname);
+	public void ExportCode(String FPath);
 
 	/**
-	* Serialize Object
-	* @return FileInputStream filestream to input
+	* Imports Code
+	* @return String FilePath
 	*/
-	public Storage ImportCode(String Fname);
+	public Storage ImportCode(String FPath);
 }
