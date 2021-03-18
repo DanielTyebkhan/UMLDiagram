@@ -20,8 +20,10 @@ import View.DiagramPanel;
 public class FileManager {
 	DiagramPanel diagramPanel;
 	DataSerializer dataserializer;
+	CodeMaker cmaker;
 	DataSerializerFactory dfactory; 
 	ImageFactory imgfactory;
+	CodeFactory cfactory;
 	dtype type;
 
 	/**
@@ -30,6 +32,7 @@ public class FileManager {
 	public FileManager(DiagramPanel panel) {
 		this.diagramPanel = panel;
 		dfactory = new DataSerializerFactory(diagramPanel.getStorage());
+		cfactory = new CodeFactory(diagramPanel.getStorage());
 		imgfactory = new ImageFactory();
 	}
 
@@ -75,6 +78,15 @@ public class FileManager {
 			f.close();
 		} catch(IOException i) {
 		}
+	}
+
+	/**
+	* Exports code
+	* @param String File Path
+	*/
+	public void exportCode(String Fpath) {
+		cmaker = cfactory.createCodeMaker(ctype.python);
+		cmaker.ExportCode(Fpath);	
 	}
 
 	/**

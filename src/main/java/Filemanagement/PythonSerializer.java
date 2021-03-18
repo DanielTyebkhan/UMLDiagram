@@ -1,9 +1,7 @@
 package Filemanagement;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.File;
+import java.io.FileWriter;
 
 import java.util.ArrayList;
 
@@ -13,7 +11,7 @@ import java.lang.ClassNotFoundException;
 import Document.*;
 
 /**
- * Serializes data to the custom CG style file
+ * Exports to Python File
  * @author Lawson Wheatley
  */
 public class PythonSerializer implements CodeMaker{
@@ -29,10 +27,11 @@ public class PythonSerializer implements CodeMaker{
 	* Serializes each Object as a .python file
 	* @param File
 	*/
-	public void ExportCode(String Fname) {
-		//try {
+	public void ExportCode(String Fpath) {
+		try {
 			
 			for(ObjectClass obj: storage.getObjects()){
+				FileWriter f = new FileWriter(Fpath+obj.getName()+".python");
 				String outstr="";
 				outstr+="def "+obj.getName()+":\n";
 				outstr+="def"+ "	"+obj.getName()+":\n";
@@ -44,10 +43,11 @@ public class PythonSerializer implements CodeMaker{
 						argumentsToString(method.getParameters())+")" + ":\n";
 					outstr+="	";
 				}
+				f.write(outstr);
 			}
-		/*} catch(IOException i){
+		} catch(IOException i){
             		System.out.println(i);
-		}*/
+		}
 	}
 	
 	/**

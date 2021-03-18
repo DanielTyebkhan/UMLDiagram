@@ -81,4 +81,19 @@ public class Filechoose{
    			fmanager.LoadData(fileToSave.getAbsolutePath());
 		}
 	}
+
+	/*
+	* Exports Code Files
+	*/
+	public void exportCode(){
+		JFrame frame = new JFrame();
+		fileChooser=new JFileChooser();
+		fileChooser.setDialogTitle("Specify a folder to save python files to");  
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int userSelection = fileChooser.showSaveDialog(frame);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+    			File fileToSave = fileChooser.getSelectedFile();
+   			fmanager.exportCode(fileToSave.getAbsolutePath());
+		}
+	}
 }
